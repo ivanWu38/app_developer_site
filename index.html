@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer Site – Apps</title>
+  <style>
+    :root{--bg:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--card:#111827;--accent:#22d3ee}
+    html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .wrap{max-width:960px;margin:40px auto;padding:0 20px}
+    h1{font-size:2rem;color:var(--accent);margin:0 0 16px}
+    p{color:var(--muted);margin:6px 0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+    .card h3{margin:0 0 8px;font-size:1.1rem}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{margin-top:18px;color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Developer Site</h1>
+    <p>Support pages for our apps. Choose an app below.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>lifeTime</h3>
+        <p>A simple app that helps you see time from a new perspective.</p>
+        <p><a href="/apps/lifetime/">Open support page →</a></p>
+      </div>
+      <!-- Add more app cards here in the future -->
+    </div>
+    <div class="footer"><a href="/app-ads.txt">app-ads.txt</a></div>
+  </div>
+</body>
+</html>
