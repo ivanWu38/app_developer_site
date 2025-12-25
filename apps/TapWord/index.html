@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TapWord – Support Page</title>
+  <meta name="description" content="TapWord support page: FAQ, privacy policy, and release notes." />
+  <style>
+    :root{
+      --bg:#0f1b2b;
+      --card:#13263d;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#22364f;
+      --accent:#7bb0ff;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:var(--bg);
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.25);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--muted);font-weight:600}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">TapWord — Support Page</div>
+      <h1>Welcome to TapWord</h1>
+      <p class="lead">
+        A camera-based English word lookup tool designed for readers of physical books.
+        Point your camera at any English text, tap any word, and instantly see its dictionary definition.
+        Perfect for language learners reading English books.
+      </p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. Does TapWord require an internet connection?</h3>
+      <p>No. TapWord works completely offline. Text recognition and dictionary lookups are performed locally on your device using Apple's built-in Vision and Dictionary frameworks.</p>
+
+      <h3>2. How do I use TapWord?</h3>
+      <p>
+        Simply open the app and point your camera at an English book page.
+        The app will automatically recognize all words and highlight them.
+        Tap any word to see its definition in a popup dictionary.
+      </p>
+
+      <h3>3. What types of text can TapWord recognize?</h3>
+      <p>
+        TapWord is optimized for printed English text in books, magazines, and documents.
+        It works best with clear, well-lit printed text. Handwritten text is not supported.
+      </p>
+
+      <h3>4. Why can't I see the definition for some words?</h3>
+      <p>
+        TapWord uses your device's built-in dictionary. Proper nouns, abbreviations, and very specialized terms may not have definitions.
+        Make sure you have dictionaries installed: go to Settings > General > Dictionary and download the dictionaries you need.
+      </p>
+
+      <h3>5. How do I get Chinese/Japanese/other language definitions?</h3>
+      <p>
+        Go to your iPhone's Settings > General > Dictionary, then download the bilingual dictionary you need
+        (e.g., "English-Chinese" or "English-Japanese"). TapWord will then show definitions in your preferred language.
+      </p>
+
+      <h3>6. Does TapWord save my lookup history?</h3>
+      <p>
+        Currently, TapWord does not save lookup history. Each session starts fresh.
+        Future versions may include a vocabulary notebook feature for saving words.
+      </p>
+
+      <h3>7. What are the best conditions for using TapWord?</h3>
+      <p>
+        For best results: ensure good lighting, hold the camera about 20-30cm from the page,
+        keep the book flat or slightly tilted, and make sure the text is in focus.
+      </p>
+
+      <h3>8. Why is the camera not working?</h3>
+      <p>
+        Make sure you have granted camera permission. Go to Settings > TapWord and enable Camera access.
+        Also ensure no other app is using the camera. Note: TapWord requires a physical iPhone device and does not work in the Simulator.
+      </p>
+
+      <h3>9. What is left-hand and right-hand mode?</h3>
+      <p>
+        TapWord offers left-hand and right-hand mode settings to optimize the interface layout
+        for your preferred hand. This makes it easier to hold your phone and tap words
+        comfortably while reading. You can change this in Settings > Hand Mode.
+      </p>
+
+      <h3>10. What languages are supported?</h3>
+      <p>
+        TapWord currently recognizes English printed text. The app interface supports 14 languages:
+        English, Traditional Chinese, Simplified Chinese, Japanese, Korean, Spanish, French, German,
+        Italian, Portuguese, Russian, Arabic, Thai, and Vietnamese.
+      </p>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>TapWord does not collect, share, or sell any personal data.</li>
+        <li>All text recognition is performed locally on your device. No images or text are ever uploaded to any server.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>Camera access is used solely for real-time text recognition and is never recorded or stored.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>TapWord Premium is available as a Monthly or Annual subscription.</li>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless canceled at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period will be forfeited when you purchase a subscription.</li>
+        <li>Subscription pricing varies by region and is displayed in the App Store and within the app.</li>
+      </ul>
+
+      <h3>Premium Features</h3>
+      <p>TapWord Premium subscription includes:</p>
+      <ul>
+        <li>Ad-free experience</li>
+        <li>Home Screen Widget for quick access</li>
+        <li>Lock Screen Widget for instant lookup</li>
+      </ul>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+        Dictionary definitions are provided by Apple's system dictionary and we do not guarantee their accuracy.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with real-time camera text recognition</li>
+        <li>Tap-to-lookup dictionary feature using system dictionary</li>
+        <li>Optimized for English printed text</li>
+        <li>Support for bilingual dictionaries (English-Chinese, English-Japanese, etc.)</li>
+        <li>Haptic feedback on word tap</li>
+        <li>Fully offline functionality</li>
+        <li>Home Screen and Lock Screen Widgets (Premium)</li>
+        <li>Left-hand and right-hand mode support</li>
+        <li>Support for 14 languages</li>
+      </ul>
+
+      <div class="footer">
+        © 2025 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
