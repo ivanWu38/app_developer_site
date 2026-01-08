@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>connections!! – Support Page</title>
+  <meta name="description" content="connections!! support page: FAQ, privacy policy, and release notes." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#f5c842;
+      --accent-light:#fbd86b;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(245,200,66,0.1);
+      border:1px solid rgba(245,200,66,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+    .category-colors{
+      display:flex;
+      gap:8px;
+      margin:8px 0;
+    }
+    .color-dot{
+      width:20px;
+      height:20px;
+      border-radius:4px;
+    }
+    .color-yellow{background:#f9df6d}
+    .color-green{background:#a0c35a}
+    .color-blue{background:#b0c4ef}
+    .color-purple{background:#ba81c5}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">connections!! — Support Page</div>
+      <h1>Welcome to connections!!</h1>
+      <p class="lead">
+        A word puzzle game that challenges your mind. Find the hidden connections between 16 words
+        by grouping them into 4 categories of 4 words each. Test your vocabulary, knowledge, and
+        lateral thinking with daily puzzles or unlimited practice mode.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Daily Puzzle</div>
+          <div class="feature-desc">New challenge every day</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">♾️</div>
+          <div class="feature-title">Practice Mode</div>
+          <div class="feature-desc">Unlimited puzzles</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-title">Streaks</div>
+          <div class="feature-desc">Track your daily streak</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title">Themes</div>
+          <div class="feature-desc">Customize your experience</div>
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. How do I play connections!!?</h3>
+      <p>
+        You are presented with 16 words arranged in a 4×4 grid. Your goal is to find 4 groups
+        of 4 words that share a common theme or connection. Tap on 4 words you think belong
+        together, then submit your guess. If correct, the category is revealed. You have
+        4 mistakes allowed before the game ends.
+      </p>
+
+      <h3>2. What do the different colors mean?</h3>
+      <p>
+        Each category has a difficulty level indicated by color:
+      </p>
+      <div class="category-colors">
+        <span class="color-dot color-yellow"></span>
+        <span class="color-dot color-green"></span>
+        <span class="color-dot color-blue"></span>
+        <span class="color-dot color-purple"></span>
+      </div>
+      <ul>
+        <li><strong>Yellow:</strong> Easiest - straightforward connections</li>
+        <li><strong>Green:</strong> Medium - requires more thought</li>
+        <li><strong>Blue:</strong> Hard - tricky connections</li>
+        <li><strong>Purple:</strong> Trickiest - often involves wordplay or obscure links</li>
+      </ul>
+
+      <h3>3. What is Daily Puzzle mode?</h3>
+      <p>
+        Every day, a new puzzle is available for all players. Complete the daily puzzle to
+        maintain your streak. The puzzle resets at midnight (local time). You only get one
+        chance per day - if you run out of mistakes, the puzzle ends and you'll need to wait
+        for the next day's puzzle.
+      </p>
+
+      <h3>4. What is Practice mode?</h3>
+      <p>
+        Practice mode offers unlimited randomly generated puzzles. Play as many puzzles as
+        you want to sharpen your skills. You can replay puzzles, try new ones, and practice
+        without affecting your daily streak.
+      </p>
+
+      <h3>5. How do streaks work?</h3>
+      <p>
+        Complete the daily puzzle each day to build your streak. Your streak shows how many
+        consecutive days you've completed the daily challenge. Miss a day and your streak
+        resets to zero. A countdown timer shows when the next daily puzzle becomes available.
+      </p>
+
+      <h3>6. What happens if I make a wrong guess?</h3>
+      <p>
+        You have 4 mistakes allowed per puzzle. If you select 4 words that don't form a
+        category, you lose one mistake. The tiles will shake to indicate an incorrect guess.
+        If you use all 4 mistakes, the game ends and the remaining categories are revealed.
+      </p>
+
+      <h3>7. Can I shuffle the tiles?</h3>
+      <p>
+        Yes! Tap the Shuffle button to rearrange the word tiles. This can help you see
+        new patterns and connections you might have missed.
+      </p>
+
+      <h3>8. Can I deselect words?</h3>
+      <p>
+        Yes! Tap a selected word again to deselect it. You can also use the Deselect All
+        button to clear all your selections at once.
+      </p>
+
+      <h3>9. Does connections!! work offline?</h3>
+      <p>
+        Yes! connections!! works completely offline. All puzzles are stored locally on your
+        device. You can play anytime, anywhere without an internet connection.
+      </p>
+
+      <h3>10. Can I customize the appearance?</h3>
+      <p>
+        Yes! Go to Settings to choose your preferred appearance mode: Light, Dark, or System
+        (follows your device setting). Premium subscribers can also customize category colors,
+        font colors, and font styles.
+      </p>
+
+      <h3>11. How do I turn off sounds or haptics?</h3>
+      <p>
+        Go to Settings to toggle Sound Effects and Haptics on or off according to your preference.
+      </p>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>connections!! does not collect, share, or sell any personal data.</li>
+        <li>All game data and statistics are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="subscription">Premium Subscription</h2>
+      <p>
+        connections!! offers optional Premium subscriptions to remove ads and unlock additional customization options.
+      </p>
+      <h3>Premium Features</h3>
+      <ul>
+        <li><strong>Ad-Free Experience:</strong> Enjoy the game without any advertisements</li>
+        <li><strong>Custom Themes:</strong> Choose from multiple category color palettes (Sunset, Ocean, Forest, Berry, Mono)</li>
+        <li><strong>Font Colors:</strong> Customize the text color on category tiles</li>
+        <li><strong>Font Styles:</strong> Choose from different font styles (Serif, Mono, Playful, Elegant)</li>
+      </ul>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Quarterly Premium:</strong> Auto-renews every 3 months</li>
+        <li><strong>Yearly Premium:</strong> Auto-renews every year</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with word connection puzzle gameplay</li>
+        <li>Daily Puzzle mode with new challenge every day</li>
+        <li>Practice mode with unlimited puzzles</li>
+        <li>Four difficulty levels: Yellow, Green, Blue, Purple</li>
+        <li>Streak tracking for daily puzzles</li>
+        <li>Shuffle and deselect controls</li>
+        <li>Sound effects and haptic feedback</li>
+        <li>Light, Dark, and System appearance modes</li>
+        <li>Premium subscription with custom themes and fonts</li>
+        <li>Fully offline functionality</li>
+      </ul>
+
+      <div class="footer">
+        © 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
