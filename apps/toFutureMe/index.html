@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>toFutureMe – Support Page</title>
-  <meta name="description" content="toFutureMe support page: FAQ, privacy policy, and release notes." />
+  <title>Future Me – Support Page</title>
+  <meta name="description" content="Future Me support page: FAQ, privacy policy, subscription info, and release notes." />
   <style>
     :root{
-      --bg:#0f1b2b;
-      --card:#13263d;
+      --bg:#1a1f2e;
+      --card:#252b3d;
       --text:#e6eef7;
       --muted:#a8b3c7;
-      --line:#22364f;
-      --accent:#7bb0ff;
+      --line:#3a4259;
+      --accent:#8b9dc3;
+      --accent-light:#a8b8d8;
+      --pink:#e8d6e3;
       --radius:14px;
     }
     *{box-sizing:border-box}
@@ -22,7 +24,8 @@
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
       line-height:1.65;
       color:var(--text);
-      background:var(--bg);
+      background:linear-gradient(180deg, #1a1f2e 0%, #2d3548 100%);
+      min-height:100vh;
     }
     .wrap{
       max-width:900px;
@@ -33,7 +36,7 @@
       background:var(--card);
       border-radius:var(--radius);
       padding:36px 28px;
-      box-shadow:0 6px 30px rgba(0,0,0,.25);
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
       border:1px solid var(--line);
     }
     h1,h2,h3{
@@ -47,8 +50,8 @@
     .lead{color:var(--muted);margin-bottom:1.2rem}
     ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
     code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
-    .app-title{color:var(--muted);font-weight:600}
-    a{color:var(--accent);text-decoration:none}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
     a:hover{text-decoration:underline}
     .footer{
       text-align:center;
@@ -56,63 +59,222 @@
       font-size:.9rem;
       margin-top:18px;
     }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(139,157,195,0.1);
+      border:1px solid rgba(139,157,195,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
     <section class="card">
-      <div class="app-title">toFutureMe — Support Page</div>
-      <h1>Welcome to toFutureMe</h1>
+      <div class="app-title">Future Me — Support Page</div>
+      <h1>Welcome to Future Me</h1>
       <p class="lead">
-        A simple, privacy-first app to write a letter to your future self.
-        Attach up to two photos, lock with Face ID, and open it when the day arrives.
+        Write letters to your future self. Attach photos, set a delivery date, and receive
+        a notification when your letter arrives. Lock your letters with Face ID for complete
+        privacy, all stored locally on your device.
       </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">✉️</div>
+          <div class="feature-title">Time Capsule Letters</div>
+          <div class="feature-desc">Write to your future self</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📸</div>
+          <div class="feature-title">Photo Attachments</div>
+          <div class="feature-desc">Add up to 2 photos per letter</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔔</div>
+          <div class="feature-title">Delivery Notifications</div>
+          <div class="feature-desc">Get notified when letters arrive</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">Face ID Lock</div>
+          <div class="feature-desc">Keep your letters private</div>
+        </div>
+      </div>
 
       <h2>Frequently Asked Questions (FAQ)</h2>
 
-      <h3>1. Does toFutureMe require an internet connection?</h3>
-      <p>No. The app works completely offline.</p>
-
-      <h3>2. Where are my letters and photos stored?</h3>
-      <p>All letters (and up to 2 attached photos per letter) are stored locally on your device. Nothing is uploaded to any server.</p>
-
-      <h3>3. How is my privacy protected?</h3>
+      <h3>1. How does Future Me work?</h3>
       <p>
-        You can enable <span class="mono">Face ID</span> lock so only you can open the app and view your letters.
-        Your content never leaves your device.
+        Simply write a letter to your future self, optionally attach up to 2 photos,
+        set a delivery date, and schedule it. When the date arrives, you'll receive
+        a notification and can open your letter in the Inbox.
       </p>
 
-      <h3>4. Can I change the opening date of a letter?</h3>
-      <p>Yes. You can adjust the future date any time before the letter is due.</p>
+      <h3>2. Does Future Me require an internet connection?</h3>
+      <p>
+        No. The app works completely offline. All letters and photos are stored locally
+        on your device.
+      </p>
 
-      <h3>5. Will I get a reminder?</h3>
-      <p>Yes. toFutureMe will remind you when the selected date arrives so you can open your letter.</p>
+      <h3>3. Where are my letters and photos stored?</h3>
+      <p>
+        All letters and attached photos are stored locally on your device using secure
+        on-device storage. Nothing is uploaded to any server.
+      </p>
 
-      <h3>6. Does it support Dark Mode?</h3>
-      <p>Yes. The interface adapts to Light and Dark Mode automatically.</p>
+      <h3>4. How is my privacy protected?</h3>
+      <p>
+        You can enable <span class="mono">Face ID</span> lock in Settings so only you
+        can open the app and view your letters. Your content never leaves your device.
+      </p>
 
-      <h3>7. Do I need an account?</h3>
-      <p>No account or sign-in is required.</p>
+      <h3>5. Can I change the delivery date of a letter?</h3>
+      <p>
+        Yes. You can reschedule a letter any time before it's delivered by tapping the
+        "Reschedule" button in the letter detail view.
+      </p>
 
-      <h2>Privacy Policy</h2>
+      <h3>6. Will I get a reminder when my letter arrives?</h3>
+      <p>
+        Yes! Future Me sends you a notification when your scheduled delivery date arrives,
+        so you never miss opening your letter.
+      </p>
+
+      <h3>7. Does it support Dark Mode?</h3>
+      <p>
+        Yes. The interface adapts to your device's Light and Dark Mode settings automatically.
+      </p>
+
+      <h3>8. Do I need an account?</h3>
+      <p>
+        No account or sign-in is required. Your letters are stored locally and are
+        completely private.
+      </p>
+
+      <h3>9. What languages are supported?</h3>
+      <p>
+        Future Me is available in 34 languages including: English, 繁體中文, 简体中文, 日本語,
+        한국어, Español, Français, Deutsch, Italiano, Português (Brasil), Português (Portugal),
+        Русский, العربية, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, Bahasa Melayu, Türkçe,
+        Polski, Nederlands, Svenska, Dansk, Norsk, Suomi, Ελληνικά, Čeština, Slovenčina,
+        Magyar, Română, Українська, Hrvatski, Català, and עברית.
+        You can change the language in Settings.
+      </p>
+
+      <h3>10. Can I delete a letter?</h3>
+      <p>
+        Yes. Open the letter in your Inbox and tap the "Delete" button to permanently
+        remove it from your device.
+      </p>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
       <ul>
-        <li>toFutureMe does not collect, share, or sell any personal data.</li>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Future Me does not collect, share, or sell any personal data.</li>
         <li>Letters and attached photos are stored only on your device.</li>
         <li>Face ID lock is optional and can be enabled in Settings.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>We do not track your location or access any personal information.</li>
       </ul>
 
+      <h2 id="subscription">Future Me Premium</h2>
+      <p>
+        Upgrade to Future Me Premium for an enhanced experience with additional benefits.
+      </p>
+      <h3>Premium Benefits</h3>
+      <ul>
+        <li><strong>Ad-Free Experience:</strong> Remove all advertisements for a cleaner interface</li>
+        <li><strong>Support Development:</strong> Help us continue improving the app and adding new features</li>
+      </ul>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Weekly Premium:</strong> Auto-renews every week</li>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Quarterly Premium:</strong> Auto-renews every 3 months (save more)</li>
+        <li><strong>Yearly Premium:</strong> Auto-renews every year (best value)</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
       <h2>Release Notes</h2>
+
+      <h3>v1.0.1</h3>
+      <ul>
+        <li>Added Future Me Premium subscription with ad-free experience</li>
+        <li>Added banner ads and interstitial ads (removable with Premium)</li>
+        <li>Added App Tracking Transparency (ATT) support</li>
+        <li>Added "Rate This App" feature in Settings</li>
+        <li>Added "Share with Friends" feature in Settings</li>
+        <li>Added "Contact Us" feature in Settings</li>
+        <li>Expanded language support to 34 languages</li>
+        <li>Improved app stability and fixed potential crash issues</li>
+        <li>Updated deprecated APIs for better iOS compatibility</li>
+      </ul>
+
       <h3>v1.0</h3>
       <ul>
-        <li>Initial release: write a letter to your future self with up to 2 photo attachments.</li>
-        <li>Face ID lock, local-only storage.</li>
-        <li>Light & Dark Mode support.</li>
-        <li>English, Traditional Chinese, Simplified Chinese, and Japanese localizations.</li>
+        <li>Initial release: write letters to your future self</li>
+        <li>Attach up to 2 photos per letter</li>
+        <li>Set custom delivery dates with notification reminders</li>
+        <li>Face ID / Passcode lock for privacy</li>
+        <li>Reschedule or delete letters anytime</li>
+        <li>Light & Dark Mode support</li>
+        <li>Fully offline functionality</li>
+        <li>English, Traditional Chinese, Simplified Chinese, and Japanese localizations</li>
       </ul>
-      
+
       <div class="footer">
-       
-        © 2025 Ikuhei Kure
+        © 2026 Ikuhei Kure
       </div>
     </section>
   </main>
