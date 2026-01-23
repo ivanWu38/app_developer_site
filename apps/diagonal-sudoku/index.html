@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diagonal Sudoku – Support Page</title>
+  <meta name="description" content="Diagonal Sudoku support page: FAQ, privacy policy, and release notes." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#6366f1;
+      --accent-light:#818cf8;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(99,102,241,0.1);
+      border:1px solid rgba(99,102,241,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">Diagonal Sudoku — Support Page</div>
+      <h1>Welcome to Diagonal Sudoku!</h1>
+      <p class="lead">
+        Challenge your mind with the ultimate twist on classic Sudoku! Diagonal Sudoku
+        adds two diagonal constraints to the traditional 9x9 grid—numbers 1-9 must also be unique along both
+        main diagonals. With daily challenges, exclusive puzzles, achievements, and comprehensive statistics,
+        Diagonal Sudoku offers endless brain-teasing fun for puzzle enthusiasts of all levels.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">✖️</div>
+          <div class="feature-title">Diagonal Constraint</div>
+          <div class="feature-desc">Diagonal uniqueness rule</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Daily Challenge</div>
+          <div class="feature-desc">New puzzle every day</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">10 Achievements</div>
+          <div class="feature-desc">Unlock milestones</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌍</div>
+          <div class="feature-title">11 Languages</div>
+          <div class="feature-desc">Global accessibility</div>
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. What is Diagonal Sudoku?</h3>
+      <p>
+        Diagonal Sudoku follows all standard Sudoku rules with an additional constraint:
+        the two main diagonals (from corner to corner) must also contain the numbers 1-9 without repetition.
+        This extra rule creates more challenging and satisfying puzzles that require deeper logical thinking.
+      </p>
+
+      <h3>2. What are the difficulty levels?</h3>
+      <p>
+        Diagonal Sudoku offers four difficulty levels to match your skill:
+      </p>
+      <ul>
+        <li><strong>Easy:</strong> 40 initial numbers — Perfect for beginners</li>
+        <li><strong>Medium:</strong> 32 initial numbers — A balanced challenge</li>
+        <li><strong>Hard:</strong> 26 initial numbers — For experienced players</li>
+        <li><strong>Expert:</strong> 22 initial numbers — The ultimate test</li>
+      </ul>
+
+      <h3>3. How does the Daily Challenge work?</h3>
+      <p>
+        Every day at midnight, a new puzzle is generated for all players worldwide. Complete the daily challenge
+        to build your streak! The app tracks your current streak and best streak. Premium users can also access
+        the past 30 days of challenges to catch up on any missed puzzles.
+      </p>
+
+      <h3>4. What are Exclusive Challenges?</h3>
+      <p>
+        Premium subscribers get access to three special challenge types that refresh regularly:
+      </p>
+      <ul>
+        <li><strong>Weekly Expert Challenge:</strong> Expert difficulty, refreshes every Monday, +500 bonus points</li>
+        <li><strong>Speed Challenge:</strong> Medium difficulty, must complete in under 5 minutes, refreshes every 3 days, +300 bonus points</li>
+        <li><strong>Perfect Run Challenge:</strong> Hard difficulty, complete 3 games without errors, refreshes weekly, +750 bonus points</li>
+      </ul>
+
+      <h3>5. How does the hint system work?</h3>
+      <p>
+        When you're stuck, tap the hint button to reveal the correct number for an empty cell. The hint system
+        intelligently selects cells using logical solving techniques. Free users get limited hints per game
+        (5 on Easy, 4 on Medium, 3 on Hard, 2 on Expert), while Premium users enjoy unlimited hints.
+      </p>
+
+      <h3>6. What achievements can I unlock?</h3>
+      <p>
+        Diagonal Sudoku features 10 achievements to pursue:
+      </p>
+      <ul>
+        <li><strong>First Victory:</strong> Complete your first puzzle</li>
+        <li><strong>Speedster:</strong> Complete a puzzle in under 5 minutes</li>
+        <li><strong>Marathon Runner:</strong> Play 10 games in a row</li>
+        <li><strong>Streak Master:</strong> Maintain a 7-day daily challenge streak</li>
+        <li><strong>Daily Champion:</strong> Complete 30 daily challenges</li>
+        <li><strong>Expert Solver:</strong> Complete an Expert difficulty puzzle</li>
+        <li><strong>Century Club:</strong> Complete 100 puzzles</li>
+        <li><strong>Perfectionist:</strong> Complete 10 games without any errors</li>
+        <li><strong>Hintless Hero:</strong> Complete 5 games without using hints</li>
+        <li><strong>Dedication:</strong> Play the game on 30 different days</li>
+      </ul>
+
+      <h3>7. How does the ranking system work?</h3>
+      <p>
+        Your total score determines your rank. Progress through these levels:
+      </p>
+      <ul>
+        <li><strong>Novice:</strong> Starting rank</li>
+        <li><strong>Apprentice:</strong> 1,000 points</li>
+        <li><strong>Solver:</strong> 5,000 points</li>
+        <li><strong>Adept:</strong> 15,000 points</li>
+        <li><strong>Expert:</strong> 35,000 points</li>
+        <li><strong>Master:</strong> 75,000 points</li>
+        <li><strong>Grandmaster:</strong> 150,000 points</li>
+      </ul>
+
+      <h3>8. How is my score calculated?</h3>
+      <p>
+        Your score is based on multiple factors:
+      </p>
+      <ul>
+        <li><strong>Base score:</strong> Easy 100, Medium 200, Hard 400, Expert 800</li>
+        <li><strong>Time bonus:</strong> Faster completion = higher multiplier (up to 2x)</li>
+        <li><strong>Hint penalty:</strong> -10% per hint used</li>
+        <li><strong>Error penalty:</strong> -5% per error made</li>
+        <li><strong>Perfect bonus:</strong> +50% for no errors and no hints</li>
+      </ul>
+
+      <h3>9. What features are in Settings?</h3>
+      <p>
+        Customize your experience with these options:
+      </p>
+      <ul>
+        <li><strong>Show Errors:</strong> Highlight incorrect entries in real-time</li>
+        <li><strong>Show Timer:</strong> Display or hide the game timer</li>
+        <li><strong>Auto-remove Notes:</strong> Automatically clear pencil marks when placing numbers</li>
+        <li><strong>Highlight Same Numbers:</strong> Highlight all instances of a selected number</li>
+        <li><strong>Haptic Feedback:</strong> Enable or disable vibration feedback</li>
+        <li><strong>Language:</strong> Choose from 11 supported languages</li>
+      </ul>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Diagonal Sudoku does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="subscription">Diagonal Sudoku Premium</h2>
+      <p>
+        Upgrade to Premium for the ultimate Diagonal Sudoku experience with enhanced features.
+      </p>
+      <h3>Premium Benefits</h3>
+      <ul>
+        <li><strong>No Ads:</strong> Play without any banner advertisements</li>
+        <li><strong>Unlimited Hints:</strong> Get help whenever you need it</li>
+        <li><strong>Exclusive Challenges:</strong> Access 3 special weekly challenges with bonus points</li>
+        <li><strong>Past Puzzle Archive:</strong> Replay the last 30 days of daily challenges</li>
+        <li><strong>Advanced Statistics:</strong> View detailed performance analytics</li>
+      </ul>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Seasonal Premium:</strong> Auto-renews every 3 months (save more)</li>
+        <li><strong>Annual Premium:</strong> Auto-renews every year (best value)</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with Diagonal Sudoku gameplay</li>
+        <li>Four difficulty levels: Easy, Medium, Hard, Expert</li>
+        <li>Daily Challenge with streak tracking</li>
+        <li>3 Exclusive Challenges for Premium users</li>
+        <li>10 unlockable achievements</li>
+        <li>7-tier ranking system from Novice to Grandmaster</li>
+        <li>Comprehensive statistics and performance tracking</li>
+        <li>Pencil notes and undo/redo functionality</li>
+        <li>Smart hint system with logical solving</li>
+        <li>Game auto-save and resume</li>
+        <li>Premium subscription with unlimited hints and ad removal</li>
+        <li>Support for 11 languages</li>
+        <li>Dark mode with neon visual theme</li>
+        <li>Haptic feedback support</li>
+        <li>iPhone and iPad support</li>
+      </ul>
+
+      <div class="footer">
+        © 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
