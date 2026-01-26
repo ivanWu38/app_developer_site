@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Connection Game – Support Page</title>
+  <meta name="description" content="Word Connection Game support page: FAQ, privacy policy, and release notes." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#6366f1;
+      --accent-light:#818cf8;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(99,102,241,0.1);
+      border:1px solid rgba(99,102,241,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+    .difficulty-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+      gap:12px;
+      margin:1rem 0;
+    }
+    .difficulty-item{
+      border-radius:8px;
+      padding:12px;
+      text-align:center;
+    }
+    .diff-yellow{background:rgba(234,179,8,0.2);border:1px solid rgba(234,179,8,0.4)}
+    .diff-green{background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.4)}
+    .diff-blue{background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.4)}
+    .diff-purple{background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">Word Connection Game — Support Page</div>
+      <h1>Welcome to Word Connection Game</h1>
+      <p class="lead">
+        A challenging word puzzle game where you find hidden connections between 16 words.
+        Group words into 4 categories based on their common theme. Test your vocabulary and
+        lateral thinking with daily puzzles or unlimited practice mode.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Daily Puzzle</div>
+          <div class="feature-desc">New challenge every day</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">♾️</div>
+          <div class="feature-title">Practice Mode</div>
+          <div class="feature-desc">Unlimited puzzles</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title">Custom Themes</div>
+          <div class="feature-desc">Personalize your experience</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Statistics</div>
+          <div class="feature-desc">Track your progress</div>
+        </div>
+      </div>
+
+      <h2>How to Play</h2>
+      <p>
+        You are presented with 16 words arranged in a grid. Your goal is to find 4 groups of 4 words
+        that share a common connection or theme. Select 4 words and submit your guess. If correct,
+        the category is revealed. If wrong, it counts as a mistake. You have up to 4 mistakes before
+        the game ends.
+      </p>
+
+      <h3>Difficulty Levels</h3>
+      <p>Categories are color-coded by difficulty:</p>
+      <div class="difficulty-grid">
+        <div class="difficulty-item diff-yellow">
+          <strong>Yellow</strong><br>Easiest
+        </div>
+        <div class="difficulty-item diff-green">
+          <strong>Green</strong><br>Moderate
+        </div>
+        <div class="difficulty-item diff-blue">
+          <strong>Blue</strong><br>Tricky
+        </div>
+        <div class="difficulty-item diff-purple">
+          <strong>Purple</strong><br>Very Tricky
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. What is Daily Puzzle mode?</h3>
+      <p>
+        Every day at midnight, a new puzzle is released for all players worldwide. The daily puzzle
+        is numbered (Puzzle #1, #2, etc.) so you can discuss it with friends. Complete daily puzzles
+        to build your streak and track your consistency.
+      </p>
+
+      <h3>2. What is Practice mode?</h3>
+      <p>
+        Practice mode offers unlimited randomly generated puzzles. Choose from three difficulty settings:
+      </p>
+      <ul>
+        <li><strong>Easy:</strong> 2 Yellow + 2 Green categories - Perfect for warming up</li>
+        <li><strong>Medium:</strong> Mixed difficulties (Yellow, Green, Blue, Purple) - Balanced challenge</li>
+        <li><strong>Hard:</strong> 2 Green + 1 Blue + 2 Purple categories - For puzzle masters</li>
+      </ul>
+
+      <h3>3. What does "One Away" mean?</h3>
+      <p>
+        When you select 4 words and 3 of them belong to the same category, you'll see a special
+        "One away!" alert. This means you're very close - just one word needs to be swapped out.
+        Use this feedback strategically to solve tricky categories.
+      </p>
+
+      <h3>4. How does the timer work?</h3>
+      <p>
+        The game tracks your completion time. Each mistake adds a 10-second penalty to your final time.
+        Try to solve puzzles quickly and accurately to set new personal records. Your best times
+        for each difficulty level are saved in your statistics.
+      </p>
+
+      <h3>5. What statistics are tracked?</h3>
+      <p>
+        Word Connection Game tracks comprehensive statistics including:
+      </p>
+      <ul>
+        <li>Current and longest daily streaks</li>
+        <li>Total games played (daily and practice separately)</li>
+        <li>Perfect games (0 mistakes) for each difficulty</li>
+        <li>Best completion times for each difficulty</li>
+        <li>Average mistakes per game</li>
+      </ul>
+
+      <h3>6. Can I customize the app's appearance?</h3>
+      <p>
+        Yes! Premium subscribers can customize:
+      </p>
+      <ul>
+        <li><strong>Font Colors:</strong> Classic, Pure White, Pure Black, Warm Gray, Cool Gray, Cream</li>
+        <li><strong>Category Colors:</strong> Classic, Sunset, Ocean, Forest, Berry, Mono palettes</li>
+        <li><strong>Fonts:</strong> Classic Rounded, Serif, Monospaced, Playful, Elegant</li>
+      </ul>
+
+      <h3>7. Does Word Connection Game work offline?</h3>
+      <p>
+        Yes! The game works completely offline. All puzzles are generated locally on your device.
+        You can play anytime, anywhere without an internet connection.
+      </p>
+
+      <h3>8. How do I reset my statistics?</h3>
+      <p>
+        Go to Settings > Reset All Statistics. Be careful - this action is permanent and will
+        delete all your progress, streaks, and records.
+      </p>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Word Connection Game does not collect, share, or sell any personal data.</li>
+        <li>All game data and statistics are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="subscription">Premium Subscription</h2>
+      <p>
+        Word Connection Game offers optional Premium subscriptions to remove ads and unlock custom themes.
+      </p>
+      <h3>Premium Benefits</h3>
+      <ul>
+        <li><strong>Ad-Free Experience:</strong> Remove all banner and interstitial ads</li>
+        <li><strong>Custom Themes:</strong> Unlock additional font colors, category colors, and fonts</li>
+        <li><strong>Support Development:</strong> Help us create more puzzles and features</li>
+      </ul>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Quarterly Premium:</strong> Auto-renews every 3 months</li>
+        <li><strong>Yearly Premium:</strong> Auto-renews every year (best value)</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with word connection puzzle gameplay</li>
+        <li>Daily Puzzle mode with new challenge every day</li>
+        <li>Practice mode with Easy, Medium, and Hard difficulties</li>
+        <li>4 color-coded difficulty levels (Yellow, Green, Blue, Purple)</li>
+        <li>"One away" feedback system</li>
+        <li>Comprehensive statistics and streak tracking</li>
+        <li>Time tracking with mistake penalties</li>
+        <li>Premium subscription with ad-free experience and custom themes</li>
+        <li>Multiple theme options: font colors, category colors, and fonts</li>
+        <li>Haptic feedback and smooth animations</li>
+        <li>iPad support with responsive design</li>
+        <li>Fully offline functionality</li>
+      </ul>
+
+      <div class="footer">
+        © 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
