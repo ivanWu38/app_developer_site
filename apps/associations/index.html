@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Associations! – Support Page</title>
+  <meta name="description" content="Associations! support page: FAQ, privacy policy, and release notes." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#6366f1;
+      --accent-light:#818cf8;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(99,102,241,0.1);
+      border:1px solid rgba(99,102,241,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+    .difficulty-legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:1rem 0;
+    }
+    .difficulty-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .difficulty-dot{
+      width:16px;
+      height:16px;
+      border-radius:4px;
+    }
+    .difficulty-dot.yellow{background:#fbbf24}
+    .difficulty-dot.green{background:#22c55e}
+    .difficulty-dot.blue{background:#3b82f6}
+    .difficulty-dot.purple{background:#a855f7}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">Associations! — Support Page</div>
+      <h1>Welcome to Associations!</h1>
+      <p class="lead">
+        Challenge your brain with word connections! Associations! is an engaging word puzzle game where you
+        find hidden connections between 16 words grouped into 4 categories. With daily puzzles that sync
+        worldwide, unlimited practice modes across three difficulty levels, comprehensive statistics tracking,
+        and beautiful customization options, Associations! delivers the perfect blend of challenge and fun.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Daily Puzzles</div>
+          <div class="feature-desc">Same puzzle worldwide</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">3 Difficulty Levels</div>
+          <div class="feature-desc">Easy, Medium, Hard</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-title">Streak Tracking</div>
+          <div class="feature-desc">Build your streak</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Statistics</div>
+          <div class="feature-desc">Track your progress</div>
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. How do I play Associations!?</h3>
+      <p>
+        You're presented with 16 words shuffled on a grid. Your goal is to find the 4 groups of 4 words
+        that share a hidden connection. Tap on 4 words you think belong together and submit your guess.
+        If correct, the category is revealed and the words are removed. Keep finding groups until you
+        solve all 4 categories or run out of mistakes!
+      </p>
+
+      <h3>2. What do the colors mean?</h3>
+      <p>
+        Each category has a difficulty level indicated by color:
+      </p>
+      <div class="difficulty-legend">
+        <div class="difficulty-item"><div class="difficulty-dot yellow"></div><span>Yellow - Easiest</span></div>
+        <div class="difficulty-item"><div class="difficulty-dot green"></div><span>Green - Moderate</span></div>
+        <div class="difficulty-item"><div class="difficulty-dot blue"></div><span>Blue - Tricky</span></div>
+        <div class="difficulty-item"><div class="difficulty-dot purple"></div><span>Purple - Hardest</span></div>
+      </div>
+      <p>
+        Yellow categories are straightforward (like "Fruits" or "Animals"), while purple categories
+        often involve wordplay, obscure connections, or require creative thinking.
+      </p>
+
+      <h3>3. What is Daily Mode?</h3>
+      <p>
+        Every day, a new puzzle is released that's the same for all players worldwide. This creates a
+        shared experience where you can compare your performance with friends. Daily puzzles can only
+        be played once per day, and your streak tracks how many consecutive days you've played.
+      </p>
+
+      <h3>4. What is Practice Mode?</h3>
+      <p>
+        Practice Mode offers unlimited puzzles with three difficulty settings:
+      </p>
+      <ul>
+        <li><strong>Easy:</strong> 2 straightforward + 2 moderate categories</li>
+        <li><strong>Medium:</strong> Mixed difficulty across all four tiers</li>
+        <li><strong>Hard:</strong> Mostly tricky and very tricky categories</li>
+      </ul>
+      <p>
+        Use Practice Mode to sharpen your skills without affecting your daily streak!
+      </p>
+
+      <h3>5. What does "One Away" mean?</h3>
+      <p>
+        When you submit a guess and see "One Away!", it means 3 of your 4 selected words belong to
+        the same category. One word is incorrect. This hint helps you narrow down your next guess!
+      </p>
+
+      <h3>6. How does the time penalty work?</h3>
+      <p>
+        Your final time includes a 10-second penalty for each mistake. This encourages accuracy
+        over speed:
+      </p>
+      <ul>
+        <li><strong>Final Time = Elapsed Time + (10 seconds × Mistakes)</strong></li>
+        <li>A quick solve with mistakes may be slower than a careful, mistake-free run</li>
+      </ul>
+
+      <h3>7. What statistics are tracked?</h3>
+      <p>
+        The Journey tab shows comprehensive statistics including:
+      </p>
+      <ul>
+        <li><strong>Streaks:</strong> Current streak and longest streak</li>
+        <li><strong>Games played:</strong> Total daily and practice games</li>
+        <li><strong>Perfect games:</strong> Games completed with zero mistakes</li>
+        <li><strong>Best times:</strong> Personal records for each game type and difficulty</li>
+      </ul>
+
+      <h3>8. Can I customize the app?</h3>
+      <p>
+        Yes! You can customize the appearance including:
+      </p>
+      <ul>
+        <li>Light, Dark, or System appearance mode</li>
+        <li>Font themes and color themes</li>
+        <li>Premium subscribers unlock additional customization options</li>
+      </ul>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Associations! does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="subscription">Associations! Premium</h2>
+      <p>
+        Upgrade to Premium for the ultimate word puzzle experience with enhanced features.
+      </p>
+      <h3>Premium Benefits</h3>
+      <ul>
+        <li><strong>No Ads:</strong> Play without banner or interstitial ads</li>
+        <li><strong>Premium Themes:</strong> Unlock exclusive font and color themes</li>
+        <li><strong>Support Development:</strong> Help us create more puzzles and features</li>
+      </ul>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Quarterly Premium:</strong> Auto-renews every 3 months (save more)</li>
+        <li><strong>Yearly Premium:</strong> Auto-renews every year (best value)</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with word connection puzzle gameplay</li>
+        <li>Daily puzzles synchronized worldwide</li>
+        <li>Unlimited Practice Mode with Easy, Medium, and Hard difficulties</li>
+        <li>16-word grid with 4 hidden categories per puzzle</li>
+        <li>Four-tier difficulty system (Yellow, Green, Blue, Purple)</li>
+        <li>"One Away" hint system for near-correct guesses</li>
+        <li>Time tracking with 10-second mistake penalties</li>
+        <li>Comprehensive statistics and streak tracking</li>
+        <li>Personal best time records for each mode and difficulty</li>
+        <li>New record celebration with improvement display</li>
+        <li>Customizable themes (fonts, colors, appearance)</li>
+        <li>Premium subscription with ad removal and exclusive themes</li>
+        <li>Haptic feedback support</li>
+        <li>iPad-optimized layout</li>
+      </ul>
+
+      <div class="footer">
+        © 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
