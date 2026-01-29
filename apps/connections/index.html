@@ -85,20 +85,23 @@
       font-size:0.9rem;
       color:var(--muted);
     }
-    .category-colors{
+    .dot-colors{
       display:flex;
       gap:8px;
       margin:8px 0;
+      flex-wrap:wrap;
     }
     .color-dot{
       width:20px;
       height:20px;
-      border-radius:4px;
+      border-radius:50%;
     }
-    .color-yellow{background:#f9df6d}
-    .color-green{background:#a0c35a}
-    .color-blue{background:#b0c4ef}
-    .color-purple{background:#ba81c5}
+    .dot-red{background:#e74c3c}
+    .dot-blue{background:#3498db}
+    .dot-green{background:#2ecc71}
+    .dot-yellow{background:#f1c40f}
+    .dot-purple{background:#9b59b6}
+    .dot-orange{background:#e67e22}
   </style>
 </head>
 <body>
@@ -107,31 +110,31 @@
       <div class="app-title">Connections~ — Support Page</div>
       <h1>Welcome to Connections~</h1>
       <p class="lead">
-        A word puzzle game that challenges your mind. Find the hidden connections between 16 words
-        by grouping them into 4 categories of 4 words each. Test your vocabulary, knowledge, and
-        lateral thinking with daily puzzles or unlimited practice mode.
+        A relaxing yet challenging puzzle game where you connect colored dots on a grid.
+        Draw paths between matching dots, fill the entire board, and master 1,000 handcrafted
+        levels across 7 chapters. Simple to learn, delightfully addictive to play.
       </p>
 
       <div class="feature-grid">
         <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">1,000 Levels</div>
+          <div class="feature-desc">Handcrafted puzzles</div>
+        </div>
+        <div class="feature-item">
           <div class="feature-icon">📅</div>
-          <div class="feature-title">Daily Puzzle</div>
-          <div class="feature-desc">New challenge every day</div>
+          <div class="feature-title">Daily Challenge</div>
+          <div class="feature-desc">New puzzle every day</div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">♾️</div>
-          <div class="feature-title">Practice Mode</div>
-          <div class="feature-desc">Unlimited puzzles</div>
+          <div class="feature-icon">⭐</div>
+          <div class="feature-title">Star Rating</div>
+          <div class="feature-desc">Earn up to 3 stars</div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🔥</div>
-          <div class="feature-title">Streaks</div>
-          <div class="feature-desc">Track your daily streak</div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🎨</div>
-          <div class="feature-title">Themes</div>
-          <div class="feature-desc">Customize your experience</div>
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Achievements</div>
+          <div class="feature-desc">10 unlockable badges</div>
         </div>
       </div>
 
@@ -139,86 +142,110 @@
 
       <h3>1. How do I play Connections~?</h3>
       <p>
-        You are presented with 16 words arranged in a 4×4 grid. Your goal is to find 4 groups
-        of 4 words that share a common theme or connection. Tap on 4 words you think belong
-        together, then submit your guess. If correct, the category is revealed. You have
-        4 mistakes allowed before the game ends.
+        You are presented with a grid containing pairs of colored dots. Your goal is to draw
+        paths connecting each pair of same-colored dots. Swipe or drag from one dot to create
+        a path to its matching dot. The puzzle is complete when all dots are connected and
+        the entire grid is filled - no empty cells allowed!
       </p>
 
-      <h3>2. What do the different colors mean?</h3>
-      <p>
-        Each category has a difficulty level indicated by color:
-      </p>
-      <div class="category-colors">
-        <span class="color-dot color-yellow"></span>
-        <span class="color-dot color-green"></span>
-        <span class="color-dot color-blue"></span>
-        <span class="color-dot color-purple"></span>
-      </div>
+      <h3>2. What are the rules for drawing paths?</h3>
       <ul>
-        <li><strong>Yellow:</strong> Easiest - straightforward connections</li>
-        <li><strong>Green:</strong> Medium - requires more thought</li>
-        <li><strong>Blue:</strong> Hard - tricky connections</li>
-        <li><strong>Purple:</strong> Trickiest - often involves wordplay or obscure links</li>
+        <li>Paths can only move up, down, left, or right (no diagonals)</li>
+        <li>Paths cannot cross other paths</li>
+        <li>Each cell can only be used by one path</li>
+        <li>All cells must be filled to complete the puzzle</li>
+        <li>Drag back along a path to undo it</li>
       </ul>
 
-      <h3>3. What is Daily Puzzle mode?</h3>
+      <h3>3. How many levels are there?</h3>
       <p>
-        Every day, a new puzzle is available for all players. Complete the daily puzzle to
-        maintain your streak. The puzzle resets at midnight (local time). You only get one
-        chance per day - if you run out of mistakes, the puzzle ends and you'll need to wait
-        for the next day's puzzle.
+        Connections~ features 1,000 levels organized into 7 chapters with progressive difficulty:
+      </p>
+      <ul>
+        <li><strong>Chapter 1:</strong> Getting Started (Levels 1-50) - Tutorial</li>
+        <li><strong>Chapter 2:</strong> Beginner (51-150) - Easy</li>
+        <li><strong>Chapter 3:</strong> Intermediate (151-300) - Medium</li>
+        <li><strong>Chapter 4:</strong> Advanced (301-500) - Hard</li>
+        <li><strong>Chapter 5:</strong> Expert (501-700) - Expert</li>
+        <li><strong>Chapter 6:</strong> Master (701-900) - Master</li>
+        <li><strong>Chapter 7:</strong> Grandmaster (901-1000) - Master</li>
+      </ul>
+
+      <h3>4. How does the star rating work?</h3>
+      <p>
+        Earn 1-3 stars based on your performance:
+      </p>
+      <ul>
+        <li><strong>3 Stars:</strong> Complete without hints and under the target time</li>
+        <li><strong>2 Stars:</strong> Complete under 1.5x the target time</li>
+        <li><strong>1 Star:</strong> Complete the level (any time)</li>
+      </ul>
+
+      <h3>5. What is the Daily Challenge?</h3>
+      <p>
+        A new unique puzzle is available every day. Complete the daily challenge to earn bonus
+        hints - 1 hint for completion, or 2 hints for a perfect 3-star finish! Daily challenges
+        help build your streak and keep you coming back for more.
       </p>
 
-      <h3>4. What is Practice mode?</h3>
+      <h3>6. How do hints work?</h3>
       <p>
-        Practice mode offers unlimited randomly generated puzzles. Play as many puzzles as
-        you want to sharpen your skills. You can replay puzzles, try new ones, and practice
-        without affecting your daily streak.
+        Hints automatically solve one incomplete path for you. Free players receive 4 hints
+        daily, which reset each day. You can earn additional hints by completing daily challenges
+        or watching ads. Premium subscribers enjoy unlimited hints.
       </p>
 
-      <h3>5. How do streaks work?</h3>
+      <h3>7. What are the different dot colors?</h3>
       <p>
-        Complete the daily puzzle each day to build your streak. Your streak shows how many
-        consecutive days you've completed the daily challenge. Miss a day and your streak
-        resets to zero. A countdown timer shows when the next daily puzzle becomes available.
+        Puzzles feature multiple colors of dots that you need to connect:
+      </p>
+      <div class="dot-colors">
+        <span class="color-dot dot-red"></span>
+        <span class="color-dot dot-blue"></span>
+        <span class="color-dot dot-green"></span>
+        <span class="color-dot dot-yellow"></span>
+        <span class="color-dot dot-purple"></span>
+        <span class="color-dot dot-orange"></span>
+      </div>
+      <p>
+        Premium subscribers can unlock additional color themes like Sunset, Ocean, Forest, Berry, and Mono.
       </p>
 
-      <h3>6. What happens if I make a wrong guess?</h3>
-      <p>
-        You have 4 mistakes allowed per puzzle. If you select 4 words that don't form a
-        category, you lose one mistake. The tiles will shake to indicate an incorrect guess.
-        If you use all 4 mistakes, the game ends and the remaining categories are revealed.
-      </p>
-
-      <h3>7. Can I shuffle the tiles?</h3>
-      <p>
-        Yes! Tap the Shuffle button to rearrange the word tiles. This can help you see
-        new patterns and connections you might have missed.
-      </p>
-
-      <h3>8. Can I deselect words?</h3>
-      <p>
-        Yes! Tap a selected word again to deselect it. You can also use the Deselect All
-        button to clear all your selections at once.
-      </p>
+      <h3>8. What achievements can I unlock?</h3>
+      <ul>
+        <li><strong>First Steps:</strong> Complete your first level</li>
+        <li><strong>Century:</strong> Complete 100 levels</li>
+        <li><strong>Speed Demon:</strong> Solve puzzles quickly</li>
+        <li><strong>Perfectionist:</strong> Earn 3 stars on levels</li>
+        <li><strong>Dedicated:</strong> Build a daily streak</li>
+        <li><strong>Persistent:</strong> Keep playing</li>
+        <li><strong>Master:</strong> Complete all 1,000 levels</li>
+        <li><strong>Star Collector:</strong> Collect stars</li>
+        <li><strong>No Hints:</strong> Complete levels without hints</li>
+        <li><strong>Daily Warrior:</strong> Complete daily challenges</li>
+      </ul>
 
       <h3>9. Does Connections~ work offline?</h3>
       <p>
-        Yes! Connections~ works completely offline. All puzzles are stored locally on your
+        Yes! Connections~ works completely offline. All 1,000 levels are stored locally on your
         device. You can play anytime, anywhere without an internet connection.
       </p>
 
       <h3>10. Can I customize the appearance?</h3>
       <p>
         Yes! Go to Settings to choose your preferred appearance mode: Light, Dark, or System
-        (follows your device setting). Premium subscribers can also customize category colors,
-        font colors, and font styles.
+        (follows your device setting). Premium subscribers can also customize dot color themes.
       </p>
 
       <h3>11. How do I turn off sounds or haptics?</h3>
       <p>
         Go to Settings to toggle Sound Effects and Haptics on or off according to your preference.
+      </p>
+
+      <h3>12. Can I reset my progress?</h3>
+      <p>
+        Yes. In Settings, you can reset all progress. This will clear all completed levels,
+        stars, statistics, and achievements. Use with caution as this cannot be undone.
       </p>
 
       <h2>Contact & Support</h2>
@@ -231,7 +258,7 @@
       <h2 id="privacy">Privacy Policy</h2>
       <ul>
         <li>Connections~ does not collect, share, or sell any personal data.</li>
-        <li>All game data and statistics are stored locally on your device.</li>
+        <li>All game data, progress, and statistics are stored locally on your device.</li>
         <li>No account or sign-in is required to use the app.</li>
         <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
         <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
@@ -240,14 +267,13 @@
 
       <h2 id="subscription">Premium Subscription</h2>
       <p>
-        Connections~ offers optional Premium subscriptions to remove ads and unlock additional customization options.
+        Connections~ offers optional Premium subscriptions to remove ads and unlock additional features.
       </p>
       <h3>Premium Features</h3>
       <ul>
         <li><strong>Ad-Free Experience:</strong> Enjoy the game without any advertisements</li>
-        <li><strong>Custom Themes:</strong> Choose from multiple category color palettes (Sunset, Ocean, Forest, Berry, Mono)</li>
-        <li><strong>Font Colors:</strong> Customize the text color on category tiles</li>
-        <li><strong>Font Styles:</strong> Choose from different font styles (Serif, Mono, Playful, Elegant)</li>
+        <li><strong>Unlimited Hints:</strong> No daily limit on hints</li>
+        <li><strong>Premium Color Themes:</strong> Unlock exclusive dot color palettes (Sunset, Ocean, Forest, Berry, Mono)</li>
       </ul>
       <h3>Subscription Options</h3>
       <ul>
@@ -283,16 +309,19 @@
       <h2>Release Notes</h2>
       <h3>v1.0</h3>
       <ul>
-        <li>Initial release with word connection puzzle gameplay</li>
-        <li>Daily Puzzle mode with new challenge every day</li>
-        <li>Practice mode with unlimited puzzles</li>
-        <li>Four difficulty levels: Yellow, Green, Blue, Purple</li>
-        <li>Streak tracking for daily puzzles</li>
-        <li>Shuffle and deselect controls</li>
+        <li>Initial release with dot connection puzzle gameplay</li>
+        <li>1,000 handcrafted levels across 7 chapters</li>
+        <li>Daily Challenge mode with bonus hint rewards</li>
+        <li>Progressive difficulty from tutorial to grandmaster</li>
+        <li>Star rating system (1-3 stars per level)</li>
+        <li>10 unlockable achievements</li>
+        <li>Hint system with daily free hints</li>
+        <li>Comprehensive statistics tracking</li>
         <li>Sound effects and haptic feedback</li>
         <li>Light, Dark, and System appearance modes</li>
-        <li>Premium subscription with custom themes and fonts</li>
+        <li>Premium subscription with unlimited hints and color themes</li>
         <li>Fully offline functionality</li>
+        <li>Multi-language support</li>
       </ul>
 
       <div class="footer">
