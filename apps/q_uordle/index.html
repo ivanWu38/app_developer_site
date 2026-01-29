@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quordle~ – Support Page</title>
+  <meta name="description" content="Quordle~ support page: FAQ, privacy policy, and how to play." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#6366f1;
+      --accent-light:#818cf8;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent-light);font-weight:600}
+    a{color:var(--accent-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(99,102,241,0.1);
+      border:1px solid rgba(99,102,241,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+    .color-box{
+      display:inline-block;
+      width:18px;
+      height:18px;
+      border-radius:4px;
+      vertical-align:middle;
+      margin-right:6px;
+    }
+    .green{background:#6aaa64}
+    .yellow{background:#c9b458}
+    .gray{background:#787c7e}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">Quordle~ — Support Page</div>
+      <h1>Welcome to Quordle~</h1>
+      <p class="lead">
+        Four words. Nine guesses. One challenge! Quordle~ is a word puzzle game where you solve
+        four 5-letter words simultaneously. Each guess applies to all four grids at once, so think
+        strategically! With Daily Mode for global challenges and Practice Mode for unlimited play,
+        Quordle~ offers the perfect brain workout for word game enthusiasts.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">4️⃣</div>
+          <div class="feature-title">4 Words at Once</div>
+          <div class="feature-desc">Solve 4 grids simultaneously</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">9️⃣</div>
+          <div class="feature-title">9 Guesses</div>
+          <div class="feature-desc">Strategic thinking required</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Daily Challenge</div>
+          <div class="feature-desc">Same puzzle worldwide</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">♾️</div>
+          <div class="feature-title">Practice Mode</div>
+          <div class="feature-desc">Unlimited puzzles</div>
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. How do I play Quordle~?</h3>
+      <p>
+        Use the on-screen keyboard to type a 5-letter word, then press Enter to submit your guess.
+        Your guess is applied to all four grids at once. Each grid has its own target word, so the
+        same guess may show different color results on each grid. You have 9 attempts to solve all
+        four words.
+      </p>
+
+      <h3>2. What do the colors mean?</h3>
+      <p>After each guess, the letters change color to show how close your guess was:</p>
+      <ul>
+        <li><span class="color-box green"></span><strong>Green:</strong> The letter is in the word and in the correct position.</li>
+        <li><span class="color-box yellow"></span><strong>Yellow:</strong> The letter is in the word but in the wrong position.</li>
+        <li><span class="color-box gray"></span><strong>Gray:</strong> The letter is not in the word at all.</li>
+      </ul>
+      <p>
+        The keyboard also updates to show the best known state for each letter across all grids,
+        helping you track which letters you've used.
+      </p>
+
+      <h3>3. What is Daily Mode?</h3>
+      <p>
+        Daily Mode presents the same four-word puzzle to everyone around the world each day.
+        Complete it to maintain your streak and compare your results with friends! Your progress
+        is automatically saved, so you can close the app and return to continue where you left off.
+      </p>
+
+      <h3>4. What is Practice Mode?</h3>
+      <p>
+        Practice Mode gives you unlimited random puzzles to sharpen your skills. Each game generates
+        four new words, so you can play as many times as you want without waiting for a new daily puzzle.
+      </p>
+
+      <h3>5. How does the game track my statistics?</h3>
+      <p>
+        Quordle~ tracks your gaming statistics separately for Daily and Practice modes:
+      </p>
+      <ul>
+        <li><strong>Games Played:</strong> Total number of games completed</li>
+        <li><strong>Win Rate:</strong> Percentage of games where you solved all 4 words</li>
+        <li><strong>Current Streak:</strong> Consecutive days you've won the Daily puzzle</li>
+        <li><strong>Best Streak:</strong> Your longest winning streak ever</li>
+      </ul>
+
+      <h3>6. What happens when a grid is solved?</h3>
+      <p>
+        When you correctly guess a word, that grid shows a checkmark and becomes inactive. Your
+        subsequent guesses will only apply to the remaining unsolved grids. The number displayed
+        shows which guess number solved that word.
+      </p>
+
+      <h3>7. Can I share my results?</h3>
+      <p>
+        Yes! After completing a game, you can share your results showing which guess solved each
+        grid (or X if unsolved). Share with friends to compare your performance!
+      </p>
+
+      <h3>8. Does the app support Dark Mode?</h3>
+      <p>
+        Yes! Quordle~ supports both Light and Dark modes. You can choose System (follows your device
+        setting), Light, or Dark in the Settings tab.
+      </p>
+
+      <h3>9. Is Quordle~ available on iPad?</h3>
+      <p>
+        Yes! Quordle~ is optimized for both iPhone and iPad, with adaptive layouts that make the
+        most of your screen size.
+      </p>
+
+      <h2>Tips for Success</h2>
+      <ul>
+        <li><strong>Start with vowel-rich words:</strong> Words like AUDIO, ADIEU, or RAISE help identify vowels early.</li>
+        <li><strong>Watch all four grids:</strong> A letter might be gray in one grid but green in another.</li>
+        <li><strong>Use the keyboard colors:</strong> They show the best result across all grids.</li>
+        <li><strong>Don't waste guesses:</strong> With only 9 attempts for 4 words, every guess counts!</li>
+        <li><strong>Practice makes perfect:</strong> Use Practice Mode to develop your strategy.</li>
+      </ul>
+
+      <h2>Contact & Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24-48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Quordle~ does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>No ads are displayed in the app.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0.0</h3>
+      <ul>
+        <li>Initial release of Quordle~ word puzzle game</li>
+        <li>Four simultaneous word grids with 9 guesses</li>
+        <li>Daily Mode with global same-puzzle experience</li>
+        <li>Practice Mode with unlimited random puzzles</li>
+        <li>Color-coded feedback (green, yellow, gray)</li>
+        <li>Smart keyboard with combined letter states</li>
+        <li>Statistics tracking for Daily and Practice modes</li>
+        <li>Win streak tracking for Daily challenges</li>
+        <li>Share results feature</li>
+        <li>Interactive onboarding tutorial</li>
+        <li>Light and Dark mode support</li>
+        <li>iPhone and iPad optimization</li>
+      </ul>
+
+      <div class="footer">
+        © 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
