@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pips Game – Support Page</title>
+  <meta name="description" content="Pips Game support page: FAQ, privacy policy, subscription info, and release notes." />
+  <style>
+    :root{
+      --bg:#0a1628;
+      --card:#111f36;
+      --text:#e6eef7;
+      --muted:#a8b3c7;
+      --line:#1e3350;
+      --accent:#6db2cc;
+      --accent-light:#88ccbf;
+      --gold:#fbbf24;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg, #0a1628 0%, #162544 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:900px;
+      margin:48px auto;
+      padding:0 20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:36px 28px;
+      box-shadow:0 6px 30px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    h1,h2,h3{
+      margin:0 0 .6rem 0;
+      line-height:1.25;
+    }
+    h1{font-size:1.9rem}
+    h2{font-size:1.3rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+    h3{font-size:1rem;margin-top:1rem}
+    p{margin:.4rem 0;color:var(--text)}
+    .lead{color:var(--muted);margin-bottom:1.2rem}
+    ul{margin:.6rem 0 1rem 1.2rem;color:var(--text)}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .app-title{color:var(--accent);font-weight:600}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:18px;
+    }
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:1rem 0;
+    }
+    .feature-item{
+      background:rgba(109,178,204,0.1);
+      border:1px solid rgba(109,178,204,0.2);
+      border-radius:10px;
+      padding:16px;
+      text-align:center;
+    }
+    .feature-icon{
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+    .feature-title{
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    .feature-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="app-title">Pips Game — Support Page</div>
+      <h1>Welcome to Pips Game</h1>
+      <p class="lead">
+        A unique domino logic puzzle game. Place dominoes on a color-coded grid and satisfy each
+        region's mathematical constraint. With 500 handcrafted puzzles across three difficulty
+        levels and a 10-tier ranking system, Pips Game offers a fresh twist on classic logic puzzles.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🎲</div>
+          <div class="feature-title">500 Puzzles</div>
+          <div class="feature-desc">Easy, Medium &amp; Hard levels</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🧩</div>
+          <div class="feature-title">Region Rules</div>
+          <div class="feature-desc">Sum, equal, different &amp; more</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">10 Ranks</div>
+          <div class="feature-desc">Beginner to Queen Bee</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌍</div>
+          <div class="feature-title">15 Languages</div>
+          <div class="feature-desc">Global accessibility</div>
+        </div>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <h3>1. How do I play Pips Game?</h3>
+      <p>
+        Each puzzle presents a grid divided into colored regions, each with a mathematical rule
+        (e.g., "= 12" means all pips in that region must sum to 12). You are given a set of
+        domino tiles to place on the grid. Tap a domino to select it, double-tap to rotate it,
+        then tap a cell on the grid to place it. Once all dominoes are placed, tap Submit to
+        check your solution.
+      </p>
+
+      <h3>2. What are the region rules?</h3>
+      <p>
+        Regions can have different types of constraints:
+      </p>
+      <ul>
+        <li><strong>Sum Equals (= X):</strong> All pip values in the region must add up to the specified number</li>
+        <li><strong>All Equal (=):</strong> Every cell in the region must have the same pip value</li>
+        <li><strong>All Different (&#8800;):</strong> Every cell must have a different pip value</li>
+        <li><strong>Less Than (&lt; X):</strong> The total pips must be below the given number</li>
+        <li><strong>Greater Than (&gt; X):</strong> The total pips must exceed the given number</li>
+      </ul>
+
+      <h3>3. What are the difficulty levels?</h3>
+      <p>
+        Pips Game offers three difficulty tiers with 500 total puzzles:
+      </p>
+      <ul>
+        <li><strong>Easy (Levels 1–200):</strong> 3&#215;3 to 4&#215;4 grids with 4–6 dominoes</li>
+        <li><strong>Medium (Levels 201–400):</strong> 4&#215;4 to 5&#215;5 grids with 7–9 dominoes</li>
+        <li><strong>Hard (Levels 401–500):</strong> 5&#215;5 to 6&#215;6 grids with 10–16 dominoes</li>
+      </ul>
+
+      <h3>4. How does the ranking system work?</h3>
+      <p>
+        As you complete puzzles and earn points, you progress through 10 ranks: Beginner,
+        Good Start, Moving, Solid, Nice, Great, Amazing, Genius, Extraordinary, and Queen Bee.
+        Easy puzzles earn 10 points, Medium earn 20, and Hard earn 35. Points are only awarded
+        on first completion of each level.
+      </p>
+
+      <h3>5. Can I undo a move or reset the puzzle?</h3>
+      <p>
+        Yes! Use the Undo button to remove the last placed domino, or tap Reset to clear the
+        entire board and start fresh. You can also tap a placed domino on the grid to remove it.
+      </p>
+
+      <h3>6. How do I rotate a domino?</h3>
+      <p>
+        Double-tap a domino in the tray to rotate it. Dominoes can be placed horizontally or
+        vertically. Rotating cycles through four orientations.
+      </p>
+
+      <h3>7. Does Pips Game save my progress?</h3>
+      <p>
+        Yes! Your progress is automatically saved. If you leave a puzzle mid-game, you can
+        resume exactly where you left off. Your completed levels, scores, and rank are all
+        stored locally on your device.
+      </p>
+
+      <h3>8. Does Pips Game work offline?</h3>
+      <p>
+        Yes! All 500 puzzles are included in the app. You can play anytime, anywhere without
+        an internet connection.
+      </p>
+
+      <h3>9. Can I change the app's appearance?</h3>
+      <p>
+        Yes! Go to Settings to switch between Light, Dark, or Auto mode. Auto mode follows
+        your device's system setting. You can also toggle sound effects and haptic feedback.
+      </p>
+
+      <h3>10. What languages are supported?</h3>
+      <p>
+        Pips Game is available in 15 languages: English, Simplified Chinese, Traditional Chinese,
+        Japanese, Korean, Spanish, French, German, Italian, Portuguese (Brazil), Russian, Thai,
+        Vietnamese, Indonesian, and Arabic.
+      </p>
+
+      <h2>Contact &amp; Support</h2>
+      <p>Need help or have questions? We're here to assist you.</p>
+      <ul>
+        <li><strong>Email Support:</strong> <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a></li>
+        <li>We typically respond within 24–48 hours.</li>
+      </ul>
+
+      <h2 id="privacy">Privacy Policy</h2>
+      <ul>
+        <li>Pips Game does not collect, share, or sell any personal data.</li>
+        <li>All game data and statistics are stored locally on your device.</li>
+        <li>No account or sign-in is required to use the app.</li>
+        <li>The app displays ads through Google AdMob. Ad personalization can be controlled through your device settings.</li>
+        <li>The app uses Apple's App Tracking Transparency (ATT) framework to request your permission before tracking your activity across other companies' apps and websites for personalized advertising. You can allow or deny this request, and change your preference anytime in your device's Settings.</li>
+        <li>The app uses Microsoft Clarity for anonymous usage analytics to improve the user experience. No personally identifiable information is collected.</li>
+        <li>We do not track your location or access any personal information.</li>
+      </ul>
+
+      <h2 id="subscription">Premium Subscription</h2>
+      <p>
+        Pips Game offers optional Premium subscriptions to remove ads and enjoy an ad-free puzzle experience.
+      </p>
+      <h3>Subscription Options</h3>
+      <ul>
+        <li><strong>Monthly Premium:</strong> Auto-renews every month</li>
+        <li><strong>Quarterly Premium:</strong> Auto-renews every 3 months</li>
+        <li><strong>Yearly Premium:</strong> Auto-renews every year</li>
+      </ul>
+      <h3>Subscription Terms</h3>
+      <ul>
+        <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+        <li>Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the same price.</li>
+        <li>You can manage and cancel your subscriptions by going to your App Store account settings after purchase.</li>
+        <li>Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription.</li>
+      </ul>
+
+      <h2 id="terms">Terms of Service</h2>
+
+      <h3>Usage Terms</h3>
+      <ul>
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>We reserve the right to modify or discontinue features at any time.</li>
+        <li>We reserve the right to update these Terms of Service. Continued use of the app constitutes acceptance of any changes.</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>
+        The app is provided "as is" without warranties of any kind, either express or implied.
+        We are not liable for any damages arising from use of the app.
+      </p>
+
+      <h2>Release Notes</h2>
+      <h3>v1.0</h3>
+      <ul>
+        <li>Initial release with domino logic puzzle gameplay</li>
+        <li>500 puzzles across Easy, Medium, and Hard difficulty levels</li>
+        <li>5 region constraint types: sum, equal, different, less than, greater than</li>
+        <li>10-tier ranking system from Beginner to Queen Bee</li>
+        <li>Undo, Reset, and Submit controls</li>
+        <li>Auto-save and resume mid-puzzle</li>
+        <li>Sound effects and haptic feedback</li>
+        <li>Light, Dark, and Auto appearance modes</li>
+        <li>15 languages supported</li>
+        <li>Optional Premium subscription for ad-free experience</li>
+        <li>Fully offline functionality</li>
+      </ul>
+
+      <div class="footer">
+        &copy; 2026 Ikuhei Kure
+      </div>
+    </section>
+  </main>
+</body>
+</html>
