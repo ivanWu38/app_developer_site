@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Octordle Word Puzzle</title>
+  <meta name="description" content="Octordle Word Puzzle — eight words, thirteen guesses, one quiet daily ritual. A calm, beautifully simple word puzzle for iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#F5F2EB;
+      --paper-2:#FBF9F4;
+      --ink:#2E2B26;
+      --muted:#857F74;
+      --line:#E5DFD2;
+      --blue:#6495ED;
+      --amber:#D9A640;
+      --gray:#9AA0A6;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* tile motif */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px}
+    .motif span{
+      width:30px;height:30px;border-radius:5px;
+      border:1px solid var(--line);background:var(--paper-2);
+      display:inline-block;
+    }
+    .motif .b{background:var(--blue);border-color:transparent}
+    .motif .a{background:var(--amber);border-color:transparent}
+    .motif .g{background:var(--gray);border-color:transparent;opacity:.55}
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:2px;margin-top:9px;background:var(--ink);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* color legend */
+    .legend{margin:0;padding:0;list-style:none}
+    .legend li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:22px;height:22px;border-radius:5px;flex:none}
+    .swatch.blue{background:var(--blue)}
+    .swatch.amber{background:var(--amber)}
+    .swatch.gray{background:var(--gray)}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+      .motif span{width:26px;height:26px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Daily Word Puzzle</div>
+      <h1>Octordle Word Puzzle</h1>
+      <p class="lead">Eight words. Thirteen guesses. One quiet daily ritual — every guess you make is played across all eight boards at once.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="b"></span><span class="a"></span><span></span><span class="g"></span><span class="b"></span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6773183406">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional ad-free subscription · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Octordle gives you eight five-letter words to solve at the same time. You have thirteen guesses, and each word you enter is applied to <strong>all eight boards simultaneously</strong> — so every guess is a small act of strategy. A single new puzzle arrives each day. Solve it, keep your streak, and come back tomorrow.</p>
+      <p class="muted">No clutter, no pressure to grind. Just one considered puzzle a day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <p>Type a five-letter word and press Enter. The tiles change colour to show how close you were — on each of the eight boards independently.</p>
+      <ul class="legend">
+        <li><span class="swatch blue"></span><span><strong>Blue</strong> — right letter, right position.</span></li>
+        <li><span class="swatch amber"></span><span><strong>Amber</strong> — the letter is in the word, but elsewhere.</span></li>
+        <li><span class="swatch gray"></span><span><strong>Grey</strong> — the letter isn’t in that word.</span></li>
+      </ul>
+      <p class="muted">The keyboard itself shows the status of every letter across all eight boards at once, so you always know where you stand.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A puzzle every day</span><br><span class="d">A fresh eight-word puzzle each day, with a countdown to the next one and your streak kept along the way.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">An eight-board keyboard</span><br><span class="d">Each key is split to show every board’s state, so you can read all eight words at a glance.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A built-in notepad</span><br><span class="d">Jot down your deductions without leaving the board — handy when eight words are in play.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your Journey</span><br><span class="d">Streaks, win rate, guess distribution, personal bests and achievements — quietly tracked over time.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Themes to unlock</span><br><span class="d">Earn calm new board themes as you play, and choose Light, Dark, or System appearance.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A spoiler-free share card</span><br><span class="d">Share your result as a clean grid — no answers given away.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Adaptive layouts and gentle haptics, designed to feel at home on either screen.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How does a guess work across eight boards?</h3>
+      <p>You enter one word, and it’s evaluated against all eight target words at once. The same word may light up differently on each board, so you’re always reading several puzzles together.</p>
+
+      <h3>When does a new puzzle arrive?</h3>
+      <p>A new daily puzzle unlocks at midnight, your local time. A countdown in the app shows how long until the next one. Your progress is saved automatically, so you can step away and return where you left off.</p>
+
+      <h3>What happens when I solve a board?</h3>
+      <p>That board is marked with a check and the word that solved it, and your following guesses apply only to the boards still open.</p>
+
+      <h3>Where can I see my stats?</h3>
+      <p>The Journey tab keeps your words solved, games played, win rate, daily puzzles completed, current and best streaks, a guess-distribution chart, your personal bests, and the achievements you’ve unlocked.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings. You can also unlock and switch between several board themes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Achievements</h2>
+      <p class="muted">Fourteen quiet milestones to discover as you play.</p>
+      <ul class="clean">
+        <li><strong>First Victory</strong> — win your first game</li>
+        <li><strong>Word Wizard</strong> — solve 100 words in total</li>
+        <li><strong>Century Club</strong> — play 100 games</li>
+        <li><strong>On a Roll</strong> — win 3 days in a row</li>
+        <li><strong>Weekly Warrior</strong> — win 7 days in a row</li>
+        <li><strong>Monthly Master</strong> — win 30 days in a row</li>
+        <li><strong>Perfect Game</strong> — earn three stars</li>
+        <li><strong>Sharp Mind</strong> — achieve five perfect games</li>
+        <li><strong>Speed Demon</strong> — win in under six minutes</li>
+        <li><strong>Quick Draw</strong> — win in under four minutes</li>
+        <li><strong>Clutch Player</strong> — win on your very last guess</li>
+        <li><strong>Octordle Master</strong> — win 10 games</li>
+        <li><strong>Daily Dedicated</strong> — complete 30 daily puzzles</li>
+        <li><strong>Explorer</strong> — complete 10 daily puzzles</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Octordle is free to play. If you’d like a quieter, ad-free board and to support continued development, an optional Premium subscription is available.</p>
+      <h3>Subscription terms</h3>
+      <ul class="clean muted">
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>The subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account is charged for renewal within 24 hours before the end of the current period, at the same price.</li>
+        <li>You can manage or cancel your subscription anytime in your App Store account settings.</li>
+        <li>Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Octordle does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; ad personalization can be controlled in your device settings.</li>
+        <li>The app uses Apple’s App Tracking Transparency (ATT) to ask your permission before any tracking across other companies’ apps and websites for personalized advertising. You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Subscriptions are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="#">How to Play</a>
+        <a href="https://apps.apple.com/app/id6773183406">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
