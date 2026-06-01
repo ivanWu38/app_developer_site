@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdMob Earnings Tracker</title>
+  <meta name="description" content="AdMob Earnings Tracker — see your Google AdMob revenue the moment you open your phone. Live trends, a world map of earnings, month-end forecasts and Home Screen widgets for iPhone & iPad." />
+  <style>
+    :root{
+      --bg:#f3f1fb;
+      --card:#ffffff;
+      --ink:#22203a;
+      --muted:#7a749c;
+      --soft:#9a93b6;
+      --line:#ece7f8;
+      --g1:#7c5cff;
+      --g2:#b06bff;
+      --up:#0fb36b;
+      --grad:linear-gradient(135deg,#7c5cff,#b06bff);
+      --maxw:780px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);background:var(--bg);line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+    a{color:var(--g1);text-decoration:none}
+    a:hover{opacity:.82}
+
+    /* hero */
+    header{padding:80px 0 56px;text-align:center}
+    .logo{
+      width:96px;height:96px;border-radius:24px;margin:0 auto 26px;
+      background:var(--grad);display:flex;align-items:flex-end;justify-content:center;gap:7px;padding:24px;
+      box-shadow:0 16px 34px rgba(124,92,255,.34);
+    }
+    .logo i{display:block;width:13px;border-radius:5px;background:rgba(255,255,255,.95)}
+    .logo i:nth-child(1){height:36%}
+    .logo i:nth-child(2){height:64%}
+    .logo i:nth-child(3){height:100%}
+    .kicker{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:18px}
+    h1{font-size:2.6rem;font-weight:800;letter-spacing:-.02em;margin:0 0 16px;line-height:1.12}
+    .lead{font-size:1.12rem;color:var(--muted);max-width:33em;margin:0 auto 34px}
+    .cta{
+      display:inline-block;padding:15px 32px;border-radius:999px;background:var(--grad);
+      color:#fff;font-size:1rem;font-weight:700;box-shadow:0 12px 26px rgba(124,92,255,.34);
+    }
+    .cta:hover{opacity:.92}
+    .cta-note{display:block;margin-top:14px;font-size:.85rem;color:var(--soft)}
+
+    /* sections */
+    section{padding:48px 0;border-top:1px solid var(--line)}
+    h2{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:700;margin:0 0 22px}
+    h3{font-size:1.06rem;font-weight:700;margin:22px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    strong{font-weight:700}
+
+    /* feature grid */
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .feature{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;
+      box-shadow:0 8px 18px rgba(124,92,255,.07)}
+    .feature .ic{
+      width:42px;height:42px;border-radius:13px;background:var(--grad);
+      display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px;
+    }
+    .feature .t{font-weight:700;font-size:1rem;margin-bottom:3px}
+    .feature .d{color:var(--muted);font-size:.93rem;line-height:1.6}
+    @media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+    ul.clean{margin:.4rem 0 1.1rem;padding-left:1.1rem}
+    ul.clean li{margin:.34rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    .pill{display:inline-block;background:var(--grad);color:#fff;font-size:.7rem;font-weight:800;
+      letter-spacing:.06em;padding:4px 10px;border-radius:999px;vertical-align:middle;margin-left:8px}
+
+    .note{font-size:.85rem;color:var(--soft);background:rgba(124,92,255,.06);
+      border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+
+    footer{border-top:1px solid var(--line);padding:38px 0 60px;text-align:center;color:var(--soft);font-size:.85rem}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px}
+
+    @media (max-width:520px){
+      header{padding:60px 0 44px}
+      h1{font-size:2.05rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="logo" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="kicker">AdMob Revenue Dashboard</div>
+      <h1>AdMob Earnings Tracker</h1>
+      <p class="lead">See your Google AdMob revenue the moment you open your phone — today's earnings, this month's total, and the trends behind them, without ever logging into the AdMob website.</p>
+      <a class="cta" href="https://apps.apple.com/app/id6773676483">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional one-time Pro unlock · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>AdMob Earnings Tracker is a clean, fast companion for mobile developers and publishers who live in AdMob. Sign in with your Google account and your numbers appear instantly — <strong>today, yesterday, the last 7 days and this month</strong>, each compared with the previous period.</p>
+      <p class="muted">Drill down by app, ad unit or country to see exactly where your revenue comes from — then close the app and get on with your day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What's Inside</h2>
+      <div class="grid">
+        <div class="feature">
+          <div class="ic">📊</div>
+          <div class="t">Earnings at a glance</div>
+          <div class="d">Today, this month and estimated revenue up front, with clear up/down comparisons.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">🧩</div>
+          <div class="t">Breakdowns that matter</div>
+          <div class="d">See earnings, eCPM, impressions, clicks and requests by app, ad unit and country.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">📈</div>
+          <div class="t">Trends &amp; comparisons <span class="pill">PRO</span></div>
+          <div class="d">A scrubbable trend line you can switch between metrics, overlaying the previous period or a 7-day average.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">🔮</div>
+          <div class="t">Month-end forecast <span class="pill">PRO</span></div>
+          <div class="d">A projection of this month's earnings from your current run-rate, plus your best and worst days.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">📅</div>
+          <div class="t">Weekday patterns <span class="pill">PRO</span></div>
+          <div class="d">Discover which day of the week earns the most — and whether that pattern is real or just noise.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">🗺️</div>
+          <div class="t">World map <span class="pill">PRO</span></div>
+          <div class="d">A live map of the globe shaded by how much each country earns. Tap any country for the figure.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">🔲</div>
+          <div class="t">Home &amp; Lock Screen widgets</div>
+          <div class="d">A full set of widgets — including a world-map widget — to keep your earnings one glance away.</div>
+        </div>
+        <div class="feature">
+          <div class="ic">🌐</div>
+          <div class="t">Six languages &amp; dark mode</div>
+          <div class="d">English, 繁體中文, 简体中文, 日本語, 한국어 and Deutsch, with Light, Dark and System appearance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How do I connect my AdMob account?</h3>
+      <p>Tap “Sign in with Google” and choose the account linked to your AdMob publisher profile. The app uses Google's official AdMob API with read-only access — it can read your reports, and nothing else.</p>
+
+      <h3>Can I try it without signing in?</h3>
+      <p>Yes. Tap “Try Demo Account” to explore the whole app with realistic sample data, including the full analytics suite, before connecting your own account.</p>
+
+      <h3>Which currency does it show?</h3>
+      <p>Your AdMob account's own currency by default, or you can pick from many common currencies — Google converts the figures for you.</p>
+
+      <h3>Does it support widgets and dark mode?</h3>
+      <p>Yes. There are Home Screen, Lock Screen and a world-map widget, and the app (and its widgets) follow Light, Dark or System appearance set inside the app.</p>
+
+      <h3>How often does the data update?</h3>
+      <p>Pull to refresh anytime, and the app refreshes when you return to it. AdMob's “today” figures are estimates and may update through the day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>AdMob Pro</h2>
+      <p>The app is free to use for viewing your core earnings. <strong>AdMob Pro</strong> unlocks the full Insights suite — trends and comparisons, the month-end forecast, weekday patterns, the world map and per-app analytics — and removes ads.</p>
+      <p class="note">AdMob Pro is a <strong>one-time purchase</strong>. Pay once and keep it forever — there is no subscription and nothing renews.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>AdMob Earnings Tracker connects directly to Google's AdMob API with <strong>read-only</strong> access to your reporting data.</li>
+        <li>Your earnings are shown on your device. The app has no server of its own collecting or storing your revenue data.</li>
+        <li>Sign-in is handled by Google. The app does not see your Google password.</li>
+        <li>The free version shows ads through Google AdMob; the app uses Apple's App Tracking Transparency (ATT) to ask permission before any tracking for personalized ads. You can allow or deny this, and change it anytime in Settings.</li>
+        <li>The app does not track your location or sell personal data.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal and business purposes related to your own AdMob account.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Earnings figures are provided by Google's AdMob API and may differ from finalized payments; they are shown for reference.</li>
+        <li>Features may be changed or discontinued at any time. The app is provided “as is,” without warranties of any kind.</li>
+      </ul>
+      <p class="muted">Purchases are also governed by Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We'd genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6773676483">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      AdMob Earnings Tracker is an independent app and is not affiliated with, endorsed by, or sponsored by Google. AdMob is a trademark of Google LLC.<br>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
