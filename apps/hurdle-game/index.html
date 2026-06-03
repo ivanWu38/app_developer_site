@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hurdle Game</title>
+  <meta name="description" content="Hurdle Game — five words, one relay chain. Solve a word, carry it forward, and survive the final hurdle. A fresh daily word puzzle for iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#F5F2EB;
+      --paper-2:#FBF9F4;
+      --ink:#2E2B26;
+      --muted:#857F74;
+      --line:#E5DFD2;
+      --green:#6BAB63;
+      --amber:#C9B557;
+      --gray:#787A80;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* tile motif */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px}
+    .motif span{
+      width:30px;height:30px;border-radius:5px;
+      border:1px solid var(--line);background:var(--paper-2);
+      display:inline-block;
+    }
+    .motif .g{background:var(--green);border-color:transparent}
+    .motif .a{background:var(--amber);border-color:transparent}
+    .motif .x{background:var(--gray);border-color:transparent;opacity:.55}
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* relay steps */
+    .relay{list-style:none;margin:0;padding:0;counter-reset:step}
+    .relay li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--ink);color:var(--paper);
+      font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:2px;margin-top:9px;background:var(--ink);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* color legend */
+    .legend{margin:0;padding:0;list-style:none}
+    .legend li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:22px;height:22px;border-radius:5px;flex:none}
+    .swatch.green{background:var(--green)}
+    .swatch.amber{background:var(--amber)}
+    .swatch.gray{background:var(--gray)}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+      .motif span{width:26px;height:26px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Daily Word Relay</div>
+      <h1>Hurdle Game</h1>
+      <p class="lead">Five words, one chain. Solve a word and it carries forward as your clue for the next — until the final hurdle, where you have just two guesses left.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="g"></span><span class="a"></span><span></span><span class="x"></span><span class="g"></span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6762115093">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional ad-free subscription · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Hurdle takes the word puzzle you know and turns it into a <strong>relay of five</strong>. You start with a single five-letter word and six guesses. Crack it, and that answer becomes a free clue at the top of the next word — and so the chain runs on, one hurdle to the next.</p>
+      <p>The fifth and final word is the survival hurdle: every earlier answer is already laid out for you, but you have only <strong>two guesses</strong> to finish the chain. Clear all five and the day is yours.</p>
+      <p class="muted">One new chain arrives every day. Solve it, keep your streak, and come back tomorrow.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How The Relay Works</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">The opening word</span><br><span class="d">A normal five-letter puzzle with six guesses. No clues yet — just you and a blank board.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Carry it forward</span><br><span class="d">Your correct answer is filled in automatically as the first row of the next word — a free head start every time.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Build the chain</span><br><span class="d">Words two, three and four each begin with the previous answer already in place. Read the colours and keep moving.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">The survival hurdle</span><br><span class="d">On the fifth word, all four earlier answers are pre-filled — but you get only two guesses to land it and complete the run.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Reading The Tiles</h2>
+      <p>Type a five-letter word and press Enter. The tiles change colour to show how close each letter was — and the keyboard updates to match.</p>
+      <ul class="legend">
+        <li><span class="swatch green"></span><span><strong>Green</strong> — right letter, right position.</span></li>
+        <li><span class="swatch amber"></span><span><strong>Yellow</strong> — the letter is in the word, but elsewhere.</span></li>
+        <li><span class="swatch gray"></span><span><strong>Grey</strong> — the letter isn’t in this word.</span></li>
+      </ul>
+      <p class="muted">The on-screen keyboard tracks every letter you’ve tried, so you always know what’s still in play.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A daily chain</span><br><span class="d">One fresh five-word relay each day — the same chain for everyone, everywhere. Solve it once and return tomorrow for the next.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Unlimited practice</span><br><span class="d">Not ready to wait? Practice mode serves up endless random chains whenever you want to play.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Streaks that keep you going</span><br><span class="d">Win the daily chain to grow your streak. Miss a day and it resets — your current and best streaks are always in view.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your stats</span><br><span class="d">Games played, win rate, current and best streaks, plus a breakdown of how far you get into each chain.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A spoiler-free share card</span><br><span class="d">Share your result as a clean emoji grid with your streak — no answers given away.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Sound &amp; haptics</span><br><span class="d">Gentle taps and tones for typing, winning and losing — each can be turned off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Adaptive layouts with Light, Dark, or System appearance, designed to feel at home on either screen.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How is this different from a normal word game?</h3>
+      <p>Instead of one word, you solve five in a row. Each answer you get right is carried forward as a clue for the next word, so the puzzle plays as a single connected chain rather than five separate games.</p>
+
+      <h3>Why does the last word only give two guesses?</h3>
+      <p>The fifth word is the survival hurdle. All four of your earlier answers are pre-filled to help, but the short guess limit is what makes finishing a full chain feel earned.</p>
+
+      <h3>When does a new chain arrive?</h3>
+      <p>A new daily chain unlocks each day and is the same for every player. Your progress is saved automatically, so you can step away and return where you left off.</p>
+
+      <h3>What if I want to play more than once a day?</h3>
+      <p>Switch to Practice mode for unlimited random chains. Practice games don’t affect your daily streak, so you can warm up or unwind without pressure.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Hurdle is free to play. If you’d like a quieter, ad-free board and to support continued development, an optional Premium subscription is available.</p>
+      <h3>Subscription terms</h3>
+      <ul class="clean muted">
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>The subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account is charged for renewal within 24 hours before the end of the current period, at the same price.</li>
+        <li>You can manage or cancel your subscription anytime in your App Store account settings.</li>
+        <li>Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Hurdle does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; ad personalization can be controlled in your device settings.</li>
+        <li>The app uses Apple’s App Tracking Transparency (ATT) to ask your permission before any tracking across other companies’ apps and websites for personalized advertising. You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Subscriptions are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6762115093">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
