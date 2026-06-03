@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dordle</title>
+  <meta name="description" content="Dordle — two words, one keyboard. Solve two hidden five-letter words at the same time in seven guesses. A fresh daily double-word puzzle for iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#F5F2EB;
+      --paper-2:#FBF9F4;
+      --ink:#2E2B26;
+      --muted:#857F74;
+      --line:#E5DFD2;
+      --green:#6BAB63;
+      --amber:#C9B557;
+      --gray:#787A80;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* twin-board tile motif */
+    .motif{display:flex;justify-content:center;gap:22px;margin:0 0 40px;flex-wrap:wrap}
+    .board{display:flex;gap:6px}
+    .board span{
+      width:30px;height:30px;border-radius:5px;
+      border:1px solid var(--line);background:var(--paper-2);
+      display:inline-block;
+    }
+    .board .g{background:var(--green);border-color:transparent}
+    .board .a{background:var(--amber);border-color:transparent}
+    .board .x{background:var(--gray);border-color:transparent;opacity:.55}
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* numbered steps */
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--ink);color:var(--paper);
+      font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:2px;margin-top:9px;background:var(--ink);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* color legend */
+    .legend{margin:0;padding:0;list-style:none}
+    .legend li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:22px;height:22px;border-radius:5px;flex:none}
+    .swatch.green{background:var(--green)}
+    .swatch.amber{background:var(--amber)}
+    .swatch.gray{background:var(--gray)}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+      .motif{gap:16px}
+      .board span{width:26px;height:26px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Daily Double Word Puzzle</div>
+      <h1>Dordle</h1>
+      <p class="lead">Two hidden words, one keyboard. Every guess you type lands on both boards at once — solve them both in seven tries before you run out.</p>
+      <div class="motif" aria-hidden="true">
+        <div class="board">
+          <span class="g"></span><span class="a"></span><span></span><span class="x"></span><span class="g"></span>
+        </div>
+        <div class="board">
+          <span class="a"></span><span></span><span class="g"></span><span class="x"></span><span class="a"></span>
+        </div>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6776077012">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional ad-free subscription · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Dordle takes the five-letter word game you already love and <strong>doubles it</strong>. There are two secret words to find, side by side, and a single guess is played on both boards at the same time.</p>
+      <p>That one shared keyboard is the twist: a letter that turns green on the left board might be grey on the right. You have <strong>seven guesses</strong> to crack both — one more than a single board, but you are solving two puzzles with the same moves.</p>
+      <p class="muted">A new pair of words arrives every day. Solve it, keep your streak alive, and come back tomorrow.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Two boards, one guess</span><br><span class="d">Type any valid five-letter word and it fills a row on both boards simultaneously. You are always working on both words at once.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Read each board separately</span><br><span class="d">The same guess colours differently on the left and right. Track the clues for each word on its own — what is green on one side may be missing on the other.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Spend your seven guesses wisely</span><br><span class="d">With two words to solve, every guess counts twice. Open with letters that test both boards, then close each one out as the clues narrow.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Lock in both words</span><br><span class="d">Solve a board and it locks in green. Finish both before your seventh guess runs out and the day is yours.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Reading The Tiles</h2>
+      <p>Type a five-letter word and press Enter. On each board the tiles change colour to show how close every letter was — and the keyboard reflects your best result across both words.</p>
+      <ul class="legend">
+        <li><span class="swatch green"></span><span><strong>Green</strong> — right letter, right position.</span></li>
+        <li><span class="swatch amber"></span><span><strong>Yellow</strong> — the letter is in the word, but elsewhere.</span></li>
+        <li><span class="swatch gray"></span><span><strong>Grey</strong> — the letter isn’t in this word.</span></li>
+      </ul>
+      <p class="muted">Because one guess plays on two boards, a single letter can be green on the left and grey on the right — read each board on its own terms.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A daily double</span><br><span class="d">One fresh pair of words each day — the same puzzle for everyone, everywhere. Solve it once and return tomorrow for the next.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Unlimited practice</span><br><span class="d">Don’t want to wait for tomorrow? Practice mode serves up endless random pairs whenever you feel like playing.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Streaks with a spark</span><br><span class="d">Win the daily puzzle to grow your streak, complete with a Wordle-style flame that burns brighter the longer you keep it going. Miss a day and it resets.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your stats</span><br><span class="d">Games played, win rate, current and best streaks, plus a breakdown of how many guesses it takes you to finish.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A spoiler-free share card</span><br><span class="d">Share your result as a clean two-grid emoji card with your streak — no answers given away.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Unlockable themes</span><br><span class="d">Dress the boards in a range of colour themes. A handful are free; the full set unlocks with Premium.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Sound &amp; haptics</span><br><span class="d">Gentle taps and tones for typing, winning and losing — each can be turned off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Adaptive layouts with Light, Dark, or System appearance, designed to feel at home on either screen.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How is this different from a normal word game?</h3>
+      <p>Instead of one secret word, you solve two at the same time. Each guess you type is played on both boards at once, so you are reading two sets of clues from a single move.</p>
+
+      <h3>Why do I get seven guesses?</h3>
+      <p>Because there are two words to find. Seven gives you a little more room than a single-board game, but with twice the puzzle it still takes careful play to clear both.</p>
+
+      <h3>When does a new puzzle arrive?</h3>
+      <p>A new daily pair unlocks each day and is the same for every player. Your progress is saved automatically, so you can step away and return where you left off.</p>
+
+      <h3>What if I want to play more than once a day?</h3>
+      <p>Switch to Practice mode for unlimited random pairs. Practice games don’t affect your daily streak, so you can warm up or unwind without pressure.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings, and pick from a range of board themes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Dordle is free to play. An optional Premium subscription removes the ads for a quieter board and unlocks the full set of colour themes — and helps support continued development.</p>
+      <h3>Subscription terms</h3>
+      <ul class="clean muted">
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>The subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account is charged for renewal within 24 hours before the end of the current period, at the same price.</li>
+        <li>You can manage or cancel your subscription anytime in your App Store account settings.</li>
+        <li>Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Dordle does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; ad personalization can be controlled in your device settings.</li>
+        <li>The app uses Apple’s App Tracking Transparency (ATT) to ask your permission before any tracking across other companies’ apps and websites for personalized advertising. You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Subscriptions are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6776077012">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
