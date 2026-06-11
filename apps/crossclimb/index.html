@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crossclimb: Word Ladder Game</title>
+  <meta name="description" content="Crossclimb — solve the clues, sort the ladder, climb to the top. A daily word ladder puzzle with 132 handcrafted levels for iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#F5F2EB;
+      --paper-2:#FBF9F4;
+      --ink:#2E2B26;
+      --muted:#857F74;
+      --line:#E5DFD2;
+      --green:#6BAB63;
+      --amber:#C9B557;
+      --blue:#4A6FD4;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* ladder motif: a column of word rungs */
+    .motif{display:flex;flex-direction:column;align-items:center;gap:5px;margin:0 0 40px}
+    .motif span{
+      height:14px;border-radius:4px;display:inline-block;
+      border:1px solid var(--line);background:var(--paper-2);width:120px;
+    }
+    .motif .g{background:var(--green);border-color:transparent}
+    .motif .a{background:var(--amber);border-color:transparent}
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* climb steps */
+    .relay{list-style:none;margin:0;padding:0;counter-reset:step}
+    .relay li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--ink);color:var(--paper);
+      font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:2px;margin-top:9px;background:var(--ink);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* example ladder */
+    .ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:.6rem 0 1rem}
+    .ladder span{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+      font-size:.92rem;letter-spacing:.08em;
+      padding:6px 10px;border-radius:7px;background:#E4EFE2;color:var(--ink);
+    }
+    .ladder .arrow{background:none;padding:0;color:var(--muted);font-weight:400}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Daily Word Ladder</div>
+      <h1>Crossclimb</h1>
+      <p class="lead">Solve the clues, sort the rungs, and climb the ladder — every word differs from its neighbor by a single letter. One fresh climb a day, plus 132 levels to binge.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="a"></span><span class="g"></span><span class="g"></span><span class="g"></span><span></span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6779141028">Download on the App Store</a>
+      <span class="cta-note">Free to play · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Crossclimb crosses a crossword with a word ladder. You get five quick clues — each answer is a <strong>4-letter word</strong>. Solving them is only half the puzzle: the answers then have to be <strong>rearranged into a ladder</strong>, where every word differs from the one above it by exactly one letter.</p>
+      <p>Order the rungs correctly and two hidden words appear — one above the ladder, one below. A final clue points to both. Crack it and the climb is complete.</p>
+      <div class="ladder" aria-label="Example word ladder">
+        <span>WARM</span><span class="arrow">→</span><span>WARD</span><span class="arrow">→</span><span>CARD</span><span class="arrow">→</span><span>CORD</span><span class="arrow">→</span><span>COLD</span>
+      </div>
+      <p class="muted">From WARM to COLD, one letter at a time — that's a word ladder. Lewis Carroll invented the form in 1877; Crossclimb adds clues, speed, and a daily twist.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How A Climb Works</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Solve the clues</span><br><span class="d">Tap any row to see its clue and type the 4-letter answer. Solve the five rows in whatever order you like.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Sort the ladder</span><br><span class="d">Drag the solved rows so each word differs from the one above it by a single letter. There's exactly one correct order.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Reach both ends</span><br><span class="d">Two hidden rungs appear at the top and bottom. One final clue covers both — solve them to finish the climb.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Race the clock</span><br><span class="d">Your time, mistakes, and hints are tallied at the summit. Share your result and defend your streak tomorrow.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What's Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A daily climb</span><br><span class="d">One new puzzle each day — the same ladder for everyone. Solve it to grow your streak.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">132 unlimited levels</span><br><span class="d">No waiting until tomorrow. Handcrafted levels progress from breezy warm-ups to brain-bending climbs.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Smart hints</span><br><span class="d">Stuck on a rung? Reveal its first letter. Truly stuck? A second hint solves the row for you.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Streaks &amp; stats</span><br><span class="d">Current streak, best streak, best time, and total climbs — always in view on the home screen.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A spoiler-free share card</span><br><span class="d">Share your time and streak with one tap — no answers given away.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Sound &amp; haptics</span><br><span class="d">Gentle taps and tones for solving, sorting, and winning — each can be turned off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Light, Dark, or System appearance, designed to feel at home on either screen.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How is this different from a crossword?</h3>
+      <p>The clues feel familiar, but the answers are linked: they form a chain where neighboring words differ by one letter. Solving the clues is step one — finding the right order is the real puzzle.</p>
+
+      <h3>What if two words could both fit a clue?</h3>
+      <p>Every puzzle is checked so its ladder has exactly one valid order. If your arrangement doesn't click, one of your rungs belongs somewhere else.</p>
+
+      <h3>When does a new daily puzzle arrive?</h3>
+      <p>A new climb unlocks each day at midnight, local time, and it's the same for every player.</p>
+
+      <h3>What if I want to play more than once a day?</h3>
+      <p>Unlimited mode has 132 levels ordered from easy to hard. Level progress is saved automatically and doesn't affect your daily streak.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Your game progress, statistics, and streaks are stored locally on your device. No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob — a small banner on the home screen and optional reward ads you choose to watch for extra hints. AdMob may use your device and advertising identifiers to serve and measure ads. You can limit ad personalization in your device settings.</li>
+        <li>The app uses Microsoft Clarity to collect anonymized usage and interaction data — such as taps, screens viewed, and session activity — to help us understand how the game is used and improve it. This data is processed by Microsoft and is not used to identify you personally.</li>
+        <li>Before any tracking across other companies' apps and websites for personalized advertising, the app asks your permission through Apple's App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not sell your personal data and does not track your location.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We'd genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6779141028">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
