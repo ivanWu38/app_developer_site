@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>100 Envelope Challenge — Save $5,050 in 100 Days</title>
+  <meta name="description" content="The 100 Envelope Challenge app for iPhone and iPad. Draw an envelope, stuff the cash, watch your savings grow to $5,050 — with streaks, stats, and beautiful envelope wall. Free to download." />
+  <style>
+    :root{
+      --paper:#FAF7F0;
+      --paper-2:#FFFFFF;
+      --ink:#33271B;
+      --muted:#8A8071;
+      --line:#E8E1D2;
+      --kraft:#D9B075;
+      --kraft-2:#C79D62;
+      --green:#4D9E63;
+      --amber:#F2B840;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* envelope motif */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px}
+    .motif span{
+      width:30px;height:30px;border-radius:5px;
+      border:1px solid var(--kraft-2);background:var(--kraft);
+      display:inline-block;position:relative;
+    }
+    .motif span::after{
+      content:"";position:absolute;left:3px;right:3px;top:3px;
+      border:7px solid transparent;border-top:9px solid var(--kraft-2);
+    }
+    .motif .g{background:var(--green);border-color:transparent}
+    .motif .g::after{display:none}
+    .motif .a{background:var(--amber);border-color:transparent}
+    .motif .a::after{display:none}
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* steps */
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--green);color:var(--paper-2);
+      font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:2px;margin-top:9px;background:var(--green);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+      .motif span{width:26px;height:26px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Cash Stuffing Tracker</div>
+      <h1>100 Envelope Challenge</h1>
+      <p class="lead">One hundred envelopes, one hundred days, $5,050 saved. Draw an envelope, stuff the cash, and watch your savings wall turn green — one satisfying flip at a time.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="g"></span><span></span><span class="a"></span><span></span><span class="g"></span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6779838041">Download on the App Store</a>
+      <span class="cta-note">Free to play, with an optional one-time Premium unlock · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>The 100 Envelope Challenge is the viral savings method you've seen everywhere: label one hundred envelopes from <strong>$1 to $100</strong>, pick one at random each day, and put that amount of cash inside. Finish all hundred and you've saved <strong>$5,050</strong> — without ever feeling like you were budgeting.</p>
+      <p>This app is your digital envelope wall. It keeps the thrill of the random draw — the flip, the reveal, the little burst of confetti — while quietly tracking every dollar, your streak, and how close you are to the finish line.</p>
+      <p class="muted">No bank connection, no account, no spreadsheets. Just you and your envelopes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How It Works</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Draw an envelope</span><br><span class="d">Tap the draw button for a random envelope — or pick a specific number yourself. Feeling brave? Draw more than one a day. Catching up? Draw as many as you like.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Flip and reveal</span><br><span class="d">The envelope flips open to show the amount. Set that cash aside — in a real envelope, a jar, or a savings account.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Mark it stuffed</span><br><span class="d">Confirm you've saved it (adjust the amount if you need to — decimals welcome), or park it in the "save later" row and come back to it.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Watch the wall turn green</span><br><span class="d">Every stuffed envelope turns green on your 10×10 wall. The progress ring climbs, the streak grows, and $5,050 gets closer every day.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What's Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">The envelope wall</span><br><span class="d">A beautiful 10×10 grid of kraft envelopes. Sealed, waiting, or stuffed — you can read your whole journey at a glance.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Random or hand-picked draws</span><br><span class="d">Let chance decide or choose your own number. Draw several in one day, skip a day and catch up later — the challenge bends to your life.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Flexible amounts</span><br><span class="d">Stuffed a little more or less than the envelope said? Adjust the actual amount, decimals included. The totals stay honest.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Stats that motivate</span><br><span class="d">Total saved, envelopes done, current and longest streaks, a savings chart, and a projected finish date based on your real pace.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">More challenges</span><br><span class="d">Beyond the classic: a 52 Week challenge, a Penny challenge, a Double It version ($2–$200, $10,100 total), or build your own with custom amounts.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Daily reminder</span><br><span class="d">An optional gentle nudge at the time you choose, so the streak never slips your mind.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Home screen widget</span><br><span class="d">Your progress ring, total saved, and streak — right on your home screen.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Sound &amp; haptics</span><br><span class="d">A satisfying flip and a coin-bright chime for every save — each can be turned off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Light, Dark, or System appearance. Everything stored on your device.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>Do I have to draw exactly one envelope a day?</h3>
+      <p>No — that's the point of this app. Draw one a day for the classic 100-day pace, draw several when you're motivated, or catch up after a quiet week. Your streak counts days you save, but nothing locks you out.</p>
+
+      <h3>Where does my money go?</h3>
+      <p>Nowhere — the app never touches your money. It's a tracker: you set the cash aside however you like (envelopes, a jar, a savings account), and the app keeps score.</p>
+
+      <h3>What if I can't afford a big envelope today?</h3>
+      <p>Draw a specific smaller number instead of a random one, or park a drawn envelope in "save later" and stuff it when you can. You can also adjust the actual amount saved.</p>
+
+      <h3>Can I run a different challenge?</h3>
+      <p>Yes. Premium unlocks the 52 Week challenge ($1,378), the Penny challenge, Double It ($10,100), and fully custom challenges — your envelope count, your amounts. You can even run several at once.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>The classic 100 Envelope Challenge is free, supported by ads. Premium is a single <strong>one-time purchase</strong> — pay once, yours forever. No subscription, no recurring charges.</p>
+      <ul class="clean">
+        <li>Removes all ads.</li>
+        <li>Unlocks every challenge template — 52 Week, Penny, Double It.</li>
+        <li>Unlocks custom challenges with your own envelope count and amounts.</li>
+        <li>Run multiple challenges at the same time.</li>
+      </ul>
+      <p class="muted">Payment is charged to your Apple ID at confirmation of purchase. Already bought it? Use Restore on the Premium screen to bring it back on any of your devices.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Your challenges, savings progress, streaks, and settings are stored locally on your device. No account or sign-in is required.</li>
+        <li>The app never connects to your bank and never handles real money.</li>
+        <li>The app shows ads through Google AdMob, which may use your device and advertising identifiers to serve and measure ads. You can limit ad personalization in your device settings.</li>
+        <li>Before any tracking across other companies' apps and websites for personalized advertising, the app asks your permission through Apple's App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The optional daily reminder uses local notifications only — nothing leaves your device.</li>
+        <li>The app does not sell your personal data and does not track your location.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>The app is a savings tracker for motivation and record-keeping; it does not provide financial advice.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided "as is," without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Purchases are also governed by Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We'd genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6779838041">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
