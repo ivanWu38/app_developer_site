@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tango Unlimited — Sun &amp; Moon Logic Puzzle</title>
+  <meta name="description" content="Tango Unlimited is a Sun & Moon (Binairo / Takuzu) logic puzzle for iPhone and iPad. Unlimited boards, a fresh daily challenge, three difficulties, and teaching hints — every puzzle guaranteed solvable by logic, never by guessing. Free to download." />
+  <style>
+    :root{
+      --paper:#F7F5EF;
+      --paper-2:#FFFFFF;
+      --ink:#2A2C3A;
+      --muted:#85889A;
+      --line:#E6E3DA;
+      --sun:#F2A93B;
+      --sun-2:#E0982B;
+      --moon:#6B72D6;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{
+      font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:28px;
+    }
+    h1{
+      font-size:2.5rem;font-weight:500;letter-spacing:-.01em;
+      margin:0 0 18px;line-height:1.15;
+    }
+    .lead{
+      font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px;
+      font-weight:400;
+    }
+    /* sun & moon motif */
+    .motif{display:flex;justify-content:center;gap:8px;margin:0 0 40px}
+    .motif span{
+      width:32px;height:32px;border-radius:8px;
+      border:1px solid var(--line);background:var(--paper-2);
+      display:inline-block;position:relative;
+    }
+    .motif .sun::after{
+      content:"";position:absolute;inset:7px;border-radius:50%;
+      background:var(--sun);
+    }
+    .motif .moon::after{
+      content:"";position:absolute;inset:7px;border-radius:50%;
+      background:var(--moon);
+      box-shadow:inset -5px -3px 0 0 var(--paper-2);
+    }
+
+    .cta{
+      display:inline-block;padding:14px 30px;border-radius:999px;
+      background:var(--ink);color:var(--paper);font-size:.98rem;font-weight:500;
+      border:none;letter-spacing:.01em;
+    }
+    .cta:hover{border:none;opacity:.88}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    .pill{
+      display:inline-block;font-size:.78rem;font-weight:600;
+      padding:2px 10px;border-radius:999px;border:1px solid var(--line);
+      color:var(--ink);
+    }
+
+    /* steps */
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--sun);color:#fff;
+      font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{
+      display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:9px;height:9px;border-radius:50%;margin-top:9px;background:var(--moon);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:64px 0 48px}
+      h1{font-size:2rem}
+      .motif span{width:28px;height:28px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Sun &amp; Moon Logic Puzzle</div>
+      <h1>Tango Unlimited</h1>
+      <p class="lead">Two symbols, one simple rule, and a puzzle you can play forever. Fill the grid with suns and moons — never three in a row — and let the deductions click into place. Unlimited boards, a fresh one every day, always solvable by logic.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="sun"></span><span class="moon"></span><span class="moon"></span><span class="sun"></span><span class="moon"></span>
+      </div>
+      <a class="cta" href="#">Download on the App Store</a>
+      <span class="cta-note">Free to play, with an optional one-time Remove Ads unlock · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Game</h2>
+      <p>Tango — also known as <strong>Binairo</strong> or <strong>Takuzu</strong> — is a deceptively simple logic puzzle. You fill a 6×6 grid with two symbols, a sun and a moon, following a handful of small rules. From those rules an entire chain of clever deductions unfolds, square by square.</p>
+      <p>Tango Unlimited gives you as many boards as you want, plus a brand-new daily puzzle the whole world solves together. And here's the part that matters most: <strong>every puzzle is generated and verified to have exactly one solution you can reach by pure logic</strong> — you should never have to guess.</p>
+      <p class="muted">No account, no sign-in, no internet required. Just you and the grid.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How It Works</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Balance every line</span><br><span class="d">Each row and each column needs exactly three suns and three moons — no more, no less.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Never three in a row</span><br><span class="d">No three of the same symbol may sit next to each other, across or down. Spot a pair and you can often place the next square.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Read the signs</span><br><span class="d">An <strong>=</strong> between two cells means they hold the same symbol; an <strong>×</strong> means they must be different.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Solve with logic alone</span><br><span class="d">Every board has a single answer you can always reason your way to. Stuck? A teaching hint shows you the next certain square and the rule that proves it.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What's Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">Unlimited puzzles</span><br><span class="d">Play as long as you like and never run out. Fresh boards are generated on the spot, not pulled from a fixed pack.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Daily challenge &amp; streak</span><br><span class="d">One new puzzle every day, the same for everyone, with a streak that grows each day you solve it.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Three difficulties</span><br><span class="d">Easy, Medium, and Hard — all guaranteed solvable by logic. Hard leans on deeper reasoning, never on luck.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Teaching hints</span><br><span class="d">Hints don't just hand you the answer — they point to the next certain cell and name the rule behind it, so you actually get better.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Instant mistake detection</span><br><span class="d">Break a rule and the conflicting squares light up right away, so you can fix it before it snowballs.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Undo &amp; timer</span><br><span class="d">Step back any move, and race your own best time on each difficulty.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Stats that motivate</span><br><span class="d">Puzzles solved, best times per difficulty, and your current and longest daily streaks.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Sound &amp; haptics</span><br><span class="d">A soft tap on every placement and a bright chime on every win — each can be turned off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Fully offline · iPhone &amp; iPad</span><br><span class="d">Play anywhere with no connection. Light, Dark, or System appearance. Everything stored on your device.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>Do I ever have to guess?</h3>
+      <p>No — that's the whole point. Every puzzle is checked to have one unique solution reachable by logic alone. If you're stuck, the answer is always a deduction away, and a hint can show you which one.</p>
+
+      <h3>What's the difference between the difficulties?</h3>
+      <p>Easier boards start with more given symbols and need only the basic rules. Harder boards reveal less and require deeper chains of reasoning — but they're all solvable without guessing.</p>
+
+      <h3>Is there a daily puzzle?</h3>
+      <p>Yes. Everyone gets the same board each day, and solving it keeps your streak alive. There's also an endless Unlimited mode whenever you want more.</p>
+
+      <h3>What do the = and × signs mean?</h3>
+      <p>They sit between two neighboring cells. An = means the two cells share the same symbol; an × means they must be opposite. They're powerful clues for cracking a board.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Remove Ads</h2>
+      <p>Tango Unlimited is free to play and supported by ads. Removing them is a single <strong>one-time purchase</strong> — pay once, yours forever. No subscription, no recurring charges, and no puzzles locked behind a paywall.</p>
+      <ul class="clean">
+        <li>Removes all ads.</li>
+        <li>Unlocks unlimited hints — no waiting and no ads to see your next move.</li>
+        <li>Helps support ongoing development of new puzzles and features.</li>
+      </ul>
+      <p class="muted">Payment is charged to your Apple ID at confirmation of purchase. Already bought it? Use Restore on the Remove Ads screen to bring it back on any of your devices.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Your puzzle progress, stats, streaks, and settings are stored locally on your device. No account or sign-in is required.</li>
+        <li>The app works fully offline — gameplay never needs an internet connection.</li>
+        <li>The app shows ads through Google AdMob, which may use your device and advertising identifiers to serve and measure ads. You can limit ad personalization in your device settings.</li>
+        <li>Before any tracking across other companies' apps and websites for personalized advertising, the app asks your permission through Apple's App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not sell your personal data and does not track your location.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>The app is a puzzle game provided for entertainment.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided "as is," without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Purchases are also governed by Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We'd genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="#">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
