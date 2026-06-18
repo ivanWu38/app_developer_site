@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geo Grid — Daily Geography Puzzle</title>
+<meta name="description" content="Geo Grid is a daily geography puzzle: fill a 3×3 grid with countries that match each row and column clue. One global puzzle a day, plus unlimited practice.">
+<style>
+  :root{
+    --bg:#F7F1E1; --ink:#16243D; --ink2:#62718C; --ink3:#AAB2C0;
+    --accent:#B88A2E; --on-accent:#FBF6EA; --accent2:#3F6088;
+    --rule:#16243D; --hair:rgba(22,36,61,.20); --card:#FFFDF5; --cardb:#E3D9C2;
+    --serif: "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0F1A2E; --ink:#F1EAD6; --ink2:#9FB0C8; --ink3:#5D6E88;
+      --accent:#D8B366; --on-accent:#1A1206; --accent2:#86ACCE;
+      --rule:#C9A24A; --hair:rgba(241,234,214,.16); --card:#16243D; --cardb:#2B3B58;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.7;
+        -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px; margin:0 auto; padding:0 24px 80px;}
+  a{color:var(--accent)}
+  .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink2); text-align:center;}
+  .kick.l{text-align:left}
+  .rule{height:1.2px; background:var(--rule); border:0; margin:10px 0;}
+  .rule.hair{height:1px; background:var(--hair); opacity:1}
+  /* masthead */
+  header{text-align:center; padding:54px 0 8px;}
+  header .title{font-weight:700; font-size:54px; letter-spacing:-.5px; margin:6px 0;}
+  header .sub{font-family:var(--sans); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ink2); margin-top:2px;}
+  .compass{width:120px; height:120px; margin:18px auto 6px; display:block; color:var(--accent); opacity:.9}
+  .cta{display:inline-block; margin:22px auto 8px; background:var(--accent); color:var(--on-accent);
+       font-family:var(--serif); font-weight:600; font-size:17px; padding:13px 26px; border-radius:8px; text-decoration:none;}
+  .lede{font-style:italic; color:var(--ink2); text-align:center; max-width:560px; margin:14px auto 0;}
+  /* sections */
+  section{margin-top:46px;}
+  h2{font-weight:700; font-size:27px; text-align:center; margin:0;}
+  .sec-head{margin-bottom:18px;}
+  ul{list-style:none; padding:0; margin:0;}
+  li{padding:13px 0; border-top:1px solid var(--hair); display:flex; gap:12px; align-items:flex-start;}
+  li:first-child{border-top:0}
+  li .mark{color:var(--accent); flex:none; margin-top:2px;}
+  li b{display:block}
+  li .d{color:var(--ink2); font-size:16px;}
+  .faq{margin-top:6px}
+  .faq h3{font-size:19px; margin:18px 0 2px;}
+  .faq p{color:var(--ink2); margin:0;}
+  .price{font-weight:700; font-size:40px; text-align:center; margin:8px 0 0;}
+  .price small{display:block; font-style:italic; font-weight:400; font-size:14px; color:var(--ink2); margin-top:2px;}
+  .legal{color:var(--ink2); font-size:16px;}
+  .legal p{margin:10px 0;}
+  footer{margin-top:54px; text-align:center; font-family:var(--sans); font-size:13px; color:var(--ink3);}
+  footer a{color:var(--accent); text-decoration:none;}
+  .tier{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:10px; font-family:var(--sans); font-size:12px; color:var(--ink2);}
+  .tier span{display:flex; flex-direction:column; align-items:center; gap:3px; font-size:22px;}
+  .tier span small{font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="compass" viewBox="0 0 180 180" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <g opacity="0.5"><circle cx="90" cy="90" r="76"/><ellipse cx="90" cy="90" rx="40" ry="76"/><line x1="14" y1="90" x2="166" y2="90"/><ellipse cx="90" cy="90" rx="76" ry="42"/></g>
+      <circle cx="90" cy="90" r="54"/>
+      <path d="M90 30 L99 90 L90 150 L81 90 Z" fill="currentColor" stroke="none"/>
+      <path d="M30 90 L90 81 L150 90 L90 99 Z" fill="currentColor" stroke="none" opacity="0.5"/>
+      <circle cx="90" cy="90" r="4" fill="currentColor" stroke="none"/>
+      <text x="90" y="24" font-family="Georgia,serif" font-size="13" fill="currentColor" stroke="none" text-anchor="middle">N</text>
+    </svg>
+    <div class="kick">Daily Geography Puzzle</div>
+    <hr class="rule">
+    <div class="title">Geo Grid</div>
+    <hr class="rule">
+    <div class="sub">Nine cells · Two clues each · One world a day</div>
+    <a class="cta" href="https://apps.apple.com/app/id6772846225">Download on the App Store</a>
+    <p class="lede">A daily test of geography: every cell needs a country that satisfies both its row and its column. The rarer your answer, the better your score.</p>
+  </header>
+
+  <section>
+    <div class="sec-head"><div class="kick">The Idea</div><hr class="rule"><h2>One grid, the whole world</h2></div>
+    <p>Geo Grid hands you a 3×3 board. Each row and each column carries a clue — a continent, a population threshold, a shared border, a language, an island, and more. Fill every cell with a country that matches <em>both</em> the clue across and the clue down.</p>
+    <p>You have ten guesses. Everyone plays the same daily puzzle, and obscure-but-correct answers score lower — which, in Geo Grid, means better. When you’d rather just practise, Unlimited mode deals a fresh board any time.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">How To Play</div><hr class="rule"><h2>The rules</h2></div>
+    <ul>
+      <li><span class="mark">✦</span><div><b>Fill every cell</b><span class="d">Tap a cell, then guess a country that fits both its row clue and its column clue.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Match both clues</b><span class="d">A guess only counts when the country satisfies the row and the column at the same time.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Each country once</b><span class="d">Any country can be used only once per board — place it where it counts most.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Rarer is better</b><span class="d">Ten guesses. The less obvious your correct answer, the lower — and better — your score.</span></div></li>
+    </ul>
+    <div class="tier">
+      <span>🟩<small>Common</small></span><span>🔷<small>Uncommon</small></span><span>⚡️<small>Rare</small></span>
+      <span>🌈<small>Epic</small></span><span>💎<small>Legendary</small></span><span>🦄<small>Mythical</small></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">What’s Inside</div><hr class="rule"><h2>The almanac</h2></div>
+    <ul>
+      <li><span class="mark">✦</span><div><b>A global daily puzzle</b><span class="d">One shared board each day, with a countdown to the next edition.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Unlimited practice</b><span class="d">Easy, Medium and Hard boards whenever you want more.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Streaks &amp; 23 achievements</b><span class="d">Keep your run alive and earn marks of distinction.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Shareable result card</b><span class="d">A spoiler-free card friends can read even if they haven’t played.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Hints when stuck</b><span class="d">Reveal the toughest cell — it won’t help your score, but it keeps you moving.</span></div></li>
+      <li><span class="mark">✦</span><div><b>Light &amp; dark</b><span class="d">An editorial almanac look, day or night.</span></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">Ad-Free Edition</div><hr class="rule"><h2>Remove Ads</h2></div>
+    <p style="text-align:center">Geo Grid is free to play. A single one-time purchase removes every ad and unlocks unlimited hints — yours forever, never a subscription.</p>
+    <div class="price">$4.99<small>one-time · no subscription</small></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">Questions</div><hr class="rule"><h2>Good to know</h2></div>
+    <div class="faq">
+      <h3>Is it free?</h3>
+      <p>Yes. The daily puzzle and unlimited practice are free. An optional one-time “Remove Ads” purchase is available.</p>
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — Geo Grid follows your system appearance, or you can lock Light or Dark in Settings.</p>
+      <h3>When does the daily puzzle reset?</h3>
+      <p>At local midnight. A live countdown on the Today screen shows the time until the next edition.</p>
+      <h3>Why is a lower score better?</h3>
+      <p>Scoring rewards bravery. Common answers earn more points; rarer correct answers earn fewer — and the goal is the lowest total.</p>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="sec-head"><div class="kick">Privacy Policy</div><hr class="rule"><h2>Privacy Policy</h2></div>
+    <div class="legal">
+      <p><em>Last updated: June 2026.</em></p>
+      <p>Geo Grid is designed to respect your privacy. The app has no accounts and no login. Your game progress, streaks, statistics and settings are stored locally on your device.</p>
+      <p>To keep the app free and to improve it, Geo Grid uses a small number of third-party services that may collect limited, non-identifying technical information such as a device advertising identifier, app usage events, approximate region and device/OS type:</p>
+      <ul>
+        <li><span class="mark">·</span><div><b>Google AdMob</b><span class="d">Serves the ads that support the free version. See Google’s policy at policies.google.com/privacy.</span></div></li>
+        <li><span class="mark">·</span><div><b>Google Firebase / Analytics</b><span class="d">Aggregated, anonymous usage analytics to understand how the app is used.</span></div></li>
+        <li><span class="mark">·</span><div><b>Microsoft Clarity</b><span class="d">Anonymous, aggregated interaction analytics to improve the experience.</span></div></li>
+        <li><span class="mark">·</span><div><b>Apple</b><span class="d">In-app purchases and restores are handled by Apple; we never see your payment details.</span></div></li>
+      </ul>
+      <p>On iOS you’ll see Apple’s App Tracking Transparency prompt; you can decline tracking and the app will work the same. Geo Grid does not knowingly collect personal information from children. You can request deletion of any associated data by emailing us.</p>
+      <p>Questions about privacy? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">Terms of Service</div><hr class="rule"><h2>Terms of Service</h2></div>
+    <div class="legal">
+      <p>Geo Grid is provided “as is,” for personal, non-commercial entertainment. By using the app you agree not to misuse it or attempt to disrupt the service. The optional “Remove Ads” purchase is a one-time, non-consumable unlock tied to your Apple ID and can be restored on your devices.</p>
+      <p>Apple’s standard licensed-application terms also apply: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">apple.com/legal/.../stdeula</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="kick">Contact &amp; Support</div><hr class="rule"><h2>Get in touch</h2></div>
+    <p style="text-align:center"><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+    <span class="legal">We read every message and usually reply within a day or two.</span></p>
+  </section>
+
+  <hr class="rule hair" style="margin-top:48px">
+  <footer>
+    <a href="https://apps.apple.com/app/id6772846225">App Store</a> ·
+    <a href="mailto:wuyuping38@gmail.com">Support</a> ·
+    <a href="#privacy">Privacy</a> ·
+    <a href="/">All apps</a>
+    <p style="margin-top:10px">© 2026 Geo Grid</p>
+  </footer>
+
+</div>
+</body>
+</html>
