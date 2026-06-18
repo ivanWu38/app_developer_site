@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wend — Daily Word-Trace Puzzle</title>
+  <meta name="description" content="Wend — trace four hidden words across a 5×5 grid. One calm daily word puzzle for iPhone and iPad, with streaks, hints, and an endless practice mode." />
+  <style>
+    :root{
+      --paper:#F3F0E8;
+      --paper-2:#FFFDF9;
+      --ink:#222029;
+      --muted:#736F7C;
+      --line:#E7E0D2;
+      --accent:#5B6EF5;
+      --accent2:#9168F0;
+      --w3:#2E8CF2;   /* 3-letter */
+      --w4:#F28C26;   /* 4-letter */
+      --w5:#4DB86B;   /* 5-letter */
+      --w6:#B359D9;   /* 6-letter */
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);background:var(--paper);line-height:1.75;
+      -webkit-font-smoothing:antialiased;font-weight:400;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    header{padding:88px 0 64px;text-align:center}
+    .kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+    h1{
+      font-size:2.6rem;font-weight:800;letter-spacing:.12em;margin:0 0 18px;line-height:1.1;
+      background:linear-gradient(120deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .lead{font-size:1.12rem;color:var(--muted);max-width:34em;margin:0 auto 38px}
+
+    /* board motif: a tiny trace of colored tiles */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px;flex-wrap:wrap}
+    .motif span{width:30px;height:30px;border-radius:7px;border:1px solid var(--line);background:var(--paper-2);display:inline-block;font-weight:800;color:#fff;line-height:30px;font-size:.9rem}
+    .motif .b{background:var(--w3);border-color:transparent}
+    .motif .o{background:var(--w4);border-color:transparent}
+    .motif .g{background:var(--w5);border-color:transparent}
+    .motif .p{background:var(--w6);border-color:transparent}
+
+    .cta{display:inline-block;padding:14px 30px;border-radius:999px;
+      background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;
+      font-size:.98rem;font-weight:600;border:none;letter-spacing:.01em}
+    .cta:hover{border:none;opacity:.9}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 26px}
+    h3{font-size:1.05rem;font-weight:700;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .features li:last-child{border-bottom:none}
+    .features .dot{flex:none;width:9px;height:9px;border-radius:3px;margin-top:9px;background:linear-gradient(120deg,var(--accent),var(--accent2))}
+    .features .t{font-weight:700}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    .legend{margin:0;padding:0;list-style:none}
+    .legend li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:24px;height:24px;border-radius:6px;flex:none}
+    .swatch.b{background:var(--w3)}.swatch.o{background:var(--w4)}
+    .swatch.g{background:var(--w5)}.swatch.p{background:var(--w6)}
+
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem}
+    ul.clean li{margin:.3rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;color:var(--muted);font-size:.85rem}
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){header{padding:64px 0 48px}h1{font-size:2.1rem}.motif span{width:26px;height:26px;line-height:26px}}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="kicker">Daily Word Puzzle</div>
+      <h1>WEND</h1>
+      <p class="lead">Trace four hidden words across a small grid — one calm daily puzzle where every tile belongs to a word, and your job is to find them all.</p>
+      <div class="motif" aria-hidden="true">
+        <span class="b">W</span><span class="o">O</span><span class="g">R</span><span class="p">D</span><span>S</span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6762116025">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional one-time ad-free unlock · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Each Wend puzzle is a small grid hiding <strong>four words</strong> — three, four, five, and six letters long. Every word winds through neighbouring tiles, and together they cover every open tile <strong>exactly once</strong>. Find all four and the board is solved. A fresh puzzle arrives each day; solve it, keep your streak, and come back tomorrow.</p>
+      <p class="muted">No clutter, no pressure to grind. Just one considered puzzle a day — plus an endless practice mode whenever you want more.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <p>Drag across <strong>adjacent tiles</strong> to trace a word, then lift your finger to lock it in. Each of the four words has its own colour, so the board fills in as you go. The chips below the grid show how long each word is until you find it.</p>
+      <ul class="legend">
+        <li><span class="swatch b"></span><span><strong>Blue</strong> — the three-letter word.</span></li>
+        <li><span class="swatch o"></span><span><strong>Orange</strong> — the four-letter word.</span></li>
+        <li><span class="swatch g"></span><span><strong>Green</strong> — the five-letter word.</span></li>
+        <li><span class="swatch p"></span><span><strong>Purple</strong> — the six-letter word.</span></li>
+      </ul>
+      <p class="muted">Stuck? A hint reveals the starting tile of the shortest word you haven’t found yet.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A puzzle every day</span><br><span class="d">A fresh daily board with a countdown to the next one, and your streak kept along the way.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Endless practice</span><br><span class="d">An Unlimited mode with Easy, Medium, and Hard puzzles — play as many as you like, no daily limit.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Hints when you need them</span><br><span class="d">Three free hints every day. Out of hints? Watch a short video for one more — or unlock unlimited hints with Premium.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your Stats</span><br><span class="d">Current and best streaks, total solved, days played, personal bests per difficulty, and twelve achievements to unlock.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A spoiler-free share card</span><br><span class="d">Share your result as a clean grid — with an option to hide the answers so you don’t spoil it for anyone.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Light &amp; Dark</span><br><span class="d">Choose System, Light, or Dark appearance. Colour-blind-friendly word colours throughout.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Adaptive layouts and gentle haptics, designed to feel at home on either screen.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>How do the four words fit together?</h3>
+      <p>Every open tile on the board belongs to exactly one word. When you’ve traced all four words — three, four, five, and six letters — the whole board is filled and the puzzle is solved.</p>
+
+      <h3>When does a new puzzle arrive?</h3>
+      <p>A new daily puzzle unlocks each day, with a countdown in the app showing the time until the next one. Your progress is saved automatically.</p>
+
+      <h3>What if I run out of hints?</h3>
+      <p>You get three free hints a day. After that you can watch a short video to earn one more, or unlock Wend Premium for unlimited hints and no ads.</p>
+
+      <h3>Is there a way to play more than once a day?</h3>
+      <p>Yes — the Unlimited mode gives you endless random puzzles in Easy, Medium, or Hard, separate from the daily.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Achievements</h2>
+      <p class="muted">Twelve milestones to discover as you play.</p>
+      <ul class="clean">
+        <li><strong>First Trail</strong> — solve your first puzzle</li>
+        <li><strong>Warming Up</strong> — solve 10 puzzles</li>
+        <li><strong>Wordsmith</strong> — solve 50 puzzles</li>
+        <li><strong>Lexicographer</strong> — solve 200 puzzles</li>
+        <li><strong>On a Roll</strong> — reach a 3-day daily streak</li>
+        <li><strong>Week of Words</strong> — reach a 7-day daily streak</li>
+        <li><strong>Unbroken</strong> — reach a 30-day daily streak</li>
+        <li><strong>Daily Debut</strong> — complete your first Daily Puzzle</li>
+        <li><strong>Devoted</strong> — complete 30 Daily Puzzles</li>
+        <li><strong>All-Rounder</strong> — solve a puzzle on every difficulty</li>
+        <li><strong>Speed Tracer</strong> — solve any puzzle in under a minute</li>
+        <li><strong>Hard Mode</strong> — solve 10 Hard puzzles</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Wend is free to play. If you’d like to remove ads and get unlimited hints, <strong>Wend Premium is a one-time purchase</strong> — buy it once and it’s yours forever.</p>
+      <ul class="clean muted">
+        <li>A single one-time purchase — <strong>not a subscription</strong>, with no recurring charges.</li>
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>Removes all ads and unlocks unlimited hints, permanently.</li>
+        <li>You can restore the purchase on any device signed in to the same Apple ID.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Wend does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, and progress are stored locally on your device.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; ad personalization can be controlled in your device settings.</li>
+        <li>The app uses Apple’s App Tracking Transparency (ATT) to ask your permission before any tracking across other companies’ apps and websites for personalized advertising. You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app uses Microsoft Clarity and Google/Firebase Analytics to understand anonymous, aggregate usage so we can improve the app.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+      <p class="muted">A dedicated copy of this policy lives at <a href="/apps/wend/privacy/">ikuheikure.xyz/apps/wend/privacy</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Purchases are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6762116025">App Store</a>
+        <a href="/apps/wend/privacy/">Privacy</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
