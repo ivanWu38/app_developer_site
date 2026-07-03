@@ -3,89 +3,340 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mist — Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for Mist, the quiet mini sudoku puzzle app for iPhone and iPad." />
+  <title>Mist — Mini Sudoku · Privacy Policy &amp; About</title>
+  <meta name="description" content="Mist — quiet mini sudoku puzzles for busy minds. A calm 6×6 sudoku with daily puzzles, watercolour themes and gentle sound, for iPhone and iPad. Includes our Privacy Policy and Terms." />
   <style>
     :root{
-      --paper:#F4EFE9;--paper-2:#FFFDF9;--ink:#2C3A5C;--muted:#6E7794;--line:#E2DFE8;
-      --accent:#7FA8DC;--accent2:#8E9BE0;--maxw:680px;
+      --paper:#F4EFE9;
+      --paper-2:#FBF8F3;
+      --ink:#2C3A5C;
+      --ink-soft:#4A5578;
+      --muted:#6E7794;
+      --line:#E0DDE6;
+      --accent:#7FA8DC;
+      --accent-2:#8E9BE0;
+      --blush:#DB94AE;
+      --gold:#C2A063;
+      --maxw:680px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
-      color:var(--ink);background:linear-gradient(180deg,var(--paper) 0%,#E7E6F0 100%);background-attachment:fixed;
-      line-height:1.75;-webkit-font-smoothing:antialiased}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+      background:
+        radial-gradient(560px 400px at 12% 4%, rgba(203,214,236,.55), transparent 70%),
+        radial-gradient(620px 460px at 88% 10%, rgba(234,208,214,.5), transparent 70%),
+        radial-gradient(700px 520px at 50% 100%, rgba(214,207,234,.45), transparent 72%),
+        linear-gradient(180deg,var(--paper) 0%,#ECEAF2 100%);
+      background-attachment:fixed;
+    }
+    .serif{font-family:Georgia,"Times New Roman","Songti TC",serif}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-    header{padding:72px 0 36px;border-bottom:1px solid var(--line)}
-    h1{font-size:2rem;font-weight:700;margin:0 0 8px;letter-spacing:.06em;font-family:Georgia,"Times New Roman",serif;
-      background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .updated{color:var(--muted);font-size:.85rem}
-    section{padding:30px 0;border-bottom:1px solid var(--line)}
-    h2{font-size:1.05rem;font-weight:700;margin:0 0 10px}
-    p{margin:.4rem 0 1rem;color:var(--ink)}
-    ul{margin:.4rem 0 1rem;padding-left:1.1rem}
-    li{margin:.35rem 0}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:92px 0 60px;text-align:center;position:relative}
+    .moon{
+      position:absolute;left:50%;top:34px;transform:translateX(-50%);
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle at 50% 45%, rgba(251,246,239,.95), rgba(246,233,228,0) 70%);
+      pointer-events:none;
+    }
+    header .wrap{position:relative}
+    .kicker{
+      font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:26px;
+    }
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:3.1rem;font-weight:500;letter-spacing:.28em;
+      margin:0 0 6px;line-height:1.1;text-indent:.28em;
+    }
+    .sub{
+      font-family:Georgia,serif;letter-spacing:.35em;text-transform:lowercase;
+      color:var(--ink-soft);font-size:.95rem;margin:0 0 16px;text-indent:.35em;
+    }
+    .lead{
+      font-family:Georgia,serif;font-style:italic;
+      font-size:1.15rem;color:var(--muted);max-width:30em;margin:0 auto 36px;
+    }
+    /* mini 6-cell sudoku motif */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px}
+    .motif span{
+      width:34px;height:34px;border-radius:8px;
+      border:1px solid rgba(44,58,92,.14);background:rgba(255,255,255,.55);
+      display:flex;align-items:center;justify-content:center;
+      font-family:Georgia,serif;font-size:1.05rem;color:var(--ink);
+      box-shadow:0 4px 10px rgba(44,58,92,.06);
+    }
+    .motif .b{background:rgba(127,168,220,.28);color:var(--ink)}
+    .motif .p{background:rgba(219,148,174,.24);color:var(--ink)}
+    .motif .e{color:transparent}
+
+    .cta{
+      display:inline-block;padding:14px 32px;border-radius:999px;
+      background:linear-gradient(180deg,#3B4672,#232B4A);color:#F6F1E8;
+      font-family:Georgia,serif;font-size:1.02rem;letter-spacing:.03em;
+      border:1px solid rgba(194,160,99,.85);
+      box-shadow:0 10px 24px rgba(34,43,69,.28);
+    }
+    .cta:hover{opacity:.9;border-color:rgba(194,160,99,.85)}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
     .muted{color:var(--muted)}
-    footer{padding:30px 0 60px;text-align:center;color:var(--muted);font-size:.85rem}
+    strong{color:var(--ink)}
+
+    /* numbered steps */
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--ink);color:var(--paper);
+      font-family:Georgia,serif;font-size:.9rem;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:10px;height:10px;border-radius:50%;margin-top:9px;
+      background:radial-gradient(circle at 35% 35%, var(--accent), var(--accent-2));
+    }
+    .features li:nth-child(even) .dot{
+      background:radial-gradient(circle at 35% 35%, var(--blush), #C9A0C2);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* theme swatches */
+    .themes{margin:6px 0 0;padding:0;list-style:none}
+    .themes li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(44,58,92,.10)}
+    .sw-dawn{background:linear-gradient(135deg,#F4EFE9,#CBD6EC)}
+    .sw-dusk{background:linear-gradient(135deg,#F7EFE6,#EBC6C2)}
+    .sw-winter{background:linear-gradient(135deg,#EFF3F5,#CFE0EA)}
+    .sw-moon{background:linear-gradient(135deg,#8E9BE0,#232A44)}
+    .sw-sakura{background:linear-gradient(135deg,#F3D2DD,#DB94AE)}
+    .tag{
+      font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+      border:1px solid rgba(194,160,99,.5);border-radius:999px;padding:1px 9px;margin-left:8px;
+    }
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.35rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
     footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:68px 0 46px}
+      h1{font-size:2.4rem}
+      .motif span{width:29px;height:29px;font-size:.95rem}
+    }
   </style>
 </head>
 <body>
+
   <header>
+    <div class="moon" aria-hidden="true"></div>
     <div class="wrap">
-      <h1>Mist — Privacy Policy</h1>
-      <div class="updated">Last updated: July 3, 2026</div>
+      <div class="kicker">Quiet Mini Sudoku</div>
+      <h1>MIST</h1>
+      <p class="sub">mini sudoku</p>
+      <p class="lead">quiet puzzles for busy minds</p>
+      <div class="motif" aria-hidden="true">
+        <span class="b">2</span><span class="e">·</span><span class="p">5</span><span>1</span><span class="e">·</span><span class="b">4</span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6784058617">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional Premium subscription · iPhone &amp; iPad</span>
     </div>
   </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Overview</h2>
-      <p>Mist is a quiet mini sudoku puzzle app for iPhone and iPad. We designed it to respect your privacy: Mist does not require an account, and it does not collect, share, or sell your personal data.</p>
-    </section>
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Mist is sudoku shrunk to a calmer size. Every puzzle is a <strong>6×6 grid</strong> — big enough to make you think, small enough to finish in a quiet moment between everything else.</p>
+      <p>There are no clocks screaming at you and no lives to lose. Just a watercolour world of soft mornings and moonlit nights, a gentle ripple when you place a number, and the small satisfaction of a board falling into place.</p>
+      <p class="muted">One shared daily puzzle arrives each day, and three difficulty journeys are always open when you want more.</p>
+    </div>
+  </section>
 
-    <section>
-      <h2>Data stored on your device</h2>
-      <p>Your game progress — daily puzzles, level completion, streaks, statistics, achievements, theme choice, and settings — is stored locally on your device. It is not uploaded to us.</p>
-    </section>
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Fill the grid with 1–6</span><br><span class="d">Every row, every column, and every 2×3 box must contain the numbers 1 through 6 — each exactly once.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Start from the givens</span><br><span class="d">Some cells are already filled. Use them to rule numbers in and out, one cell at a time.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Pencil in notes</span><br><span class="d">Not sure yet? Switch to notes mode and jot small candidates in a cell until the answer reveals itself.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Ask for a hint when stuck</span><br><span class="d">A hint fills in a correct cell for you. Free players earn hints by watching a short ad; Premium makes them unlimited.</span></span></li>
+        <li><span class="n">5</span><span><span class="t">Watch the board bloom</span><br><span class="d">Finish the puzzle and the whole board ripples like water — your streak grows, achievements unlock, and tomorrow brings a new day.</span></span></li>
+      </ul>
+    </div>
+  </section>
 
-    <section>
-      <h2>Advertising</h2>
-      <p>Mist shows ads through Google AdMob (banner and interstitial ads, plus optional rewarded ads you can choose to watch for hints). Before any tracking across other companies’ apps and websites for personalized advertising, the app asks your permission using Apple’s App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in your device Settings. You can also subscribe to Mist Premium to remove all ads.</p>
-    </section>
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A daily puzzle</span><br><span class="d">One fresh 6×6 puzzle each day, the same for everyone. Solve it, keep your daily streak alive, and come back tomorrow.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Three journeys</span><br><span class="d">Easy, Medium and Hard level journeys with hundreds of hand-tuned puzzles — progress is saved as you climb.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Watercolour atmospheres</span><br><span class="d">The whole app wears a painted mood — misty dawns, golden dusks, snow-quiet winters, moonlit gardens and sakura springs.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Living water</span><br><span class="d">Numbers land with a soft ripple; solving a puzzle sends a wave across the board. Prefer stillness? Turn ripples off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Gentle sound &amp; music</span><br><span class="d">A hushed ambient soundtrack and paper-soft touch sounds, ducked around your own music and the mute switch. All optional.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">24 achievements</span><br><span class="d">Illustrated badges for streaks, precision, speed and dedication — each one shareable as a painted card.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your stats</span><br><span class="d">Puzzles solved, best times, current and longest streaks — a quiet record of your practice.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad</span><br><span class="d">Adaptive layouts with Light, Dark, or System appearance, designed to feel at home on either screen.</span></span></li>
+      </ul>
 
-    <section>
-      <h2>Analytics</h2>
-      <p>We use Google / Firebase Analytics and Microsoft Clarity to understand anonymous, aggregate usage (such as which screens are used) so we can improve the app. This data is not used to identify you personally.</p>
-    </section>
+      <h3>The atmospheres</h3>
+      <ul class="themes">
+        <li><span class="swatch sw-dawn"></span><span>Dawn Mist — soft · airy · morning</span></li>
+        <li><span class="swatch sw-dusk"></span><span>Golden Dusk — warm · soft · peaceful</span></li>
+        <li><span class="swatch sw-winter"></span><span>Winter Silence — cold · clean · minimal</span></li>
+        <li><span class="swatch sw-moon"></span><span>Moon Garden — deep · calm · night</span><span class="tag">Premium</span></li>
+        <li><span class="swatch sw-sakura"></span><span>Sakura Dream — gentle · pink · spring</span><span class="tag">Premium</span></li>
+      </ul>
+    </div>
+  </section>
 
-    <section>
-      <h2>Purchases</h2>
-      <p>Mist Premium is offered as an auto-renewable subscription (monthly or yearly) and as an optional one-time lifetime unlock. All purchases are handled entirely by Apple through your App Store account. We never see or store your payment information. Subscriptions can be managed or canceled anytime in your App Store settings.</p>
-    </section>
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
 
-    <section>
-      <h2>What we don’t do</h2>
-      <ul>
+      <h3>How is 6×6 different from classic sudoku?</h3>
+      <p>Same logic, smaller canvas. You place 1–6 instead of 1–9, and boxes are 2×3 instead of 3×3. A puzzle takes minutes rather than half an hour — deliberate, but never heavy.</p>
+
+      <h3>When does a new daily puzzle arrive?</h3>
+      <p>A new puzzle unlocks each day and is the same for every player. Your progress is saved automatically, so you can step away mid-puzzle and return where you left off.</p>
+
+      <h3>What if I want to play more than once a day?</h3>
+      <p>The Easy, Medium and Hard journeys are always open, with long runs of levels to work through at your own pace.</p>
+
+      <h3>Do mistakes cost anything?</h3>
+      <p>No. A wrong number is simply shown in a warning colour so you can reconsider — there are no lives, no penalties, no game over.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings, and dress the whole app in any atmosphere you’ve unlocked.</p>
+    </div>
+  </section>
+
+  <section id="premium">
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Mist is free to play. Premium removes all ads, makes hints unlimited, and unlocks the exclusive Moon Garden and Sakura Dream atmospheres — and helps support continued development. It’s offered as a monthly or yearly subscription, or a one-time lifetime unlock.</p>
+      <h3>Subscription terms</h3>
+      <ul class="clean muted">
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>The subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account is charged for renewal within 24 hours before the end of the current period, at the same price.</li>
+        <li>You can manage or cancel your subscription anytime in your App Store account settings.</li>
+        <li>The lifetime unlock is a one-time, non-renewing purchase.</li>
+        <li>Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Last updated: July 3, 2026</p>
+      <p>Mist was designed to respect your privacy. It does not require an account, and it does not collect, share, or sell your personal data.</p>
+
+      <h3>Data stored on your device</h3>
+      <ul class="clean">
+        <li>Your game progress — daily puzzles, level completion, streaks, statistics, achievements, theme choice, and settings — is stored locally on your device. It is not uploaded to us.</li>
+        <li>No account or sign-in is required to play.</li>
+      </ul>
+
+      <h3>Advertising</h3>
+      <ul class="clean">
+        <li>Mist shows ads through Google AdMob — banner and interstitial ads, plus optional rewarded ads you can choose to watch for hints.</li>
+        <li>Before any tracking across other companies’ apps and websites for personalized advertising, the app asks your permission using Apple’s App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in your device Settings.</li>
+        <li>Subscribing to Mist Premium removes all ads.</li>
+      </ul>
+
+      <h3>Analytics</h3>
+      <ul class="clean">
+        <li>We use Google / Firebase Analytics and Microsoft Clarity to understand anonymous, aggregate usage (such as which screens are used) so we can improve the app.</li>
+        <li>This data is not used to identify you personally.</li>
+      </ul>
+
+      <h3>Purchases</h3>
+      <ul class="clean">
+        <li>All purchases are handled entirely by Apple through your App Store account. We never see or store your payment information.</li>
+      </ul>
+
+      <h3>What we don’t do</h3>
+      <ul class="clean">
         <li>We don’t collect your name, email, or contacts.</li>
         <li>We don’t track your location.</li>
-        <li>We don’t require sign-in or create an account for you.</li>
+        <li>We don’t knowingly collect personal information from children; Mist is suitable for general audiences.</li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>Children</h2>
-      <p>Mist is suitable for general audiences and does not knowingly collect personal information from children.</p>
-    </section>
+  <section id="terms">
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Subscriptions are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
 
-    <section>
-      <h2>Contact</h2>
-      <p>Questions about this policy? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
-    </section>
-  </div>
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
 
   <footer>
-    <a href="/">← ikuheikure.xyz</a>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6784058617">App Store</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+        <a href="/">ikuheikure.xyz</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
   </footer>
+
 </body>
 </html>
