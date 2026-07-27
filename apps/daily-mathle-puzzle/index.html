@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Mathle Puzzle</title>
+  <meta name="description" content="Daily Mathle Puzzle — crack the hidden equation. A daily math guessing game: find the secret 8-character equation in six tries, with color clues after every guess. Unlimited practice, Mini mode, streaks, achievements and board themes. For iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#FBF6EC;
+      --paper-2:#FFFDF7;
+      --ink:#2E2A4A;
+      --ink-soft:#4C4670;
+      --muted:#6F6A8E;
+      --line:#E6E0E8;
+      --accent:#7C6FDE;
+      --accent-2:#5A8DEE;
+      --green:#5FA85C;
+      --purple:#9B7FD4;
+      --gold:#C2A063;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      font-weight:400;
+      background:
+        radial-gradient(560px 400px at 12% 4%, rgba(198,190,240,.5), transparent 70%),
+        radial-gradient(620px 460px at 88% 10%, rgba(178,204,244,.45), transparent 70%),
+        radial-gradient(700px 520px at 50% 100%, rgba(214,207,234,.4), transparent 72%),
+        linear-gradient(180deg,var(--paper) 0%,#F0EBF4 100%);
+      background-attachment:fixed;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:92px 0 60px;text-align:center;position:relative}
+    .glow{
+      position:absolute;left:50%;top:34px;transform:translateX(-50%);
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle at 50% 45%, rgba(255,253,247,.95), rgba(236,231,248,0) 70%);
+      pointer-events:none;
+    }
+    header .wrap{position:relative}
+    .kicker{
+      font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:26px;
+    }
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:3.1rem;font-weight:500;letter-spacing:.28em;
+      margin:0 0 6px;line-height:1.1;text-indent:.28em;
+    }
+    .sub{
+      font-family:Georgia,serif;letter-spacing:.35em;text-transform:lowercase;
+      color:var(--ink-soft);font-size:.95rem;margin:0 0 16px;text-indent:.35em;
+    }
+    .lead{
+      font-family:Georgia,serif;font-style:italic;
+      font-size:1.15rem;color:var(--muted);max-width:30em;margin:0 auto 36px;
+    }
+    /* equation tile motif */
+    .motif{display:flex;justify-content:center;gap:6px;margin:0 0 40px}
+    .motif span{
+      width:34px;height:34px;border-radius:8px;
+      border:1px solid rgba(46,42,74,.14);background:rgba(255,255,255,.55);
+      display:flex;align-items:center;justify-content:center;
+      font-family:Georgia,serif;font-size:1.05rem;color:var(--ink);
+      box-shadow:0 4px 10px rgba(46,42,74,.06);
+    }
+    .motif .g{background:rgba(95,168,92,.34)}
+    .motif .p{background:rgba(155,127,212,.32)}
+
+    .cta{
+      display:inline-block;padding:14px 32px;border-radius:999px;
+      background:linear-gradient(135deg,#5A8DEE,#7C6FDE);color:#FFFDF7;
+      font-family:Georgia,serif;font-size:1.02rem;letter-spacing:.03em;
+      border:1px solid rgba(194,160,99,.85);
+      box-shadow:0 10px 24px rgba(92,79,168,.28);
+    }
+    .cta:hover{opacity:.9;border-color:rgba(194,160,99,.85)}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{
+      font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+      color:var(--muted);font-weight:600;margin:0 0 26px;
+    }
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    strong{color:var(--ink)}
+
+    /* numbered steps */
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .relay li:last-child{border-bottom:none}
+    .relay .n{
+      flex:none;width:28px;height:28px;border-radius:50%;
+      background:var(--ink);color:var(--paper);
+      font-family:Georgia,serif;font-size:.9rem;display:flex;align-items:center;justify-content:center;
+      margin-top:2px;
+    }
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    /* feature list */
+    .features{list-style:none;margin:0;padding:0;display:grid;gap:0}
+    .features li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .features li:last-child{border-bottom:none}
+    .features .dot{
+      flex:none;width:10px;height:10px;border-radius:50%;margin-top:9px;
+      background:radial-gradient(circle at 35% 35%, var(--accent), var(--accent-2));
+    }
+    .features li:nth-child(even) .dot{
+      background:radial-gradient(circle at 35% 35%, var(--green), #8CC788);
+    }
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    /* theme swatches */
+    .themes{margin:6px 0 0;padding:0;list-style:none}
+    .themes li{display:flex;align-items:center;gap:12px;padding:9px 0}
+    .swatch{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(46,42,74,.10)}
+    .sw-classic{background:linear-gradient(135deg,#5FA85C,#9B7FD4)}
+    .sw-wins{background:linear-gradient(135deg,#BFE8C4,#E8B7C8)}
+    .sw-streak{background:linear-gradient(135deg,#A9CDF2,#C97F5E)}
+    .sw-premium{background:linear-gradient(135deg,#2E6F8E,#E8975A)}
+    .tag{
+      font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+      border:1px solid rgba(194,160,99,.5);border-radius:999px;padding:1px 9px;margin-left:8px;
+    }
+
+    /* plain lists */
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.35rem 0}
+    ul.clean.muted li{color:var(--muted)}
+
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{
+      border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;
+      color:var(--muted);font-size:.85rem;
+    }
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:68px 0 46px}
+      h1{font-size:2.2rem}
+      .motif span{width:29px;height:29px;font-size:.95rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="kicker">Crack the Hidden Equation</div>
+      <h1>MATHLE</h1>
+      <p class="sub">daily mathle puzzle</p>
+      <p class="lead">a little arithmetic mystery, every day</p>
+      <div class="motif" aria-hidden="true">
+        <span class="g">3</span><span class="p">5</span><span>+</span><span class="g">1</span><span>2</span><span class="g">=</span><span class="p">4</span><span class="g">7</span>
+      </div>
+      <a class="cta" href="https://apps.apple.com/app/id6794775029">Download on the App Store</a>
+      <span class="cta-note">Free, with a one-time Remove Ads purchase · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Daily Mathle Puzzle hides a true equation — something like <strong>35+12=47</strong> — behind eight blank tiles. You have six guesses to uncover it. After every guess, the tiles show their colors: <strong>green</strong> for a character in the right spot, <strong>purple</strong> for one that belongs in the equation but sits in the wrong place, and gray for one that isn't in it at all.</p>
+      <p>Every guess must itself be a true equation, so each attempt is a small piece of mental arithmetic — and each answer narrows the mystery. It's the daily word-guessing ritual you know, rebuilt for numbers.</p>
+      <p class="muted">One shared daily puzzle arrives each day — the same equation for every player in the world — and unlimited practice is always open when you want more.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Type a true equation</span><br><span class="d">Use the digits 0–9 and the symbols + − × ÷ =. Both sides must actually compute — 12+35=47 works, 12+35=99 won't be accepted.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Read the colors</span><br><span class="d">Green tiles are in exactly the right spot. Purple tiles are part of the equation but placed wrong. Gray tiles aren't in it. The keyboard remembers everything you've learned.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Narrow it down</span><br><span class="d">Order of operations matters — × and ÷ happen before + and −. Use logic and arithmetic together to close in on the answer within six guesses.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Ask for a hint when stuck</span><br><span class="d">A hint reveals one correct tile. Free players earn hints by watching a short ad; Remove Ads makes them instant.</span></span></li>
+        <li><span class="n">5</span><span><span class="t">Share your grid</span><br><span class="d">Win or lose, share your color-grid result as emoji — spoiler-free, so friends can race the same daily equation themselves.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What's Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">A daily equation</span><br><span class="d">One fresh puzzle each day, identical for everyone worldwide — and it works fully offline. Solve it, keep your streak alive, and come back tomorrow.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Unlimited practice</span><br><span class="d">Easy, Medium and Hard modes with thousands of equations, ready whenever one a day isn't enough.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Mini mode</span><br><span class="d">A bite-size six-tile equation for quick rounds — the same rules in a smaller mystery.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A fair win rule</span><br><span class="d">If the answer is 12+35=47 and you play 35+12=47, that's the same math — so it counts as a win. Prefer strict, exact-order solving? Turn it off in Settings.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">12 board themes</span><br><span class="d">Recolor the tiles as you play — themes unlock through wins and streaks, from Mint and Lavender to Aurora.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Your journey</span><br><span class="d">A streak card, a monthly solve calendar, your guess distribution, and 12 achievements with animated unlock cards.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Stats that follow you</span><br><span class="d">Streaks and statistics are stored on your device and quietly backed up through iCloud — no account, no sign-in.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Made for iPhone &amp; iPad</span><br><span class="d">Light, Dark, or System appearance, gentle sounds and haptics (all optional), in English, 繁體中文, 日本語, Deutsch, Français, Español and 한국어.</span></span></li>
+      </ul>
+
+      <h3>The themes</h3>
+      <ul class="themes">
+        <li><span class="swatch sw-classic"></span><span>Classic — green &amp; purple, the signature look</span></li>
+        <li><span class="swatch sw-wins"></span><span>Mint · Lavender · Rose · Amber — unlocked by wins</span></li>
+        <li><span class="swatch sw-streak"></span><span>Sky · Berry · Copper · Aurora — unlocked by streaks</span></li>
+        <li><span class="swatch sw-premium"></span><span>Ocean · Forest · Sunset</span><span class="tag">Remove Ads</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>What counts as a valid equation?</h3>
+      <p>Any arithmetic statement using 0–9 and + − × ÷ = where both sides are truly equal. The app computes with exact fractions, and × and ÷ take precedence over + and −, just like in school.</p>
+
+      <h3>When does a new daily puzzle arrive?</h3>
+      <p>A new equation unlocks at midnight, and it's the same for every player in the world. No connection needed — the daily puzzle works entirely offline.</p>
+
+      <h3>What if I want to play more than once a day?</h3>
+      <p>Easy, Medium and Hard practice modes and the six-tile Mini mode are always open, with thousands of equations to work through at your own pace.</p>
+
+      <h3>I found the right math but in a different order — do I lose?</h3>
+      <p>No. By default, a valid rearrangement of the answer (like 35+12=47 for 12+35=47) counts as a win, because it's the same equation at heart. Purists can switch to strict mode in Settings.</p>
+
+      <h3>Does it support Dark Mode?</h3>
+      <p>Yes — choose System, Light, or Dark in Settings, and dress the board in any theme you've unlocked.</p>
+    </div>
+  </section>
+
+  <section id="remove-ads">
+    <div class="wrap">
+      <h2>Remove Ads</h2>
+      <p>Daily Mathle Puzzle is free to play. A single <strong>one-time purchase</strong> removes all ads forever, makes hints instant (no ad to watch), and unlocks the exclusive Ocean, Forest and Sunset themes — and helps support continued development.</p>
+      <ul class="clean muted">
+        <li>It's a one-time, non-renewing purchase — not a subscription. Buy once, keep it forever.</li>
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>Already purchased on another device? Use Restore Purchases in the app.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Daily Mathle Puzzle does not collect, share, or sell any personal data.</li>
+        <li>All game data, statistics, achievements, and progress are stored locally on your device, with an optional backup through your own iCloud.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; before any tracking across other companies' apps and websites for personalized advertising, the app asks your permission using Apple's App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>Anonymous, aggregate usage analytics (Google / Firebase Analytics) help us improve the app and are not used to identify you.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+      <p class="muted">Read the full policy at <a href="/apps/daily-mathle-puzzle/privacy/">Privacy Policy</a>.</p>
+    </div>
+  </section>
+
+  <section id="terms">
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided "as is," without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Purchases are also governed by Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We'd genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6794775029">App Store</a>
+        <a href="/apps/daily-mathle-puzzle/privacy/">Privacy</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+</body>
+</html>
