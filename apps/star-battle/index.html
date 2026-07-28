@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Star Battle — Daily Logic Star Puzzles</title>
+  <meta name="description" content="Star Battle is the classic star-placement logic puzzle (Queens / Two Not Touch style). A new puzzle every day plus 4,400+ boards from 5×5 to 10×10 — every one solvable by pure logic, never guessing.">
+  <style>
+    :root{
+      --bg:#F5F3EE; --card:#FFFDF9; --ink:#26262A; --muted:#77747E; --line:#E7E3DA;
+      --g1:#667EFF; --g2:#8F5BFF; --gold:#F2B01F;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:#5B6CFF}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:44px;margin:14px 0 6px}
+    .logo .star{color:var(--gold)}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    .board{display:grid;margin:36px auto 0;border:3px solid #2A2A31;border-radius:10px;overflow:hidden;width:min(320px,80vw);aspect-ratio:1}
+    .cell{position:relative;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-family:Georgia,serif;font-size:27px;margin:0 0 18px}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#4B4952}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo"><span class="star">★</span> Star Battle</div>
+      <p class="tagline">The classic star-placement logic puzzle. A new puzzle every day — and every single board solvable by pure logic, never guessing.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6795382877"><small>Download on the</small>App Store</a>
+      <div class="board" id="demoBoard" aria-hidden="true"></div>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li>Place stars so every <b>row</b>, every <b>column</b>, and every <b>colored region</b> has exactly the right number — one star on 1★ boards, two on 2★ boards.</li>
+        <li>Stars can never touch each other, not even diagonally.</li>
+        <li>That's it. Three rules, endless deduction.</li>
+      </ul>
+      <p class="muted">Also known as Queens, Hoshi, or Two Not Touch — if you've enjoyed those, you already know how to play.</p>
+    </section>
+
+    <section>
+      <h2>Why Star Battle</h2>
+      <div class="features">
+        <div class="feat"><b>🗓 A daily ritual</b><p>One shared puzzle a day, growing from a quick Monday board to the full 10×10 two-star challenge on weekends. Keep your streak alive.</p></div>
+        <div class="feat"><b>🧠 Pure logic, never guessing</b><p>All 4,400+ puzzles are computer-verified to have exactly one solution reachable by deduction alone.</p></div>
+        <div class="feat"><b>💡 Hints that teach</b><p>Stuck? The hint doesn't just reveal a cell — it explains the next logical step, so you get better every time.</p></div>
+        <div class="feat"><b>📐 A real difficulty ladder</b><p>From cozy 5×5 starters to expert 10×10 two-star boards, each in three difficulty levels. Pick any board, any time.</p></div>
+        <div class="feat"><b>✋ Fair by design</b><p>Mistakes never trigger ads. No lives, no energy, no paywalled levels. One optional purchase removes ads forever.</p></div>
+        <div class="feat"><b>🌙 Comfortable everywhere</b><p>Beautiful pastel boards, full dark mode, auto-crossing around stars, undo/redo, drag to mark — and it all works offline.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: July 28, 2026</p>
+      <p>Star Battle ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, and settings are stored on your device. Streak and stats data may also be backed up to your personal iCloud key-value storage so a new device can restore it — this data lives in your Apple account and is not accessible to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Remove Ads" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience logic game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6795382877">Star Battle on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Solved 5×5 demo board — a genuinely valid 1★ solution.
+    const MAP = ["AABBB","ACBBB","CCBDD","CCDDD","CEEED"];
+    const STARS = [[0,0],[1,2],[2,4],[3,1],[4,3]];
+    const PAL = ["#FFB6B6","#B9DFFC","#BDEBC4","#FCE9A8","#DCC8F7"];
+    const el = document.getElementById("demoBoard"), n = MAP.length;
+    el.style.gridTemplateColumns = `repeat(${n},1fr)`;
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+      const d = document.createElement("div");
+      d.className = "cell";
+      d.style.background = PAL[MAP[r].charCodeAt(c) - 65];
+      const thick = "2.5px solid #2A2A31", thin = "0.5px solid rgba(0,0,0,.14)";
+      d.style.borderRight = (c + 1 < n && MAP[r][c+1] !== MAP[r][c]) ? thick : thin;
+      d.style.borderBottom = (r + 1 < n && MAP[r+1][c] !== MAP[r][c]) ? thick : thin;
+      if (STARS.some(s => s[0] === r && s[1] === c)) { d.textContent = "★"; d.style.fontSize = "clamp(14px,4vw,22px)"; d.style.color = "#26262A"; }
+      el.appendChild(d);
+    }
+  </script>
+</body>
+</html>
