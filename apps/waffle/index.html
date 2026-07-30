@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waffle Word Game — Swap Letters, Rebuild 6 Words</title>
+  <meta name="description" content="Waffle Word Game is the letter-swap word puzzle: drag tiles on a waffle-shaped grid to rebuild 6 five-letter words in 15 swaps. A daily waffle plus 1,200+ unlimited puzzles — every one with a single solution.">
+  <style>
+    :root{
+      --bg:#FDF5E6; --card:#FFFDF8; --ink:#4F3620; --muted:#96806A; --line:#EEE2CC;
+      --syrup:#B86B1F; --gold:#EDB042; --green:#6BAB63; --yellow:#F2C44F; --tile:#EDE0C9;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--syrup)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:800;font-size:44px;margin:14px 0 6px;letter-spacing:-.5px;
+      font-family:ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .logo .waffle{filter:none}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    .board{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;
+      margin:38px auto 0;width:min(330px,82vw)}
+    .tile{position:relative;aspect-ratio:1;border-radius:14%;display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:clamp(18px,5.6vw,28px);color:#fff;
+      font-family:ui-rounded,-apple-system,sans-serif;
+      transition:transform .55s cubic-bezier(.34,1.4,.5,1), background-color .3s}
+    .tile.n{background:var(--tile);color:#5A4327}
+    .tile.g{background:var(--green)}
+    .tile.y{background:var(--yellow)}
+    .tile.hole{background:rgba(237,224,201,.45)}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:800;
+      font-family:ui-rounded,-apple-system,sans-serif}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    .swatch{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:2px}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#6A5238}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo"><span class="waffle">🧇</span> Waffle Word Game</div>
+      <p class="tagline">Swap letters on a golden waffle grid to rebuild six five-letter words. One cozy daily puzzle — and unlimited waffles whenever you're hungry for more.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6796331552"><small>Download on the</small>App Store</a>
+      <div class="board" id="demoBoard" aria-hidden="true"></div>
+      <p class="muted" style="font-size:14px;margin-top:14px">Live demo: watch the tiles swap into place.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Drag a tile onto another</b> (or tap two tiles) to swap them, and rebuild all 6 words — 3 across, 3 down.</li>
+        <li><span class="swatch" style="background:var(--green)"></span><b>Green</b> means the letter is in the right spot and locks in. <span class="swatch" style="background:var(--yellow)"></span><b>Yellow</b> means it belongs to that word, but somewhere else.</li>
+        <li>You have <b>15 swaps</b>. Every waffle can be solved in exactly 10 — finish with swaps to spare and earn up to <b>5 stars</b>.</li>
+      </ul>
+      <p class="muted">If you love Wordle-style deduction, Waffle adds a delicious twist: every letter you need is already on the board.</p>
+    </section>
+
+    <section>
+      <h2>Why this Waffle</h2>
+      <div class="features">
+        <div class="feat"><b>♾️ Truly unlimited</b><p>Don't stop at one a day — 1,200+ handcrafted waffles are ready whenever you are, plus a full archive of every daily you missed.</p></div>
+        <div class="feat"><b>🎯 Every puzzle has one solution</b><p>Each waffle is computer-verified: exactly one way to turn the whole board green, always solvable in 10 swaps. No ambiguity, no unfair boards.</p></div>
+        <div class="feat"><b>🔥 Never lose your streak</b><p>Your streaks and stats are double-backed-up on your device. Updates will never eat your progress.</p></div>
+        <div class="feat"><b>🤫 Ads that behave</b><p>No ads ever interrupt your solving, and nothing ever auto-plays sound. Your daily waffle is always ad-free while you play. One optional purchase removes ads forever.</p></div>
+        <div class="feat"><b>🏆 Achievements &amp; stars</b><p>Twelve badges to earn, star ratings on every solve, and a journey page that tracks your waffle career.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline — solve on the subway, on a plane, or in bed. Dark mode included, naturally.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: July 30, 2026</p>
+      <p>Waffle Word Game ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Remove Ads" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6796331552">Waffle Word Game on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Animated demo: a real Waffle layout that swaps two wrong tiles into
+    // place every couple of seconds, recoloring as words complete.
+    // Layout: 5x5 minus corners of rows 1 & 3 (the waffle holes).
+    const SOL = [
+      "CAMEL",
+      "H.I.O",
+      "ENDOW",
+      "S.S.E",
+      "SATYR"
+    ];
+    // Start state: a few tiles swapped out of place (letters + state n/y/g).
+    const START = [
+      ["C","g"],["Y","n"],["M","g"],["E","g"],["L","g"],
+      ["H","g"],        ["I","g"],        ["O","g"],
+      ["E","g"],["N","g"],["S","y"],["O","y"],["W","g"],
+      ["S","g"],        ["D","y"],        ["E","g"],
+      ["S","g"],["A","g"],["T","g"],["A","n"],["R","g"]
+    ];
+    // Swap script: pairs of flat indices that fix the board step by step.
+    const SWAPS = [[1,19],[10,14]]; // Y<->A, S<->D
+    const holes = new Set(["1,1","1,3","3,1","3,3"]);
+    const board = document.getElementById("demoBoard");
+    const tiles = [];
+    let flat = 0;
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) {
+      const d = document.createElement("div");
+      if (holes.has(r + "," + c)) {
+        d.className = "tile hole";
+      } else {
+        const [ch, st] = START[flat++];
+        d.className = "tile " + (st === "g" ? "g" : st === "y" ? "y" : "n");
+        d.textContent = ch;
+        tiles.push(d);
+      }
+      board.appendChild(d);
+    }
+    let step = 0;
+    function doSwap() {
+      if (step >= SWAPS.length) {
+        // brief all-green celebration, then reset
+        setTimeout(() => {
+          tiles.forEach((t, i) => {
+            const [ch, st] = START[i];
+            t.textContent = ch;
+            t.className = "tile " + (st === "g" ? "g" : st === "y" ? "y" : "n");
+          });
+          step = 0;
+          setTimeout(doSwap, 1600);
+        }, 2200);
+        return;
+      }
+      const [a, b] = SWAPS[step];
+      const A = tiles[a], B = tiles[b];
+      const ra = A.getBoundingClientRect(), rb = B.getBoundingClientRect();
+      A.style.transform = `translate(${rb.left - ra.left}px, ${rb.top - ra.top}px)`;
+      B.style.transform = `translate(${ra.left - rb.left}px, ${ra.top - rb.top}px)`;
+      setTimeout(() => {
+        const tmp = A.textContent;
+        A.textContent = B.textContent;
+        B.textContent = tmp;
+        A.style.transition = B.style.transition = "none";
+        A.style.transform = B.style.transform = "none";
+        A.className = B.className = "tile g";
+        requestAnimationFrame(() => {
+          A.style.transition = B.style.transition = "";
+        });
+        step++;
+        setTimeout(doSwap, 1400);
+      }, 600);
+    }
+    setTimeout(doSwap, 1600);
+  </script>
+</body>
+</html>
