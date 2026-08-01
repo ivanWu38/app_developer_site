@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Letter Twist — Unscramble Letters, Find Every Word</title>
+  <meta name="description" content="Letter Twist is the classic timed word-twist puzzle: six scrambled letters, find every word, crack the big word to advance. Endless rounds, a 7-letter daily challenge, and a dictionary that never rejects a real word.">
+  <style>
+    :root{
+      --bg:#F3F8F7; --card:#FFFFFF; --ink:#173B3A; --muted:#5F7C7A; --line:#DCE9E7;
+      --teal:#0D8585; --teal-deep:#0A6A6A; --amber:#F2A126; --tile:#FDEECC; --tile-ink:#52381A; --green:#4FA65C;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--teal)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:800;font-size:44px;margin:14px 0 6px;letter-spacing:-.5px;
+      font-family:ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    .rack{display:flex;gap:8px;justify-content:center;margin:40px auto 6px;height:64px}
+    .ltile{width:54px;height:60px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:30px;color:var(--tile-ink);background:linear-gradient(180deg,#FFF4DC,#F7E3B6);
+      box-shadow:0 4px 0 rgba(0,0,0,.14), inset 0 2px 0 rgba(255,255,255,.6);
+      font-family:ui-rounded,-apple-system,sans-serif;
+      transition:transform .5s cubic-bezier(.34,1.4,.5,1), background .3s, color .3s}
+    .ltile.hit{background:linear-gradient(180deg,#5CB868,#43994F);color:#fff}
+    .foundline{min-height:28px;color:var(--green);font-weight:700;font-size:17px;text-align:center;
+      font-family:ui-rounded,-apple-system,sans-serif}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:800;
+      font-family:ui-rounded,-apple-system,sans-serif}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#3E5A58}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🔤 Letter Twist</div>
+      <p class="tagline">Six scrambled letters, one ticking clock. Spell every word you can see — then crack the big word that uses them all to reach the next round.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6797013839"><small>Download on the</small>App Store</a>
+      <div class="rack" id="demoRack" aria-hidden="true"></div>
+      <p class="foundline" id="foundLine">&nbsp;</p>
+      <p class="muted" style="font-size:14px;margin-top:6px">Live demo: watch the letters twist into words.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Tap letters to spell words</b> — anything 3 letters or longer counts. Fill the board word by word.</li>
+        <li><b>Find the big word</b> that uses <i>all</i> the letters to unlock the next round. Stuck? Hit <b>Twist</b> and watch a fresh order reveal what you couldn't see.</li>
+        <li>In <b>Classic</b> you have 2:30 per round — advance early and the leftover seconds become bonus points. In <b>Relaxed</b> there's no clock at all.</li>
+        <li>Every day brings a shared 7-letter <b>Daily Twist</b> — same letters for everyone, one shot, bragging rights included.</li>
+      </ul>
+      <p class="muted">If you grew up on classic word-twist games, this is that exact feeling — rebuilt to be fast, fair and interruption-free.</p>
+    </section>
+
+    <section>
+      <h2>Why Letter Twist</h2>
+      <div class="features">
+        <div class="feat"><b>📖 Real words always count</b><p>Our dictionary knows 50,000+ words. Spell something rare that isn't on the board and it still scores — as a bonus word. No more "not a word" on words you know are words.</p></div>
+        <div class="feat"><b>⏱️ Rounds that reward speed</b><p>Find the big word fast and bank the remaining clock as bonus points. Perfect rounds — every word found — earn an extra 1,000.</p></div>
+        <div class="feat"><b>🤫 Ads that behave</b><p>Nothing ever interrupts a round, nothing auto-plays sound, and the Daily Twist is always ad-free. One optional purchase removes ads forever — no subscription.</p></div>
+        <div class="feat"><b>🔥 A daily worth keeping</b><p>One shared 7-letter puzzle a day, a streak flame that grows, and a share card that shows off your score without spoiling the answers.</p></div>
+        <div class="feat"><b>🏆 Twelve achievements</b><p>From your first cleared round to a 30-day streak, badges track your word-hunting career on the Journey page.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline — play on the subway, on a plane, or in bed. Your progress is double-backed-up on device, so updates never eat your streak. Dark mode included.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 1, 2026</p>
+      <p>Letter Twist ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Remove Ads" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6797013839">Letter Twist on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Animated demo: 6 tiles spelling words, twisting between each.
+    // Sequence: scrambled LRAOIT → flash RIOT → twist → flash TRAIL → twist → TAILOR (all green).
+    const rack = document.getElementById("demoRack");
+    const line = document.getElementById("foundLine");
+    let letters = "LRAOIT".split("");
+    const tiles = letters.map(ch => {
+      const d = document.createElement("div");
+      d.className = "ltile";
+      d.textContent = ch;
+      rack.appendChild(d);
+      return d;
+    });
+
+    function setLetters(arr, hits) {
+      tiles.forEach((t, i) => {
+        t.textContent = arr[i];
+        t.className = "ltile" + (hits && hits.includes(i) ? " hit" : "");
+      });
+    }
+    function twistTo(arr, cb) {
+      // little hop animation
+      tiles.forEach((t, i) => {
+        t.style.transform = "translateY(-14px) rotate(" + ((i % 2 ? 1 : -1) * 8) + "deg)";
+      });
+      setTimeout(() => {
+        setLetters(arr, null);
+        tiles.forEach(t => t.style.transform = "none");
+        if (cb) setTimeout(cb, 700);
+      }, 420);
+    }
+    function flashWord(word, positions, cb) {
+      line.textContent = word + "  +" + (word.length === 6 ? 800 : word.length === 5 ? 400 : 200);
+      setLetters(letters, positions);
+      setTimeout(() => { line.innerHTML = "&nbsp;"; setLetters(letters, null); if (cb) cb(); }, 1500);
+    }
+
+    function loop() {
+      letters = "LRAOIT".split("");
+      setLetters(letters, null);
+      // RIOT: R(1) I(4) O(3) T(5)
+      setTimeout(() => flashWord("RIOT", [1,3,4,5], () => {
+        letters = "TLRAIO".split("");
+        twistTo(letters, () => {
+          // TRAIL: T(0) R(2) A(3) I(4) L(1)
+          flashWord("TRAIL", [0,1,2,3,4], () => {
+            letters = "TAILOR".split("");
+            twistTo(letters, () => {
+              line.textContent = "TAILOR  — the big word! Round cleared 🎉";
+              setLetters(letters, [0,1,2,3,4,5]);
+              setTimeout(() => { line.innerHTML = "&nbsp;"; loop(); }, 2600);
+            });
+          });
+        });
+      }), 1200);
+    }
+    loop();
+  </script>
+</body>
+</html>
