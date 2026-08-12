@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stackdown — Dig Six Words Out of the Stack</title>
+  <meta name="description" content="Stackdown is a daily word-dig puzzle: thirty letter tiles piled four layers deep, six five-letter words buried inside. Pick exposed tiles in order, dig out every word, keep your streak alive.">
+  <style>
+    :root{
+      --bg:#F5F2ED; --card:#FFFCF7; --ink:#26262E; --muted:#66625C; --line:#DFD8CE;
+      --primary:#6680FF; --secondary:#9966FF; --gold:#E6A83D; --green:#4DBF73;
+      --tile:#FFFDF9; --tile-edge:#D1CCC2; --tile-cov:#E8E2D8; --tile-cov-ink:#A39C90;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--primary)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:800;font-size:44px;margin:14px 0 6px;letter-spacing:-.5px;
+      font-family:Georgia,"Times New Roman",serif}
+    .logo .grad{background:linear-gradient(120deg,var(--primary),var(--secondary));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    /* ── animated stack demo ── */
+    .demo{position:relative;width:250px;height:230px;margin:42px auto 0}
+    .dtile{position:absolute;width:52px;height:52px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:24px;font-family:ui-rounded,-apple-system,sans-serif;
+      background:var(--tile);border:1.5px solid var(--tile-edge);color:var(--ink);
+      box-shadow:0 4px 0 #D8D2C8, 0 5px 8px rgba(0,0,0,.10);
+      transition:transform .55s cubic-bezier(.3,1.2,.4,1), opacity .4s, background .3s, color .3s, border-color .3s}
+    .dtile.cov{background:var(--tile-cov);border-color:#D8D0C4;color:var(--tile-cov-ink);box-shadow:0 3px 0 #D5CDBF}
+    .dtile.picked{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-color:transparent;
+      box-shadow:0 6px 14px rgba(153,102,255,.4)}
+    .dtile.golden{background:linear-gradient(150deg,#FFE08A,#E6A83D);color:#fff;border-color:transparent;
+      box-shadow:0 0 18px rgba(230,168,61,.55)}
+    .foundline{min-height:30px;margin-top:14px;color:var(--gold);font-weight:800;font-size:19px;text-align:center;
+      font-family:Georgia,serif;letter-spacing:2px}
+    .foundline small{display:block;font-family:-apple-system,sans-serif;font-weight:600;font-size:12px;color:var(--muted);letter-spacing:0}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:800;font-family:Georgia,serif}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#4A463F}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🧱 <span class="grad">Stackdown</span></div>
+      <p class="tagline">Thirty letter tiles, piled four layers deep. Six five-letter words are buried inside — pick the exposed tiles in order and dig them all out.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6800591949"><small>Download on the</small>App Store</a>
+      <div class="demo" id="demo" aria-hidden="true"></div>
+      <p class="foundline" id="foundLine">&nbsp;</p>
+      <p class="muted" style="font-size:14px;margin-top:2px">Live demo: watch a word get dug out of the stack.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Only exposed tiles can be picked</b> — a tile is stuck until everything resting on top of it is gone. Taking one may free the tiles underneath.</li>
+        <li><b>Spell the word in order.</b> Letters go into the rack exactly as you tap them; get all five right and the word clears off the stack.</li>
+        <li><b>There is only ever one word</b> that fits at any moment — and only one set of tiles builds it. If nothing works, look for a tile you haven't freed yet.</li>
+        <li><b>Stuck? Swipe for the hint ladder.</b> First swipe reveals the word's clue; swipe again and the game lights up the very tile to pick next. Hints cost stars, never the game.</li>
+        <li>Clear all six words and the stack comes down. One fresh stack every day — plus a 90-day archive and 300 practice stacks.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Stackdown</h2>
+      <div class="features">
+        <div class="feat"><b>🧩 A fair puzzle, every day</b><p>Every stack is machine-verified before it ships: exactly one valid word at every step, no dead ends, no "that's a real word!" rejections. If you're stuck, the answer is findable — promise.</p></div>
+        <div class="feat"><b>💡 A hint ladder, not a spoiler</b><p>A clue first, then tile-by-tile guidance if you need it. You always finish the dig yourself — the game never just hands you the answer.</p></div>
+        <div class="feat"><b>🔥 Streaks & twenty badges</b><p>A streak flame that celebrates every daily clear, plus a badge wall that stretches from your first dig to a 100-day run.</p></div>
+        <div class="feat"><b>🗓️ 90 days of back catalogue</b><p>Missed a few days? The three most recent stacks are always free, and any older one unlocks forever with a single short ad.</p></div>
+        <div class="feat"><b>🤫 Ads that behave</b><p>Nothing interrupts a puzzle mid-dig, and one optional purchase removes every ad forever — no subscription, ever.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline — every stack ships inside the app. Play on the subway, on a plane, or in bed. Dark mode included.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 12, 2026</p>
+      <p>Stackdown ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Remove Ads" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6800591949">Stackdown on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Animated demo: a mini three-layer stack; the word GLOVE gets dug out.
+    // Tiles: covered ones brighten as the tiles above them leave.
+    const demo = document.getElementById("demo");
+    const line = document.getElementById("foundLine");
+
+    // [letter, x, y, layer, order-in-word (or -1)]
+    // Word: GLOVE — picked in order G,L,O,V,E.
+    const spec = [
+      ["V", 99,  10, 2, 3],
+      ["G", 73,  44, 1, 0],
+      ["L", 125, 44, 1, 1],
+      ["O", 21,  78, 0, 2],
+      ["E", 177, 78, 0, 4],
+      ["R", 73,  112, 0, -1],
+      ["T", 125, 112, 0, -1],
+    ];
+    // blockers: lower tiles covered while higher overlapping tiles remain
+    const covers = {1:[0], 2:[0], 3:[1], 4:[2], 5:[1,2], 6:[1,2]};
+
+    const tiles = spec.map(([ch,x,y,layer], i) => {
+      const d = document.createElement("div");
+      d.className = "dtile";
+      d.textContent = ch;
+      d.style.left = x + "px";
+      d.style.top = (y + layer*4) + "px";
+      d.style.zIndex = layer + 1;
+      demo.appendChild(d);
+      return d;
+    });
+    const gone = new Set();
+
+    function refreshCovers(){
+      tiles.forEach((t,i)=>{
+        if (gone.has(i)) return;
+        const blockedBy = (covers[i]||[]).filter(j=>!gone.has(j));
+        t.classList.toggle("cov", blockedBy.length > 0);
+      });
+    }
+
+    function rackPos(order){ // where picked tiles line up under the stack
+      return {x: -8 + order*57, y: 175};
+    }
+
+    function reset(){
+      gone.clear();
+      tiles.forEach((t,i)=>{
+        const [,x,y,layer] = spec[i];
+        t.className = "dtile";
+        t.style.left = x+"px";
+        t.style.top = (y+layer*4)+"px";
+        t.style.transform = "none";
+        t.style.opacity = 1;
+      });
+      refreshCovers();
+      line.innerHTML = "&nbsp;";
+    }
+
+    function pick(order, cb){
+      const i = spec.findIndex(s => s[4] === order);
+      const t = tiles[i];
+      const p = rackPos(order);
+      t.classList.add("picked");
+      const [,x,y,layer] = spec[i];
+      t.style.transform = `translate(${p.x - x}px, ${p.y - (y+layer*4)}px)`;
+      gone.add(i);
+      setTimeout(()=>{ refreshCovers(); if(cb) cb(); }, 380);
+    }
+
+    function loop(){
+      reset();
+      let order = 0;
+      const step = () => {
+        if (order < 5){ pick(order++, ()=>setTimeout(step, 260)); }
+        else {
+          // celebrate: golden wave + word line
+          const picked = spec.map((s,i)=>({s,i})).filter(o=>o.s[4]>=0)
+                             .sort((a,b)=>a.s[4]-b.s[4]).map(o=>tiles[o.i]);
+          picked.forEach((t,k)=>setTimeout(()=>t.classList.replace("picked","golden"), k*90));
+          setTimeout(()=>{ line.innerHTML = "GLOVE<small>Keeps a hand warm — word cleared! ✨</small>"; }, 500);
+          setTimeout(()=>{ picked.forEach(t=>{t.style.opacity=0;}); }, 2300);
+          setTimeout(loop, 3200);
+        }
+      };
+      setTimeout(step, 900);
+    }
+    loop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ikuheikure — tiny iOS games you'll play every day</title>
+<meta name="description" content="Indie iOS studio making word games, logic puzzles and handy tools. 20 apps and counting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c10;
+  --bg-2:#0f1219;
+  --card:#12161f;
+  --line:rgba(255,255,255,.07);
+  --text:#f2f4f8;
+  --muted:#8b93a7;
+  --accent:#d7ff3a;
+  --accent-dim:rgba(215,255,58,.14);
+  --green:#39c46d;
+  --yellow:#e7b54a;
+  --tile-dark:#1c2230;
+  --font-display:"Bricolage Grotesque",sans-serif;
+  --font-mono:"Spline Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.65 var(--font-display);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#0a0c10}
+a{color:inherit;text-decoration:none}
+
+/* ---------- atmosphere ---------- */
+.orbs{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.5}
+.orb-a{width:560px;height:560px;left:-160px;top:-180px;background:radial-gradient(circle,rgba(215,255,58,.16),transparent 70%);animation:drift 26s ease-in-out infinite alternate}
+.orb-b{width:640px;height:640px;right:-220px;top:240px;background:radial-gradient(circle,rgba(94,140,255,.13),transparent 70%);animation:drift 32s ease-in-out infinite alternate-reverse}
+.orb-c{width:480px;height:480px;left:30%;bottom:-260px;background:radial-gradient(circle,rgba(255,118,86,.10),transparent 70%);animation:drift 38s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,50px) scale(1.12)}}
+.gridlines{position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%);
+}
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,4vw,48px);
+  background:linear-gradient(rgba(10,12,16,.85),rgba(10,12,16,.55) 70%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.brand{font-family:var(--font-mono);font-size:.85rem;font-weight:600;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.brand .dot{width:9px;height:9px;border-radius:3px;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.7)}}
+.nav-links{display:flex;gap:26px;font-family:var(--font-mono);font-size:.78rem;color:var(--muted)}
+.nav-links a{position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:var(--accent);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:88vh;display:flex;flex-direction:column;justify-content:center;
+  padding:140px clamp(20px,5vw,64px) 40px;max-width:1280px;margin:0 auto;width:100%;
+}
+.eyebrow{
+  font-family:var(--font-mono);font-size:.74rem;letter-spacing:.32em;color:var(--accent);
+  text-transform:uppercase;display:flex;align-items:center;gap:14px;
+  opacity:0;animation:rise .8s .1s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.eyebrow::before{content:"";width:36px;height:1px;background:var(--accent)}
+h1{
+  font-size:clamp(2.6rem,7.2vw,5.6rem);line-height:1.02;font-weight:700;
+  letter-spacing:-.025em;margin:26px 0 0;max-width:14ch;
+}
+h1 .line{display:block;overflow:hidden}
+h1 .line span{display:inline-block;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+h1 .line:nth-child(1) span{animation-delay:.18s}
+h1 .line:nth-child(2) span{animation-delay:.3s}
+h1 em{font-style:normal;color:var(--accent)}
+@keyframes rise{to{transform:translateY(0);opacity:1}}
+
+.tiles{display:flex;gap:10px;margin:40px 0 0;perspective:700px}
+.tile{
+  width:clamp(52px,7vw,76px);height:clamp(52px,7vw,76px);
+  display:grid;place-items:center;border-radius:14px;
+  font-weight:800;font-size:clamp(1.5rem,3.4vw,2.3rem);
+  background:var(--tile-dark);border:1px solid var(--line);
+  transform-style:preserve-3d;
+  opacity:0;animation:tile-in .65s cubic-bezier(.2,.8,.25,1.15) forwards;
+  transition:background .12s,border-color .12s,color .12s;
+  will-change:transform;
+}
+.tile:nth-child(1){animation-delay:.45s}.tile:nth-child(2){animation-delay:.55s}
+.tile:nth-child(3){animation-delay:.65s}.tile:nth-child(4){animation-delay:.75s}
+.tile:nth-child(5){animation-delay:.85s}
+@keyframes tile-in{from{opacity:0;transform:rotateX(-92deg) translateY(26px)}to{opacity:1;transform:rotateX(0) translateY(0)}}
+.tile.flipping{transition:transform .3s cubic-bezier(.6,0,.8,.5);transform:rotateX(90deg)}
+.tile.unflip{transition:transform .32s cubic-bezier(.2,.6,.3,1.3);transform:rotateX(0)}
+.tile.g{background:var(--green);border-color:var(--green);color:#06120b}
+.tile.y{background:var(--yellow);border-color:var(--yellow);color:#171003}
+.tile.a{background:var(--accent);border-color:var(--accent);color:#10130a}
+
+.hero-sub{
+  margin:34px 0 0;color:var(--muted);font-size:clamp(1rem,1.6vw,1.18rem);max-width:46ch;
+  opacity:0;animation:rise .8s 1s forwards;
+}
+.stats{
+  display:flex;gap:clamp(26px,5vw,64px);margin-top:54px;flex-wrap:wrap;
+  opacity:0;animation:rise .8s 1.15s forwards;
+}
+.stat .num{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1}
+.stat .num sup{font-size:.5em;color:var(--accent)}
+.stat .lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+.scroll-hint{
+  position:absolute;right:clamp(20px,5vw,64px);bottom:36px;
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.25em;color:var(--muted);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;
+  opacity:0;animation:rise 1s 1.4s forwards;
+}
+.scroll-hint::after{content:"";width:1px;height:46px;background:linear-gradient(var(--muted),transparent);animation:hint 1.8s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1)}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:16px 0;overflow:hidden;white-space:nowrap;
+  background:rgba(255,255,255,.015);
+}
+.marquee-track{display:inline-flex;gap:0;animation:scroll 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{
+  font-family:var(--font-mono);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);padding:0 22px;display:inline-flex;align-items:center;gap:44px;
+}
+.marquee span::after{content:"✦";color:var(--accent);font-size:.7rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- apps section ---------- */
+.apps{max-width:1280px;margin:0 auto;padding:90px clamp(20px,5vw,64px) 60px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.section-head h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.05}
+.section-head h2 .count{font-family:var(--font-mono);font-size:.45em;font-weight:500;color:var(--accent);vertical-align:super;margin-left:6px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;
+  padding:8px 16px;border-radius:99px;border:1px solid var(--line);
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .22s;
+}
+.chip:hover{border-color:rgba(255,255,255,.25);color:var(--text)}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#0c0f07;font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{
+  position:relative;border-radius:20px;
+  background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015) 45%),var(--card);
+  border:1px solid var(--line);
+  padding:24px;overflow:hidden;
+  opacity:0;transform:translateY(26px);
+  transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s;
+  will-change:transform;
+}
+.card.in{opacity:1;transform:translateY(0)}
+.card.hide{display:none}
+.card:hover{border-color:rgba(255,255,255,.16)}
+.card .spot{
+  position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),var(--spot,rgba(215,255,58,.07)),transparent 65%);
+}
+.card:hover .spot{opacity:1}
+.card-inner{position:relative;transition:transform .15s ease-out;transform-style:preserve-3d}
+
+.app-head{display:flex;align-items:center;gap:16px}
+.app-icon{
+  flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;
+  box-shadow:0 8px 22px -6px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .35s cubic-bezier(.2,.8,.3,1.4);
+}
+.card:hover .app-icon{transform:scale(1.08) rotate(-4deg)}
+.app-icon svg{width:30px;height:30px}
+.app-name{font-size:1.18rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.app-tag{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.05em;margin-top:3px}
+.app-desc{color:var(--muted);font-size:.92rem;line-height:1.6;margin:16px 0 18px;min-height:3.1em}
+.app-links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;
+  padding:8px 15px;border-radius:10px;border:1px solid var(--line);
+  display:inline-flex;align-items:center;gap:7px;transition:all .22s;color:var(--text);
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn .arr{transition:transform .22s;display:inline-block}
+.btn:hover .arr{transform:translate(3px,-1px)}
+.btn.store{background:var(--accent);border-color:var(--accent);color:#0c0f07;font-weight:600}
+.btn.store:hover{box-shadow:0 4px 20px -4px rgba(215,255,58,.5);color:#0c0f07;transform:translateY(-1px)}
+.cat-badge{
+  position:absolute;top:0;right:0;font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:99px;padding:4px 10px;opacity:.7;
+}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:60px;
+  padding:54px clamp(20px,5vw,64px) 64px;
+}
+.foot-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.foot-big{font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;max-width:18ch}
+.foot-big a{color:var(--accent);position:relative}
+.foot-big a::after{content:"";position:absolute;left:0;bottom:2px;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.foot-big a:hover::after{transform:scaleX(1);transform-origin:left}
+.foot-meta{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);display:flex;flex-direction:column;gap:8px;text-align:right}
+.foot-meta a:hover{color:var(--accent)}
+
+@media (max-width:640px){
+  .nav-links{gap:16px}
+  .scroll-hint{display:none}
+  .foot-meta{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .eyebrow,.hero-sub,.stats,h1 .line span,.tile{opacity:1;transform:none}
+  .card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="gridlines"></div>
+<div class="orbs"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div></div>
+<div class="grain"></div>
+
+<nav>
+  <a class="brand" href="/"><span class="dot"></span>ikuheikure.xyz</a>
+  <div class="nav-links">
+    <a href="#apps">apps</a>
+    <a href="/app-ads.txt">app-ads.txt</a>
+    <a href="mailto:wuyuping38@gmail.com">contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">indie ios studio</div>
+  <h1>
+    <span class="line"><span>Tiny games you&rsquo;ll</span></span>
+    <span class="line"><span>play <em>every day.</em></span></span>
+  </h1>
+  <div class="tiles" id="tiles" aria-hidden="true">
+    <div class="tile">G</div><div class="tile">A</div><div class="tile">M</div><div class="tile">E</div><div class="tile">S</div>
+  </div>
+  <p class="hero-sub">Word puzzles, logic grids and handy little tools — designed, built and shipped by one person. Pick an app below for its support page.</p>
+  <div class="stats">
+    <div class="stat"><div class="num" data-count="20">0</div><div class="lbl">apps shipped</div></div>
+    <div class="stat"><div class="num" data-count="15">0</div><div class="lbl">puzzle games</div></div>
+    <div class="stat"><div class="num">∞<sup>✦</sup></div><div class="lbl">daily challenges</div></div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<main class="apps" id="apps">
+  <div class="section-head">
+    <h2>The collection<span class="count" id="count"></span></h2>
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="all">all</button>
+      <button class="chip" data-f="words">word games</button>
+      <button class="chip" data-f="logic">logic puzzles</button>
+      <button class="chip" data-f="tools">tools</button>
+      <button class="chip" data-f="life">life</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-big">Got an idea or found a bug? <a href="mailto:wuyuping38@gmail.com">Say hello.</a></div>
+    <div class="foot-meta">
+      <a href="/app-ads.txt">app-ads.txt</a>
+      <span>© 2026 ikuheikure.xyz</span>
+      <span>made with ✦ &amp; far too much coffee</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   APP DATA — to add a new app, append an object here.
+   cat: words | logic | tools | life
+   store: App Store URL or null
+   grad: [from, to] icon gradient colors
+   icon: key into ICONS below
+   ============================================================ */
+const APPS = [
+  {name:"Zen Word!", tag:"calm crossword vibes", cat:"words", href:"/apps/Zen__word/", store:null, grad:["#34d399","#0d9488"], icon:"wheel",
+   desc:"A calming word puzzle with a letter wheel and crossword grid gameplay."},
+  {name:"Octordle Word Puzzle", tag:"8 words, 13 guesses", cat:"words", href:"/apps/octordle-word-puzzle/", store:"https://apps.apple.com/app/id6773183406", grad:["#f472b6","#9d2463"], icon:"octo",
+   desc:"Solve eight 5-letter words simultaneously in 13 guesses, with a fresh daily challenge."},
+  {name:"Dordle", tag:"double trouble", cat:"words", href:"/apps/dordle-game/", store:"https://apps.apple.com/app/id6776077012", grad:["#a78bfa","#5b34c9"], icon:"dordle",
+   desc:"A daily double word puzzle — two hidden words at once in seven guesses, with streaks and unlockable themes."},
+  {name:"Hurdle Game", tag:"5 words, 1 chain", cat:"words", href:"/apps/hurdle-game/", store:"https://apps.apple.com/app/id6762115093", grad:["#fb923c","#c2410c"], icon:"hurdle",
+   desc:"A daily word relay — solve five linked words in a chain, ending in a two-guess survival hurdle."},
+  {name:"Quadrix", tag:"4 words at once", cat:"words", href:"/apps/Quadrix/", store:null, grad:["#60a5fa","#1d4ed8"], icon:"quad",
+   desc:"Solve four 5-letter words simultaneously in 9 guesses. Quadruple the pressure."},
+  {name:"Strands: Daily Word Game", tag:"trace hidden themes", cat:"words", href:"/apps/Strands/", store:null, grad:["#2dd4bf","#0e7490"], icon:"strands",
+   desc:"Trace hidden theme words on a 6×8 grid, with daily puzzles and 300+ levels."},
+  {name:"SpellTower Puzzle", tag:"spell · clear · chain", cat:"words", href:"/apps/SpellTower/", store:null, grad:["#f59e0b","#b45309"], icon:"tower",
+   desc:"Swipe tiles to spell words, clear rows and chain multipliers in a strategic word tower."},
+  {name:"Word Connection Game", tag:"16 words, 4 secrets", cat:"words", href:"/apps/word-connection-game/", store:null, grad:["#c084fc","#7e22ce"], icon:"connect4",
+   desc:"Find the hidden connections between 16 words split across 4 secret categories."},
+  {name:"Associations!", tag:"find the hidden links", cat:"words", href:"/apps/associations/", store:null, grad:["#fb7185","#be123c"], icon:"assoc",
+   desc:"Group 16 words into 4 categories by spotting the connections everyone else misses."},
+  {name:"zip game!", tag:"trace the number path", cat:"logic", href:"/apps/ZipGame/", store:null, grad:["#fbbf24","#d97706"], icon:"zip",
+   desc:"A number path puzzle with daily challenges and unlimited practice."},
+  {name:"connections~", tag:"flow, don't think", cat:"logic", href:"/apps/connections/", store:null, grad:["#38bdf8","#0369a1"], icon:"flow",
+   desc:"A relaxing flow puzzle — connect colored dots to fill the grid."},
+  {name:"Diagonal Sudoku", tag:"X marks the grid", cat:"logic", href:"/apps/diagonal-sudoku/", store:null, grad:["#818cf8","#3730a3"], icon:"xgrid",
+   desc:"Challenging X Sudoku with diagonal constraints, daily challenges and achievements."},
+  {name:"Numbrix!", tag:"1 → 81, one path", cat:"logic", href:"/apps/Numbrix/", store:null, grad:["#4ade80","#15803d"], icon:"snake",
+   desc:"Connect 1 to 81 on a 9×9 grid using pure logic — one unbroken path."},
+  {name:"Pips Game", tag:"domino logic ×500", cat:"logic", href:"/apps/pips_game/", store:null, grad:["#e2e8f0","#64748b"], icon:"domino",
+   desc:"A domino logic puzzle with 500 levels, region constraints and a 10-tier ranking system."},
+  {name:"Patches Puzzles", tag:"cozy rectangle logic", cat:"logic", href:"/apps/Patches_Puzzles/", store:null, grad:["#fda4af","#e11d48"], icon:"patches",
+   desc:"A cozy Shikaku puzzle with 900 logic levels, daily streaks, smart hints and four warm themes."},
+  {name:"Tap Word", tag:"point · tap · defined", cat:"tools", href:"/apps/TapWord/", store:null, grad:["#22d3ee","#0e7490"], icon:"camera",
+   desc:"A camera-based word lookup tool for reading English books without breaking flow."},
+  {name:"Earnings for AdMob", tag:"revenue at a glance", cat:"tools", href:"/apps/earnings-for-admob/", store:null, grad:["#facc15","#a16207"], icon:"bars",
+   desc:"A third-party dashboard to check your Google AdMob earnings and ad performance, anytime."},
+  {name:"AdMob Earnings Tracker", tag:"forecast your earnings", cat:"tools", href:"/apps/admob-earnings-tracker/", store:"https://apps.apple.com/app/id6773676483", grad:["#34d399","#047857"], icon:"chartline",
+   desc:"Live revenue trends, month-end forecasts, a world map of earnings and Home Screen widgets."},
+  {name:"lifeTime", tag:"see time differently", cat:"life", href:"/apps/lifetime/", store:null, grad:["#f9a8d4","#be185d"], icon:"hourglass",
+   desc:"A simple app that helps you see time from a new perspective."},
+  {name:"toFutureMe", tag:"letters to future you", cat:"life", href:"/apps/toFutureMe/", store:null, grad:["#93c5fd","#1e40af"], icon:"letter",
+   desc:"Write a letter to your future self, and let it arrive right on time."},
+];
+
+/* ---------- hand-drawn icon glyphs ---------- */
+const S = 'fill="none" stroke="rgba(255,255,255,.95)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"';
+const ICONS = {
+  wheel:`<svg viewBox="0 0 24 24" ${S}><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="1.6" fill="rgba(255,255,255,.95)" stroke="none"/><path d="M12 10.4V5.5M13.5 12.8l4.2 2.6M10.5 12.8l-4.2 2.6"/></svg>`,
+  octo:`<svg viewBox="0 0 24 24" ${S}><path d="M12 3.5c2.6 0 4.2 1.8 4.2 4s-1.7 3.3-4.2 3.3S7.8 9.7 7.8 7.5s1.6-4 4.2-4zM12 10.8c3 0 4.8 2 4.8 4.6s-2 5.1-4.8 5.1-4.8-2.5-4.8-5.1 1.8-4.6 4.8-4.6z"/></svg>`,
+  dordle:`<svg viewBox="0 0 24 24" ${S}><rect x="3.5" y="3.5" width="11" height="11" rx="2.5"/><rect x="9.5" y="9.5" width="11" height="11" rx="2.5"/></svg>`,
+  hurdle:`<svg viewBox="0 0 24 24" ${S}><path d="M4 19.5c2-5 3-9.5 3-13M17 19.5c2-5 3-9.5 3-13M4.5 8h16M4.5 12.5h16"/></svg>`,
+  quad:`<svg viewBox="0 0 24 24" ${S}><rect x="4" y="4" width="6.6" height="6.6" rx="1.8"/><rect x="13.4" y="4" width="6.6" height="6.6" rx="1.8"/><rect x="4" y="13.4" width="6.6" height="6.6" rx="1.8"/><rect x="13.4" y="13.4" width="6.6" height="6.6" rx="1.8"/></svg>`,
+  strands:`<svg viewBox="0 0 24 24" ${S}><path d="M4.5 6c4-3 7 4 10 2.5S18 4 19.5 6.5 17 13 13.5 14 6 17 5.5 19.5"/><circle cx="19" cy="19" r="1.7" fill="rgba(255,255,255,.95)" stroke="none"/></svg>`,
+  tower:`<svg viewBox="0 0 24 24" ${S}><rect x="8" y="3.5" width="8" height="5" rx="1.4"/><rect x="5.5" y="9.8" width="13" height="5" rx="1.4"/><rect x="3.5" y="16" width="17" height="5" rx="1.4"/></svg>`,
+  connect4:`<svg viewBox="0 0 24 24" ${S}><circle cx="6.5" cy="6.5" r="2.4"/><circle cx="17.5" cy="6.5" r="2.4"/><circle cx="6.5" cy="17.5" r="2.4"/><circle cx="17.5" cy="17.5" r="2.4"/><path d="M9 6.5h6M6.5 9v6M17.5 9v6"/></svg>`,
+  assoc:`<svg viewBox="0 0 24 24" ${S}><circle cx="5.5" cy="12" r="2.2"/><circle cx="18.5" cy="5.5" r="2.2"/><circle cx="18.5" cy="18.5" r="2.2"/><path d="M7.5 11l9-4.5M7.5 13l9 4.5"/></svg>`,
+  zip:`<svg viewBox="0 0 24 24" ${S}><path d="M5 4.5h13l-9 7h13l-9 8"/></svg>`,
+  flow:`<svg viewBox="0 0 24 24" ${S}><circle cx="6" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8 7.5C13 10 11 14 16 16.5"/></svg>`,
+  xgrid:`<svg viewBox="0 0 24 24" ${S}><rect x="4" y="4" width="16" height="16" rx="2.4"/><path d="M4 9.3h16M4 14.6h16M9.3 4v16M14.6 4v16" opacity=".55"/><path d="M5.5 5.5l13 13"/></svg>`,
+  snake:`<svg viewBox="0 0 24 24" ${S}><path d="M5 19.5V8a3 3 0 013-3h3.5a3 3 0 013 3v8a3 3 0 003 3H19"/><circle cx="5" cy="19.5" r="1.6" fill="rgba(255,255,255,.95)" stroke="none"/></svg>`,
+  domino:`<svg viewBox="0 0 24 24" stroke="rgba(255,255,255,.95)" stroke-width="1.9" fill="none"><rect x="6.5" y="3.5" width="11" height="17" rx="2.4"/><path d="M6.5 12h11"/><circle cx="12" cy="7.7" r="1.3" fill="rgba(255,255,255,.95)" stroke="none"/><circle cx="9.8" cy="16.3" r="1.3" fill="rgba(255,255,255,.95)" stroke="none"/><circle cx="14.2" cy="16.3" r="1.3" fill="rgba(255,255,255,.95)" stroke="none"/></svg>`,
+  patches:`<svg viewBox="0 0 24 24" ${S}><rect x="4" y="4" width="9" height="6.5" rx="1.5"/><rect x="15.5" y="4" width="4.5" height="11" rx="1.5"/><rect x="4" y="13" width="6" height="7" rx="1.5"/><rect x="12.5" y="17.5" width="7.5" height="2.5" rx="1.2"/></svg>`,
+  camera:`<svg viewBox="0 0 24 24" ${S}><rect x="3.5" y="7" width="17" height="12" rx="2.5"/><path d="M9 7l1.4-2.5h3.2L15 7"/><circle cx="12" cy="13" r="3.4"/></svg>`,
+  bars:`<svg viewBox="0 0 24 24" ${S}><path d="M5 19.5v-6M10.5 19.5v-10M16 19.5v-4M21 19.5H3.5"/><path d="M16 8.5l5-4" opacity=".6"/></svg>`,
+  chartline:`<svg viewBox="0 0 24 24" ${S}><path d="M3.5 18.5l5-6 4 3 7-9"/><circle cx="19.5" cy="6.5" r="1.7" fill="rgba(255,255,255,.95)" stroke="none"/><path d="M3.5 21h17" opacity=".5"/></svg>`,
+  hourglass:`<svg viewBox="0 0 24 24" ${S}><path d="M6.5 3.5h11M6.5 20.5h11M7.5 3.5c0 7 9 7 9 17M16.5 3.5c0 7-9 7-9 17"/></svg>`,
+  letter:`<svg viewBox="0 0 24 24" ${S}><rect x="3.5" y="5.5" width="17" height="13" rx="2.4"/><path d="M4.5 7l7.5 6 7.5-6"/></svg>`,
+};
+
+const CAT_LABEL = {words:"word", logic:"logic", tools:"tool", life:"life"};
+const CAT_SPOT = {words:"rgba(215,255,58,.07)", logic:"rgba(94,160,255,.08)", tools:"rgba(52,211,153,.08)", life:"rgba(249,168,212,.08)"};
+
+/* ---------- render grid ---------- */
+const grid = document.getElementById("grid");
+APPS.forEach(app=>{
+  const el = document.createElement("article");
+  el.className = "card";
+  el.dataset.cat = app.cat;
+  el.style.setProperty("--spot", CAT_SPOT[app.cat]);
+  el.innerHTML = `
+    <div class="spot"></div>
+    <div class="card-inner">
+      <span class="cat-badge">${CAT_LABEL[app.cat]}</span>
+      <div class="app-head">
+        <div class="app-icon" style="background:linear-gradient(140deg,${app.grad[0]},${app.grad[1]})">${ICONS[app.icon]}</div>
+        <div><div class="app-name">${app.name}</div><div class="app-tag">${app.tag}</div></div>
+      </div>
+      <p class="app-desc">${app.desc}</p>
+      <div class="app-links">
+        <a class="btn" href="${app.href}">support <span class="arr">→</span></a>
+        ${app.store ? `<a class="btn store" href="${app.store}" target="_blank" rel="noopener"> App Store ↗</a>` : ""}
+      </div>
+    </div>`;
+  grid.appendChild(el);
+});
+document.getElementById("count").textContent = "(" + APPS.length + ")";
+
+/* ---------- marquee ---------- */
+const names = APPS.map(a=>a.name);
+const half = names.map(n=>`<span>${n}</span>`).join("");
+document.getElementById("marquee").innerHTML = half + half;
+
+/* ---------- scroll reveal (staggered) ---------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const visible = [...document.querySelectorAll(".card:not(.hide)")];
+      const idx = visible.indexOf(e.target);
+      e.target.style.transitionDelay = Math.min(idx % 8, 6)*55 + "ms";
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12, rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll(".card").forEach(c=>io.observe(c));
+
+/* ---------- spotlight + 3D tilt ---------- */
+const fine = matchMedia("(pointer:fine)").matches;
+document.querySelectorAll(".card").forEach(card=>{
+  const inner = card.querySelector(".card-inner");
+  card.addEventListener("mousemove", e=>{
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    card.style.setProperty("--mx", x+"px");
+    card.style.setProperty("--my", y+"px");
+    if(fine){
+      const rx = ((y/r.height)-.5)*-5, ry = ((x/r.width)-.5)*5;
+      inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    }
+  });
+  card.addEventListener("mouseleave", ()=>{ inner.style.transform = ""; });
+});
+
+/* ---------- filters ---------- */
+document.getElementById("filters").addEventListener("click", e=>{
+  const btn = e.target.closest(".chip"); if(!btn) return;
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active", c===btn));
+  const f = btn.dataset.f;
+  document.querySelectorAll(".card").forEach((card,i)=>{
+    const show = f==="all" || card.dataset.cat===f;
+    card.classList.toggle("hide", !show);
+    if(show){
+      card.classList.remove("in");
+      card.style.transitionDelay = (i%10)*40+"ms";
+      requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add("in")));
+    }
+  });
+  const n = f==="all" ? APPS.length : APPS.filter(a=>a.cat===f).length;
+  document.getElementById("count").textContent = "(" + n + ")";
+});
+
+/* ---------- hero tile word flips ---------- */
+const WORDS = [
+  {w:"GAMES", p:["a","x","a","x","a"]},
+  {w:"WORDS", p:["g","g","x","g","g"]},
+  {w:"LOGIC", p:["y","x","y","x","y"]},
+  {w:"DAILY", p:["x","a","a","a","x"]},
+  {w:"BRAIN", p:["g","y","g","y","g"]},
+];
+let wi = 0;
+const tiles = [...document.querySelectorAll("#tiles .tile")];
+function flipTo(next){
+  tiles.forEach((t,i)=>{
+    setTimeout(()=>{
+      t.classList.remove("unflip");
+      t.classList.add("flipping");
+      setTimeout(()=>{
+        t.textContent = next.w[i];
+        t.classList.remove("g","y","a","flipping");
+        if(next.p[i] !== "x") t.classList.add(next.p[i]);
+        t.classList.add("unflip");
+      }, 300);
+    }, i*110);
+  });
+}
+setTimeout(function cycle(){
+  wi = (wi+1) % WORDS.length;
+  flipTo(WORDS[wi]);
+  setTimeout(cycle, 3400);
+}, 2600);
+
+/* ---------- stat counters ---------- */
+const statIO = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    statIO.unobserve(e.target);
+    const end = +e.target.dataset.count, dur = 1100, t0 = performance.now();
+    (function tick(t){
+      const k = Math.min((t-t0)/dur, 1);
+      e.target.textContent = Math.round(end * (1-Math.pow(1-k,3)));
+      if(k<1) requestAnimationFrame(tick);
+    })(t0);
+  });
+},{threshold:.5});
+document.querySelectorAll(".num[data-count]").forEach(n=>statIO.observe(n));
+</script>
+</body>
+</html>
