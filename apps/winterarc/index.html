@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Winter Arc — Sign the Contract. Keep the Streak.</title>
+  <meta name="description" content="Winter Arc is a 90-day challenge tracker with teeth: sign a contract with your own finger, check off your daily rules, and let a streak engine that never resets to zero carry you to day 90.">
+  <style>
+    :root{
+      --bg:#0a0910; --tint:#1c1430; --card:#15131e; --ink:#f2eff8; --muted:#948fa6;
+      --line:#242030; --a:#ff5c1a; --a2:#ff9558; --flex:#2fbf9b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;color:var(--ink);
+      background:radial-gradient(130% 60% at 50% -8%, var(--tint) 0%, var(--bg) 60%) fixed var(--bg);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--a2)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:900;font-style:italic;font-size:44px;margin:14px 0 6px;letter-spacing:-1px;text-transform:uppercase}
+    .logo .grad{background:linear-gradient(120deg,var(--a),var(--a2));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#fff;color:#0a0910;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:700;font-size:16px}
+    .badge small{display:block;font-weight:500;font-size:11px;opacity:.7;text-align:left}
+    .badge:hover{opacity:.88}
+
+    /* ── animated check-in demo ── */
+    .demo{position:relative;width:290px;margin:44px auto 0;background:var(--card);
+      border:1px solid var(--line);border-radius:24px;padding:20px 18px 18px;
+      box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:left}
+    .dring{width:92px;height:92px;border-radius:50%;margin:0 auto 6px;position:relative;
+      background:conic-gradient(var(--a) calc(var(--p)*1turn), rgba(255,92,26,.12) 0);
+      filter:drop-shadow(0 0 14px rgba(255,92,26,calc(.15 + .45*var(--p))));
+      transition:filter .5s}
+    .dring::after{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--card)}
+    .dring .day{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1}
+    .dring .day b{font-size:26px;font-weight:900;font-style:italic;letter-spacing:-1px}
+    .dring .day span{font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .drow{display:flex;align-items:center;gap:10px;background:#1b1826;border:1px solid var(--line);
+      border-radius:14px;padding:9px 12px;margin-top:9px;transition:background .35s}
+    .drow .ic{font-size:15px}
+    .drow .t{flex:1;font-size:13.5px;font-weight:700;transition:opacity .35s}
+    .drow .chk{width:22px;height:22px;border-radius:50%;border:2px solid #575265;flex:none;position:relative;transition:all .3s}
+    .drow.done{background:rgba(255,92,26,.10)}
+    .drow.done .t{opacity:.55;text-decoration:line-through}
+    .drow.done .chk{border-color:transparent;background:linear-gradient(135deg,var(--a),var(--a2));
+      box-shadow:0 2px 10px rgba(255,92,26,.5)}
+    .drow.done .chk::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:12px;font-weight:900}
+    .stamp{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) rotate(-8deg) scale(2.6);
+      background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:900;font-style:italic;
+      font-size:21px;letter-spacing:.04em;padding:9px 18px;border-radius:6px;opacity:0;pointer-events:none;white-space:nowrap;
+      box-shadow:0 14px 40px rgba(255,92,26,.55);text-transform:uppercase}
+    .stamp.on{opacity:1;transform:translate(-50%,-50%) rotate(-8deg) scale(1);
+      transition:transform .28s cubic-bezier(.2,1.6,.4,1), opacity .12s}
+    .dstreak{text-align:center;margin-top:12px;font-size:13px;font-weight:800;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.08em}
+    .dstreak b{color:var(--a2);font-style:italic;font-size:15px}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.5px}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#c9c4d6}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🔥 <span class="grad">Winter Arc</span></div>
+      <p class="tagline">A 90-day challenge tracker with teeth. Sign the contract with your own finger, keep your daily rules, and let a streak engine that never resets to zero carry you to day 90.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6801043027"><small>Download on the</small>App Store</a>
+
+      <div class="demo" id="demo" aria-hidden="true">
+        <div class="dring" id="ring" style="--p:0">
+          <div class="day"><b id="dayNum">DAY 23</b><span>of 90</span></div>
+        </div>
+        <div class="drow" id="r0"><span class="ic">💪</span><span class="t">Train 45 minutes</span><span class="chk"></span></div>
+        <div class="drow" id="r1"><span class="ic">📖</span><span class="t">Read 10 pages</span><span class="chk"></span></div>
+        <div class="drow" id="r2"><span class="ic">🧊</span><span class="t">Cold shower</span><span class="chk"></span></div>
+        <div class="dstreak" id="streak">Streak <b>22</b> 🔥</div>
+        <div class="stamp" id="stamp">Locked In</div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Live demo: check the rules, watch the day lock in.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Sign the contract.</b> Pick 30, 60, or 90 days, choose your daily rules (or start from a focus preset), then sign with your own finger. The app stamps it LOCKED IN — that signature stays on your contract for the whole arc.</li>
+        <li><b>Check off every rule, every day.</b> The day completes when all rules are done. A glowing progress ring, a one-line journal, and an optional daily photo mark the receipts.</li>
+        <li><b>The streak fights for you.</b> Miss a day and a weekly grace day covers it automatically. Beyond that, a 48-hour rescue window lets you save the streak — free within the window, or by watching a short ad after it. The counter never resets to zero.</li>
+        <li><b>Watch yourself change.</b> Progress heatmaps, six advanced stat modules, 24 achievements, and a Journey timeline from day one — plus Past Arcs so finished challenges stay on the record.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Winter Arc</h2>
+      <div class="features">
+        <div class="feat"><b>✍️ A real contract ritual</b><p>You don't tap "start" — you sign with your finger and stamp it. The commitment feels different because it is different, and your signature is there every time you doubt it.</p></div>
+        <div class="feat"><b>🔥 A streak that never hits zero</b><p>Grace days auto-cover a weekly slip, a 48-hour rescue saves the rest. Comebacks are part of the system, not a walk of shame back to day one.</p></div>
+        <div class="feat"><b>🏆 24 achievements, earned</b><p>From your first check-in to a perfect 90, achievements unlock full-screen with progress bars along the way. None of them are handed out for free.</p></div>
+        <div class="feat"><b>📊 Six stat modules</b><p>Completion rate, best runs, rule-by-rule breakdowns, weekly rhythm and more — the numbers to prove day 90 you is not day 1 you.</p></div>
+        <div class="feat"><b>📸 Receipts, daily</b><p>A one-line journal and a photo log capture the arc as it happens. 120 motivational quote cards keep the tone hard, not cute.</p></div>
+        <div class="feat"><b>📱 Widgets on the grind</b><p>Home-screen and lock-screen widgets show tonight's remaining rules, your streak, and your day count — in your theme. Nine accent themes; unlock more by earning them.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 13, 2026</p>
+      <p>Winter Arc ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your challenge data, check-ins, streaks, journal entries, photos, achievements, and settings are stored locally on your device and are not transmitted to us. Photos you add never leave your device.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Winter Arc Pro removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases, including the Winter Arc Pro subscription, are processed entirely by Apple. We never see or store your payment information. Subscriptions can be managed or cancelled anytime in your App Store account settings.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience habit tracker and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6801043027">Winter Arc on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo loop: three rules get checked, the ring fills, the day stamps LOCKED IN.
+    const ring = document.getElementById("ring");
+    const rows = [0,1,2].map(i => document.getElementById("r"+i));
+    const stamp = document.getElementById("stamp");
+    const streak = document.getElementById("streak");
+
+    function reset(){
+      rows.forEach(r => r.classList.remove("done"));
+      ring.style.setProperty("--p", 0);
+      stamp.classList.remove("on");
+      streak.innerHTML = "Streak <b>22</b> 🔥";
+    }
+
+    function loop(){
+      reset();
+      const check = i => {
+        rows[i].classList.add("done");
+        ring.style.setProperty("--p", (i+1)/3);
+      };
+      setTimeout(()=>check(0), 1000);
+      setTimeout(()=>check(1), 1900);
+      setTimeout(()=>check(2), 2800);
+      setTimeout(()=>stamp.classList.add("on"), 3300);
+      setTimeout(()=>{ streak.innerHTML = "Streak <b>23</b> 🔥"; }, 3550);
+      setTimeout(loop, 6800);
+    }
+    loop();
+  </script>
+</body>
+</html>
