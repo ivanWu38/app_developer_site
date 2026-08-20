@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One Word Search — One Grid, One Hidden Word</title>
+  <meta name="description" content="One Word Search is a daily word search with a twist: a 5×5 grid hides exactly one five-letter word. Find it and the letters fall away to reveal the next. Ten words, one clock that only starts when you do.">
+  <style>
+    :root{
+      --bg:#EEF3F8; --card:#FFFFFF; --ink:#15243B; --muted:#6B7A90; --line:#DCE4EE;
+      --deep:#1E3557; --lens:#FFD54A; --green:#22B07D; --tile:#E3EAF2; --gold:#D48D00;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--deep)}
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:900;font-size:44px;margin:14px 0 6px;letter-spacing:-.8px;font-family:ui-rounded,-apple-system,"SF Pro Rounded",Arial,sans-serif}
+    .logo em{font-style:normal;background:linear-gradient(transparent 62%,var(--lens) 62%,var(--lens) 92%,transparent 92%)}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    /* ── animated grid demo ── */
+    .demo{position:relative;width:262px;height:262px;margin:42px auto 0;background:var(--card);border-radius:30px;padding:11px;
+      box-shadow:0 18px 40px rgba(21,36,59,.12);overflow:hidden}
+    .col{position:absolute;top:11px;width:44px;height:240px;overflow:visible}
+    .dt{position:absolute;left:0;width:44px;height:44px;border-radius:50%;background:var(--tile);display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:21px;font-family:ui-rounded,-apple-system,sans-serif;color:var(--ink);
+      transition:top .55s cubic-bezier(.3,1.2,.4,1), background .25s, color .25s, box-shadow .25s, opacity .3s, transform .3s}
+    .dt.sel{background:var(--deep);color:#fff;box-shadow:0 0 0 3px var(--lens)}
+    .dt.go{background:var(--green);color:#fff;box-shadow:none;transform:scale(.2);opacity:0}
+    .foundline{min-height:30px;margin-top:14px;color:var(--green);font-weight:900;font-size:20px;text-align:center;font-family:ui-rounded,-apple-system,sans-serif;letter-spacing:2px}
+    .foundline small{display:block;font-family:-apple-system,sans-serif;font-weight:600;font-size:12px;color:var(--muted);letter-spacing:0}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:900;font-family:ui-rounded,-apple-system,"SF Pro Rounded",Arial,sans-serif;letter-spacing:-.4px}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    .stars{display:grid;grid-template-columns:1fr auto;gap:6px 18px;max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:10px;font-size:15px}
+    .stars span:nth-child(even){color:var(--gold);letter-spacing:1px}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#3E4C61}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🔍 One <em>Word</em> Search</div>
+      <p class="tagline">A 5×5 grid hides exactly one five-letter word. Swipe it, and the letters fall away to reveal the next. Ten words, one relaxed daily search.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6803363130"><small>Download on the</small>App Store</a>
+      <div class="demo" id="demo" aria-hidden="true"></div>
+      <p class="foundline" id="foundLine">&nbsp;</p>
+      <p class="muted" style="font-size:14px;margin-top:2px">Live demo: find the word, watch the letters drop in.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>One word at a time.</b> The grid hides a single five-letter word — across, down or diagonal, forwards or backwards. Drag from the first letter to the last.</li>
+        <li><b>Found it? Another appears.</b> Those five letters vanish, the letters above fall down, and a new word is hidden somewhere in the result. Ten words finish the search.</li>
+        <li><b>The clock starts when you do.</b> Nothing is timed until you find the first word. Your total time then sets your stars — and the clock stays hidden by default so the game feels calm.</li>
+        <li><b>Stuck? Reveal a letter.</b> A hint lights up the next letter of the hidden word. Hints are free to watch, or instant with the one-time ad-free unlock.</li>
+      </ul>
+      <div class="stars">
+        <span>1 minute or less</span><span>★★★★★</span>
+        <span>2 minutes or less</span><span>★★★★</span>
+        <span>3 minutes or less</span><span>★★★</span>
+        <span>4 minutes or less</span><span>★★</span>
+        <span>Anything else</span><span>★</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why One Word Search</h2>
+      <div class="features">
+        <div class="feat"><b>✅ Only one word ever fits</b><p>Every grid is checked by an independent verifier before it ships: the hidden word appears exactly once and no other real five-letter word can be spelled on the board. Swipe a genuine word and it is the right one.</p></div>
+        <div class="feat"><b>🕐 Relaxed by design</b><p>No timer pressure until you choose it. Look at the grid as long as you like; the clock only starts with your first find.</p></div>
+        <div class="feat"><b>🗓️ A daily, plus the whole archive</b><p>A fresh search at midnight with a streak to protect — and every past puzzle stays playable, with best times kept per puzzle.</p></div>
+        <div class="feat"><b>🏅 Stats, streaks and badges</b><p>Played, five-star rate, best time, a score distribution chart and a badge wall that celebrates streaks, speed and hint-free runs.</p></div>
+        <div class="feat"><b>📤 Share and compare</b><p>Every finished search gives you a result card with your time, stars and streak — with a spoiler-free option that hides the words.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline, no account. Full iPad support in light and dark. One purchase removes ads for good and makes every hint instant — no subscription.</p></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:18px">One Word Search is an independent app and is not affiliated with Waffle Studio or Puzzlist.</p>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 20, 2026</p>
+      <p>One Word Search ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob, including optional rewarded ads you can choose to watch for a hint. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing the ad-free unlock removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6803363130">One Word Search on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo: 5 column stacks (bottom→top), visible window = bottom 5 rows.
+    // Word 1 = HOUSE on the bottom row; after it clears, letters fall and reveal the next grid.
+    const demo = document.getElementById("demo"), line = document.getElementById("foundLine");
+    const stacks = ["HSJHEP","OYUDAL","UHLGUA","SUOYTN","EQUICT"]; // bottom→top, 6 per column (1 hidden)
+    const PITCH = 48, BOTTOM = 240 - 44;
+    const cols = stacks.map((s, c) => {
+      const col = document.createElement("div"); col.className = "col"; col.style.left = (11 + c*PITCH) + "px"; demo.appendChild(col);
+      return { el: col, tiles: [...s].map(ch => { const d = document.createElement("div"); d.className = "dt"; d.textContent = ch; col.appendChild(d); return d; }) };
+    });
+    function layout(){ cols.forEach(c => c.tiles.forEach((t, r) => { t.style.top = (BOTTOM - r*PITCH) + "px"; t.style.opacity = r < 5 ? 1 : 0; })); }
+    function reset(){
+      cols.forEach((c, i) => { c.tiles.forEach(t => t.remove()); c.tiles = [...stacks[i]].map(ch => { const d = document.createElement("div"); d.className = "dt"; d.textContent = ch; c.el.appendChild(d); return d; }); });
+      cols.forEach(c => c.tiles.forEach(t => t.style.transition = "none"));
+      layout();
+      requestAnimationFrame(() => requestAnimationFrame(() => cols.forEach(c => c.tiles.forEach(t => t.style.transition = ""))));
+      line.innerHTML = "&nbsp;";
+    }
+    function loop(){
+      reset();
+      const word = cols.map(c => c.tiles[0]);
+      word.forEach((t, k) => setTimeout(() => t.classList.add("sel"), 900 + k*220));
+      setTimeout(() => { line.innerHTML = "HOUSE<small>That's the one! The letters drop away…</small>"; word.forEach(t => t.classList.replace("sel", "go")); }, 2200);
+      setTimeout(() => { cols.forEach(c => { c.tiles[0].remove(); c.tiles.shift(); }); layout(); }, 2700);
+      setTimeout(() => { line.innerHTML = "&nbsp;<small>…and a new word is hiding in there. Ten in total.</small>"; }, 3400);
+      setTimeout(loop, 6200);
+    }
+    loop();
+  </script>
+</body>
+</html>
