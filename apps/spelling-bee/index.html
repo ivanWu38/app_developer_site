@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spelling Bee — Pangram Word Game</title>
+  <meta name="description" content="Spelling Bee is a daily pangram word game: make words from seven letters in a hive, always using the center letter, and climb from Beginner to Genius. A fair word list, built-in hints, 3,000+ puzzles, and one purchase that unlocks everything — no subscription.">
+  <style>
+    :root{ --paper:#F4F0E6; --card:#FBF8F1; --ink:#262219; --muted:#8A8275; --line:#D8D0BF; --rust:#AE4124; --gold:#D89C28; --outer:#EAE3D3; }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--rust)}
+    header{padding:64px 0 46px;text-align:center}
+    .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .logo{font-weight:700;font-size:46px;margin:10px 0 6px;letter-spacing:-.5px;font-family:Georgia,"Iowan Old Style","Times New Roman",serif;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:10px 0;display:inline-block}
+    .logo em{font-style:normal;color:var(--rust)}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:18px auto 26px;font-family:Georgia,serif}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+    /* ── animated hive demo ── */
+    .demo{width:300px;margin:42px auto 0;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px 16px 18px;box-shadow:0 18px 40px rgba(38,34,25,.10)}
+    .input{height:40px;font:700 28px/40px ui-rounded,-apple-system,"SF Pro Rounded","Arial Rounded MT Bold",sans-serif;letter-spacing:2px;text-align:center;color:var(--ink)}
+    .input .c{color:var(--rust)}.input .cur{display:inline-block;width:2px;height:28px;background:var(--rust);vertical-align:-4px;margin-left:2px;animation:blink 1s infinite}
+    @keyframes blink{50%{opacity:0}}
+    .hive{position:relative;width:250px;height:230px;margin:8px auto 0}
+    .cell{position:absolute;width:100px;height:86.6px;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);background:var(--outer);display:flex;align-items:center;justify-content:center;font:700 34px ui-rounded,-apple-system,"SF Pro Rounded","Arial Rounded MT Bold",sans-serif;color:var(--ink);transition:transform .12s,background .2s}
+    .cell.center{background:var(--gold)}
+    .cell.tap{transform:scale(.9)}
+    .toast{min-height:30px;margin-top:10px;text-align:center;font-weight:700;color:var(--ink);font-size:15px;opacity:0;transition:opacity .2s}
+    .toast.on{opacity:1}.toast.pan{color:var(--rust)}
+    .found{margin-top:10px;font:14px Georgia,serif;color:var(--muted);text-align:center;min-height:22px}
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:700;font-family:Georgia,"Iowan Old Style",serif;letter-spacing:-.3px}
+    h3{font-size:18px;margin:22px 0 6px;font-family:Georgia,serif}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px;font-family:Georgia,serif}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    .ranks{display:grid;grid-template-columns:1fr auto;gap:6px 18px;max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:10px;font-size:15px;font-family:Georgia,serif}
+    .ranks span:nth-child(even){color:var(--rust);font-variant-numeric:tabular-nums}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#4a443a}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">Daily pangram word game</div>
+      <div class="logo">Spelling <em>Bee</em></div>
+      <p class="tagline">Seven letters, one hive. Make words of four letters or more, always using the center letter, and climb from Beginner to Genius. Find every word and you're Queen Bee.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6803864293"><small>Download on the</small>App Store</a>
+
+      <div class="demo" aria-hidden="true">
+        <div class="input" id="inp">&nbsp;</div>
+        <div class="hive" id="hive"></div>
+        <div class="toast" id="toast">&nbsp;</div>
+        <div class="found" id="found">&nbsp;</div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Live demo: tap the hive, spell a word, score.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Seven letters, one rule.</b> Every word must be at least four letters and must include the center letter. Letters can be used as many times as you like.</li>
+        <li><b>Longer words score more.</b> Four-letter words are worth one point; longer words score one point per letter. A pangram uses all seven letters and earns seven bonus points.</li>
+        <li><b>Climb the ranks.</b> Your score moves you from Beginner through Good, Solid, Great and Amazing to Genius. Find every single word and you're crowned Queen Bee.</li>
+        <li><b>Stuck? Open Hints.</b> See how many words remain by first letter and length, every valid two-letter start, and the pangram count — or reveal a word.</li>
+      </ul>
+      <div class="ranks">
+        <span>Beginner</span><span>0%</span>
+        <span>Good Start</span><span>2%</span>
+        <span>Moving Up</span><span>5%</span>
+        <span>Good</span><span>8%</span>
+        <span>Solid</span><span>15%</span>
+        <span>Nice</span><span>25%</span>
+        <span>Great</span><span>40%</span>
+        <span>Amazing</span><span>50%</span>
+        <span>Genius</span><span>70%</span>
+        <span>Queen Bee</span><span>100%</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why Spelling Bee</h2>
+      <div class="features">
+        <div class="feat"><b>📖 A word list that respects you</b><p>Common words count toward your rank. Rarer words are still accepted as Bonus — they score, but you never need an obscure word to reach Queen Bee. Missing a word you know? Add it to your own dictionary and it's accepted from then on.</p></div>
+        <div class="feat"><b>💡 Hints built in</b><p>The remaining-words grid, the two-letter list and Bingo status live inside the game — no forum, no second app. Reveal a word when you really need it.</p></div>
+        <div class="feat"><b>🗓️ A daily, plus the whole archive</b><p>A new hive every day with a streak to protect, yesterday's full answer list, and a calendar of past puzzles you can still play.</p></div>
+        <div class="feat"><b>∞ Unlimited mode</b><p>Three thousand more puzzles in Easy, Medium and Hard, with their own stats — play as many as you like without touching your daily streak.</p></div>
+        <div class="feat"><b>🏅 Stats and achievements</b><p>Puzzles played, words and pangrams found, Genius and Queen Bee counts, your longest word, and a wall of achievements to earn.</p></div>
+        <div class="feat"><b>📤 Share without spoilers</b><p>Every puzzle gives you a result card with your rank, points and pangrams — with the answers hidden by default.</p></div>
+        <div class="feat"><b>💳 One purchase, no subscription</b><p>Free to play with a small banner. A single one-time purchase removes all ads, opens the full archive, gives unlimited reveals and unlocks every hive theme. Pay once, keep it forever.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline, no account. Tap the hive or type on a hardware keyboard on iPad. Light and dark modes, with sound and haptics you can switch off.</p></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:18px">Spelling Bee is an independent app and is not affiliated with The New York Times.</p>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 21, 2026</p>
+      <p>Spelling Bee ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how. The full policy is also available at <a href="/apps/spelling-bee/privacy/">/apps/spelling-bee/privacy/</a>.</p>
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, custom dictionary and settings are stored locally on your device and are not transmitted to us.</p>
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob, including optional rewarded ads you can choose to watch to reveal a word or unlock an archive day. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing Premium removes all advertising from the app.</p>
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+      <h3>Purchases</h3>
+      <p>Premium is a one-time, non-consumable in-app purchase processed entirely by Apple. We never see or store your payment information.</p>
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, think a word is missing from the list, or have a feature request? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — the puzzle letters and the word always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6803864293">Spelling Bee on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo hive: center M, outer A C H K O R (official layout: outer cells at 30°, 90°, 150°…)
+    const hive = document.getElementById("hive"), inp = document.getElementById("inp"), toast = document.getElementById("toast"), found = document.getElementById("found");
+    const W = 100, H = 86.6, R = H + 5, CX = 125, CY = 115;
+    const cells = {};
+    function mk(ch, x, y, center){ const d = document.createElement("div"); d.className = "cell" + (center ? " center" : ""); d.textContent = ch; d.style.left = (x - W/2) + "px"; d.style.top = (y - H/2) + "px"; hive.appendChild(d); cells[ch] = d; }
+    mk("M", CX, CY, true);
+    "ACHKOR".split("").forEach((ch, i) => { const a = (30 + 60*i) * Math.PI/180; mk(ch, CX + Math.cos(a)*R, CY + Math.sin(a)*R, false); });
+    const words = [["CHARM", "Nice!", 5], ["ROACH", "Nice!", 5], ["HAMMOCK", "Pangram!", 14]];
+    let foundList = [];
+    function type(word, k, done){ if (k === word.length) return done(); const ch = word[k]; cells[ch].classList.add("tap"); setTimeout(() => cells[ch].classList.remove("tap"), 120);
+      inp.innerHTML = word.slice(0, k+1).split("").map(c => c === "M" ? '<span class="c">M</span>' : c).join("") + '<span class="cur"></span>'; setTimeout(() => type(word, k+1, done), 260); }
+    function play(i){ if (i === words.length) { foundList = []; found.innerHTML = "&nbsp;"; return setTimeout(() => play(0), 1800); }
+      const [w, t, pts] = words[i];
+      type(w, 0, () => setTimeout(() => { inp.innerHTML = '<span class="cur"></span>'; toast.textContent = t + "  +" + pts; toast.className = "toast on" + (t === "Pangram!" ? " pan" : "");
+        foundList.unshift(w[0] + w.slice(1).toLowerCase()); found.textContent = "You have found " + foundList.length + " word" + (foundList.length > 1 ? "s" : "") + " · " + foundList.join(" · ");
+        setTimeout(() => { toast.className = "toast"; }, 900); setTimeout(() => play(i+1), 1400); }, 500)); }
+    inp.innerHTML = '<span class="cur"></span>'; setTimeout(() => play(0), 800);
+  </script>
+</body>
+</html>
