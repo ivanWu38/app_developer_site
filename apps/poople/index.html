@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poople Unlimited — Daily Word Ladder Game</title>
+  <meta name="description" content="Poople Unlimited is the daily word ladder game where every puzzle ends in POOP. Change one letter at a time, find the shortest path, share a spoiler-free grid, and keep going with 1,000+ unlimited ladders. No subscription.">
+  <style>
+    :root{ --paper:#FFF4E1; --card:#FFFDF8; --ink:#2B1D14; --muted:#8B7563; --line:#D3BBA2; --shadow:#E2CDB3; --cocoa:#8A5432; --cocoa2:#6B3E22; --cocoaInk:#FFF1DE; --mint:#3FB08A; --mint2:#2E8F6E; --mintSoft:#E3F7EF; --peach:#FFD9BD; --tileEmpty:#F3E6D0; }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--cocoa)}
+    header{padding:64px 0 46px;text-align:center}
+    .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .logo{font-weight:900;font-size:48px;margin:10px 0 6px;letter-spacing:-.8px;font-family:ui-rounded,-apple-system,"SF Pro Rounded","Arial Rounded MT Bold",sans-serif;display:inline-block}
+    .logo em{font-style:normal;color:var(--cocoa)}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:14px auto 26px;font-weight:600}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+    /* ── animated ladder demo ── */
+    .demo{width:300px;margin:42px auto 0;background:var(--card);border:2.5px solid var(--line);border-radius:26px;padding:20px 16px 16px;box-shadow:5px 6px 0 var(--shadow)}
+    .demo .hd{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted);margin:0 4px 12px}
+    .demo .hd b{color:var(--ink);letter-spacing:0;font-size:14px}
+    .ladder{display:grid;gap:8px;justify-content:center}
+    .row{display:flex;gap:8px}
+    .tile{width:52px;height:52px;border-radius:14px;border:2.5px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font:900 26px ui-rounded,-apple-system,"SF Pro Rounded","Arial Rounded MT Bold",sans-serif;color:var(--ink);box-shadow:0 3px 0 var(--shadow);transition:background .25s,color .25s,border-color .25s,transform .12s}
+    .tile.empty{background:var(--tileEmpty);border-style:dashed;border-color:var(--muted);box-shadow:none;opacity:.7}
+    .tile.pop{transform:scale(1.12)}
+    .tile.hit{background:var(--cocoa);color:var(--cocoaInk);border-color:var(--cocoa2);box-shadow:0 3px 0 var(--cocoa2)}
+    .toast{min-height:28px;margin-top:12px;text-align:center;font-weight:800;color:var(--mint2);font-size:15px;opacity:0;transition:opacity .2s}
+    .toast.on{opacity:1}
+    .poop{font-size:36px;line-height:1;display:inline-block;transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+    .poop.on{transform:scale(1)}
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:900;font-family:ui-rounded,-apple-system,"SF Pro Rounded","Arial Rounded MT Bold",sans-serif;letter-spacing:-.3px}
+    h3{font-size:18px;margin:22px 0 6px;font-weight:800}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px;box-shadow:3px 4px 0 var(--shadow)}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    .modes{display:grid;grid-template-columns:1fr auto;gap:6px 18px;max-width:380px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:10px;font-size:15px;box-shadow:3px 4px 0 var(--shadow)}
+    .modes span:nth-child(even){color:var(--cocoa);font-weight:700;font-variant-numeric:tabular-nums}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#4a3a2e}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">Daily word ladder game</div>
+      <div class="logo">Poople <em>Unlimited</em> 💩</div>
+      <p class="tagline">Turn any four-letter word into POOP, one letter at a time. A new ladder every day, the same for everyone, and endless practice when one just isn't enough.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6804923114"><small>Download on the</small>App Store</a>
+
+      <div class="demo" aria-hidden="true">
+        <div class="hd"><span>DAILY #1</span><b>LIFE → POOP</b><span>BEST 5</span></div>
+        <div class="ladder" id="ladder"></div>
+        <div class="toast" id="toast">&nbsp;</div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Live demo: change one letter per step until you reach POOP.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Start with a word, end with POOP.</b> Every puzzle gives you a four-letter starting word. Your job is to reach POOP.</li>
+        <li><b>Change exactly one letter per step.</b> Each new word must be a real English word — no adding, removing or rearranging letters. LIFE → LIFT → LOFT → LOOT → LOOP → POOP.</li>
+        <li><b>Brown means it's in place.</b> A tile turns brown when its letter already matches POOP in that position, so you can watch the goal get closer.</li>
+        <li><b>Fewer guesses is better.</b> Every ladder has a shortest solution. Match it and you've found a Perfect Path. After you finish, tap <em>Show best path</em> to compare your route with the optimal one.</li>
+        <li><b>Stuck? Undo or Hint.</b> Undo is always free and never counts against you. Hints come in two steps: first the letter to change, then the letter to put there.</li>
+      </ul>
+      <div class="modes">
+        <span>Daily Poople</span><span>1 a day · streaks</span>
+        <span>Past Puzzles</span><span>90-day archive</span>
+        <span>Unlimited · Easy</span><span>3–4 steps</span>
+        <span>Unlimited · Medium</span><span>5 steps</span>
+        <span>Unlimited · Hard</span><span>6+ steps</span>
+        <span>Custom Goal</span><span>any 4-letter word</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why Poople Unlimited</h2>
+      <div class="features">
+        <div class="feat"><b>💩 Silly on top, sharp underneath</b><p>The goal is always POOP — and that's the joke. The puzzle underneath is a real word ladder: find the shortest chain of real words, and learn a few new ones on the way.</p></div>
+        <div class="feat"><b>🗓️ One ladder a day, for everyone</b><p>A new puzzle at midnight, the same for every player. Solve it to grow your streak, see how your guess count stacks up against the best solution, and read yesterday's shortest path.</p></div>
+        <div class="feat"><b>∞ Don't wait for tomorrow</b><p>Unlimited mode deals over a thousand more ladders in Easy, Medium and Hard, with their own stats. Custom Goal lets you pick any four-letter word as the finish line instead of POOP.</p></div>
+        <div class="feat"><b>📅 90 days of past puzzles</b><p>Missed a day? The archive opens with three months of ladders from day one. The most recent week is free; older days unlock with a short ad or with Premium.</p></div>
+        <div class="feat"><b>📤 Share the ladder, not the answer</b><p>Every daily puzzle gives you a result card and an emoji grid that shows your path without revealing your words. Post it and challenge your friends to beat your count.</p></div>
+        <div class="feat"><b>🏅 Track your journey</b><p>Wins, average extra guesses, current and best streak, a guess distribution chart, and thirteen achievements to earn — from your First Poop to a Monthly Habit.</p></div>
+        <div class="feat"><b>📖 A dictionary that plays fair</b><p>Over 3,000 four-letter words are accepted, so the word you know will count. Undo is free, and hints are there when you want them.</p></div>
+        <div class="feat"><b>💳 One purchase, no subscription</b><p>Free to play with a small banner. A single one-time purchase removes all ads, opens the full archive, gives you hints without watching ads, and unlocks Custom Goal. Pay once, keep it forever.</p></div>
+        <div class="feat"><b>✈️ Works anywhere</b><p>Fully offline, no account. Play on iPhone or iPad, with a hardware keyboard if you like. Light and dark modes, plus sound and haptics you can switch off.</p></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:18px">Poople Unlimited is an independent app inspired by the classic word ladder and is not affiliated with poople.io.</p>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 26, 2026</p>
+      <p>Poople Unlimited ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how. The full policy is also available at <a href="/apps/poople/privacy/">/apps/poople/privacy/</a>.</p>
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements and settings are stored locally on your device and are not transmitted to us.</p>
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob, including optional rewarded ads you can choose to watch to get a hint or unlock an archive day, and occasional interstitial ads between puzzles. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing Premium removes all advertising from the app.</p>
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+      <h3>Purchases</h3>
+      <p>Premium is a one-time, non-consumable in-app purchase processed entirely by Apple. We never see or store your payment information.</p>
+      <h3>Children</h3>
+      <p>The app is a general-audience word game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, think a word should be accepted, or have a feature request? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — the puzzle number and the word always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6804923114">Poople Unlimited on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo ladder: daily #1 best path LIFE → LIFT → LOFT → LOOT → LOOP → POOP
+    const PATH = ["LIFE","LIFT","LOFT","LOOT","LOOP","POOP"], GOAL = "POOP";
+    const ladder = document.getElementById("ladder"), toast = document.getElementById("toast");
+    const rows = PATH.map(() => { const r = document.createElement("div"); r.className = "row"; r.tiles = [];
+      for (let i = 0; i < 4; i++) { const t = document.createElement("div"); t.className = "tile empty"; r.appendChild(t); r.tiles.push(t); } ladder.appendChild(r); return r; });
+    function fill(k, word){ rows[k].tiles.forEach((t, i) => { t.textContent = word[i]; t.className = "tile" + (word[i] === GOAL[i] ? " hit" : ""); }); }
+    function reset(){ rows.forEach(r => r.tiles.forEach(t => { t.textContent = ""; t.className = "tile empty"; })); toast.className = "toast"; toast.innerHTML = "&nbsp;"; }
+    function step(k){
+      if (k === PATH.length) {
+        toast.innerHTML = '<span class="poop" id="pp">💩</span> &nbsp;Perfect path · 5 guesses';
+        toast.className = "toast on"; requestAnimationFrame(() => setTimeout(() => document.getElementById("pp").classList.add("on"), 30));
+        return setTimeout(() => { reset(); setTimeout(() => step(0), 500); }, 2600);
+      }
+      const word = PATH[k], prev = k ? PATH[k-1] : null;
+      if (!prev) { fill(0, word); return setTimeout(() => step(1), 900); }
+      // type the new word letter by letter; the changed letter pops
+      const diff = [...word].findIndex((c, i) => c !== prev[i]);
+      let i = 0;
+      const tick = () => {
+        const t = rows[k].tiles[i]; t.textContent = word[i]; t.className = "tile";
+        if (i === diff) { t.classList.add("pop"); setTimeout(() => t.classList.remove("pop"), 140); }
+        i++;
+        if (i < 4) return setTimeout(tick, 170);
+        setTimeout(() => { fill(k, word); setTimeout(() => step(k+1), 650); }, 220);
+      };
+      tick();
+    }
+    setTimeout(() => step(0), 700);
+  </script>
+</body>
+</html>
