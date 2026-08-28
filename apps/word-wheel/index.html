@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Wheel: Crossword Puzzles</title>
+  <meta name="description" content="Word Wheel — words, softly. Spin a wheel of letters, spell words, and watch them settle into a crossword. 2,000 hand-checked levels across 20 painted skies, a daily puzzle, bonus words that earn hints, and no coins to manage. For iPhone and iPad." />
+  <style>
+    :root{
+      --paper:#F7F0EE;
+      --paper-2:#FCF7F5;
+      --ink:#2C3E50;
+      --ink-soft:#4A5A6E;
+      --muted:#6B7A8A;
+      --line:#E6DCDE;
+      --berry:#C45C6A;
+      --rose:#E8A0A0;
+      --sage:#9FCDB8;
+      --gold:#E0A050;
+      --maxw:680px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+      color:var(--ink);
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      background:
+        radial-gradient(600px 420px at 10% 0%, rgba(244,169,169,.42), transparent 70%),
+        radial-gradient(640px 460px at 90% 8%, rgba(159,205,184,.40), transparent 70%),
+        radial-gradient(720px 540px at 50% 100%, rgba(232,193,211,.38), transparent 72%),
+        linear-gradient(180deg,var(--paper) 0%,#F1E8EA 100%);
+      background-attachment:fixed;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+    a:hover{border-bottom-color:var(--ink)}
+
+    /* ---------- Hero ---------- */
+    header{padding:88px 0 56px;text-align:center;position:relative}
+    .halo{
+      position:absolute;left:50%;top:20px;transform:translateX(-50%);
+      width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle at 50% 45%, rgba(255,252,247,.95), rgba(255,246,240,0) 70%);
+      pointer-events:none;
+    }
+    header .wrap{position:relative}
+    .kicker{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:3.4rem;font-weight:400;letter-spacing:.02em;
+      margin:0 0 2px;line-height:1.05;
+    }
+    .sub{
+      font-family:-apple-system,system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;
+      color:var(--berry);font-size:1.05rem;font-weight:700;margin:0 0 18px;text-indent:.42em;
+    }
+    .lead{font-family:Georgia,serif;font-style:italic;font-size:1.15rem;color:var(--muted);max-width:30em;margin:0 auto 30px}
+
+    /* ---------- animated letter wheel demo ---------- */
+    .demo{width:210px;height:210px;margin:48px auto 34px;position:relative}
+    .demo svg{width:100%;height:100%;display:block;overflow:visible}
+    .demo .ring{fill:rgba(255,255,255,.45)}
+    .demo .orb{fill:#FFFDFB;stroke:rgba(196,92,106,.18);stroke-width:1}
+    .demo .orb.on{fill:var(--berry)}
+    .demo text{font-family:-apple-system,system-ui,sans-serif;font-weight:700;font-size:15px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+    .demo .on + text{fill:#fff}
+    .demo .thread{fill:none;stroke:var(--berry);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;
+      stroke-dasharray:400;stroke-dashoffset:400}
+    .demo .word{position:absolute;left:50%;top:-6px;transform:translate(-50%,-100%);
+      font-family:-apple-system,system-ui,sans-serif;font-weight:700;letter-spacing:.3em;font-size:1rem;color:var(--ink);
+      background:rgba(255,255,255,.7);padding:4px 14px 4px 18px;border-radius:999px;min-width:3em;text-align:center}
+
+    .cta{
+      display:inline-block;padding:14px 32px;border-radius:999px;
+      background:linear-gradient(180deg,#D46B79,#B04A5A);color:#FFF7F5;
+      font-family:Georgia,serif;font-size:1.02rem;letter-spacing:.03em;
+      border:1px solid rgba(243,217,164,.9);
+      box-shadow:0 10px 24px rgba(176,74,90,.30);
+    }
+    .cta:hover{opacity:.92;border-color:rgba(243,217,164,.9)}
+    .cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--muted)}
+
+    /* ---------- Sections ---------- */
+    section{padding:54px 0;border-top:1px solid var(--line)}
+    h2{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 26px}
+    h3{font-size:1.05rem;font-weight:600;margin:28px 0 6px}
+    p{margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    strong{color:var(--ink)}
+
+    .relay{list-style:none;margin:0;padding:0}
+    .relay li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .relay li:last-child{border-bottom:none}
+    .relay .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--berry);color:#fff;
+      font-family:Georgia,serif;font-size:.9rem;display:flex;align-items:center;justify-content:center;margin-top:2px}
+    .relay .t{font-weight:600}
+    .relay .d{color:var(--muted);font-size:.95rem}
+
+    .features{list-style:none;margin:0;padding:0}
+    .features li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .features li:last-child{border-bottom:none}
+    .features .dot{flex:none;width:10px;height:10px;border-radius:50%;margin-top:9px;
+      background:radial-gradient(circle at 35% 35%, var(--rose), var(--berry))}
+    .features li:nth-child(even) .dot{background:radial-gradient(circle at 35% 35%, #F3D9A4, var(--gold))}
+    .features .t{font-weight:600}
+    .features .d{color:var(--muted);font-size:.95rem}
+
+    .themes{margin:6px 0 0;padding:0;list-style:none;columns:2;column-gap:24px}
+    .themes li{display:flex;align-items:center;gap:12px;padding:7px 0;break-inside:avoid}
+    .swatch{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(44,62,80,.10)}
+
+    ul.clean{margin:.4rem 0 1.2rem;padding-left:1.1rem;color:var(--ink)}
+    ul.clean li{margin:.35rem 0}
+    ul.clean.muted li{color:var(--muted)}
+    .faq h3{font-size:1rem}
+    .faq p{color:var(--muted);font-size:.97rem}
+
+    footer{border-top:1px solid var(--line);padding:40px 0 64px;text-align:center;color:var(--muted);font-size:.85rem}
+    footer a{color:var(--muted)}
+    .footlinks{margin-bottom:14px}
+    .footlinks a{margin:0 10px;border:none}
+    .footlinks a:hover{color:var(--ink)}
+
+    @media (max-width:520px){
+      header{padding:66px 0 44px}
+      h1{font-size:2.6rem}
+      .themes{columns:1}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="halo" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="kicker">Calm crossword word game</div>
+      <h1>Word</h1>
+      <p class="sub">Wheel</p>
+      <p class="lead">words, softly</p>
+
+      <div class="demo" aria-hidden="true">
+        <div class="word" id="demoWord">&nbsp;</div>
+        <svg viewBox="0 0 200 200">
+          <circle class="ring" cx="100" cy="100" r="92"/>
+          <path class="thread" id="thread" d=""/>
+          <g id="orbs"></g>
+        </svg>
+      </div>
+
+      <a class="cta" href="https://apps.apple.com/app/id6757796615">Download on the App Store</a>
+      <span class="cta-note">Free, with an optional Premium subscription · iPhone &amp; iPad</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>The Idea</h2>
+      <p>Word Wheel is a crossword you fill by <strong>spelling, not typing</strong>. A wheel of letters sits at the bottom of the screen; drag your finger through them to make a word, lift, and watch it settle into the grid above. Fill every cell and the level is done.</p>
+      <p>There are no timers, no lives, and no coins to hoard. Just a painted sky that changes as you travel through twenty chapters, a soft sound when a word lands, and the small satisfaction of a crossword filling itself in.</p>
+      <p class="muted">A fresh Daily Puzzle arrives each day, the same one for everyone.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How To Play</h2>
+      <ul class="relay">
+        <li><span class="n">1</span><span><span class="t">Swipe to spell</span><br><span class="d">Drag across the letters on the wheel. Each letter can be used once per word. Lift your finger to submit.</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Fill the crossword</span><br><span class="d">Words that belong in the grid drop into place. Find them all to finish the level and move on to the next.</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Collect bonus words</span><br><span class="d">Spelled a real word that isn’t in the grid? It still counts. Bonus words go into your collection and fill the jar — every ten earn you a hint.</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Ask for a hint when stuck</span><br><span class="d">A hint reveals one letter in the grid. You get three each day, more from the jar, and you can watch a short ad for two more. Premium makes hints unlimited.</span></span></li>
+        <li><span class="n">5</span><span><span class="t">Come back tomorrow</span><br><span class="d">Solve the Daily Puzzle to keep your streak alive, then share a spoiler-free card with friends.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What’s Inside</h2>
+      <ul class="features">
+        <li><span class="dot"></span><span><span class="t">2,000 hand-checked levels</span><br><span class="d">Every puzzle was built and checked in advance so the words you’re asked to find are everyday English — never obscure fillers. Start with four letters and work up to seven-letter wheels.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Twenty painted skies</span><br><span class="d">Travel from Dawn to Cosmos through twenty watercolour chapters, each with its own atmosphere.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">A daily puzzle</span><br><span class="d">One seven-letter puzzle a day, shared by everyone. Keep the streak, share the result, answers stay hidden.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Bonus words &amp; the jar</span><br><span class="d">Extra words are never wasted — they build your collection and fill the jar for free hints.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">No coins, no energy</span><br><span class="d">Three free hints every day and nothing else to manage. Play for two minutes or an hour.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Gentle sound &amp; music</span><br><span class="d">Paper-soft touch sounds and an optional ambient soundtrack with its own volume. All optional, ducked around your own music.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">Stars &amp; achievements</span><br><span class="d">Earn up to three stars on every level and sixteen medallions for streaks, speed and dedication.</span></span></li>
+        <li><span class="dot"></span><span><span class="t">iPhone &amp; iPad, offline</span><br><span class="d">Adaptive layouts for either screen, progress saved mid-level, no account and no connection required.</span></span></li>
+      </ul>
+
+      <h3>The chapters</h3>
+      <ul class="themes">
+        <li><span class="swatch" style="background:linear-gradient(135deg,#FFE5EC,#E8D5E0)"></span><span>Dawn</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#E0F4FF,#BBDEFB)"></span><span>Morning</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#FFE4B5,#FFD27A)"></span><span>Sunrise</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#FFE4C4,#FF8A65)"></span><span>Golden Hour</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#E6E6FA,#9C7BBF)"></span><span>Dusk &amp; Twilight</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#34495E,#0F0E17)"></span><span>Night &amp; Midnight</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#F7C6D0,#9FCDB8)"></span><span>Spring, Summer, Autumn, Winter</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#B2EBF2,#4A7C59)"></span><span>Ocean &amp; Forest</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#CFD8DC,#FFCC80)"></span><span>Mountain &amp; Desert</span></li>
+        <li><span class="swatch" style="background:linear-gradient(135deg,#80CBC4,#916BBF)"></span><span>Aurora &amp; Cosmos</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+
+      <h3>What counts as a word?</h3>
+      <p>Grid words are everyday English chosen by hand. Bonus words are checked against a much wider dictionary, so if it’s a real word you can spell from the wheel, it counts.</p>
+
+      <h3>When does a new daily puzzle arrive?</h3>
+      <p>A new puzzle unlocks at midnight, local time, and is the same for every player. If you stop mid-puzzle, your progress is saved and you can pick it up later that day.</p>
+
+      <h3>Can I replay a level?</h3>
+      <p>Yes — open Chapters and tap any level you’ve unlocked. Your best star rating is kept.</p>
+
+      <h3>Do I lose anything if I use a hint?</h3>
+      <p>Only stars: three stars for no hints, two for one or two, one for more. Nothing else is taken away and there is no game over.</p>
+
+      <h3>Does it work offline?</h3>
+      <p>Yes. Every level and every daily puzzle ships inside the app. No account, no sign-in, no connection needed.</p>
+    </div>
+  </section>
+
+  <section id="premium">
+    <div class="wrap">
+      <h2>Premium</h2>
+      <p>Word Wheel is free to play. Premium removes interstitial ads and makes hints unlimited — and helps support continued development. It’s offered as a monthly, quarterly or yearly subscription.</p>
+      <h3>Subscription terms</h3>
+      <ul class="clean muted">
+        <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+        <li>The subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
+        <li>Your account is charged for renewal within 24 hours before the end of the current period, at the same price.</li>
+        <li>You can manage or cancel your subscription anytime in your App Store account settings.</li>
+        <li>Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy Policy</h2>
+      <ul class="clean">
+        <li>Word Wheel does not collect, share, or sell any personal data.</li>
+        <li>All game progress, stars, bonus words, streaks and settings are stored locally on your device.</li>
+        <li>No account or sign-in is required to play.</li>
+        <li>The app shows ads through Google AdMob; before any tracking across other companies’ apps and websites for personalized advertising, the app asks your permission using Apple’s App Tracking Transparency (ATT). You may allow or deny this, and change your choice anytime in Settings.</li>
+        <li>The app does not track your location or access personal information.</li>
+      </ul>
+      <p class="muted">Read the full policy at <a href="/apps/word-wheel/privacy/">Privacy Policy</a>.</p>
+    </div>
+  </section>
+
+  <section id="terms">
+    <div class="wrap">
+      <h2>Terms of Service</h2>
+      <ul class="clean">
+        <li>You may use this app for personal, non-commercial purposes.</li>
+        <li>You may not reverse engineer, modify, or redistribute the app.</li>
+        <li>Features may be changed or discontinued at any time.</li>
+        <li>The app is provided “as is,” without warranties of any kind. We are not liable for any damages arising from its use.</li>
+      </ul>
+      <p class="muted">Subscriptions are also governed by Apple’s standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Contact &amp; Support</h2>
+      <p>Questions, ideas, or something not working? We’d genuinely like to hear from you.</p>
+      <p><strong>Email</strong> — <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a><br>
+      <span class="muted">We usually reply within 24–48 hours.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="https://apps.apple.com/app/id6757796615">App Store</a>
+        <a href="/apps/word-wheel/privacy/">Privacy</a>
+        <a href="mailto:wuyuping38@gmail.com">Support</a>
+      </div>
+      © 2026 Ikuhei Kure
+    </div>
+  </footer>
+
+  <script>
+    // Hero demo: a five-letter wheel (W H E E L) spelling WHEEL, then HEEL, then EEL, on loop.
+    (function(){
+      var letters=['W','H','E','E','L'], N=5, R=70, cx=100, cy=100;
+      var pts=[]; for(var i=0;i<N;i++){var a=-Math.PI/2+i*2*Math.PI/N; pts.push([cx+R*Math.cos(a), cy+R*Math.sin(a)]);}
+      var g=document.getElementById('orbs'), svgNS='http://www.w3.org/2000/svg';
+      var orbs=[];
+      pts.forEach(function(p,i){
+        var c=document.createElementNS(svgNS,'circle'); c.setAttribute('class','orb'); c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]); c.setAttribute('r',18); g.appendChild(c);
+        var t=document.createElementNS(svgNS,'text'); t.setAttribute('x',p[0]); t.setAttribute('y',p[1]); t.textContent=letters[i]; g.appendChild(t);
+        orbs.push(c);
+      });
+      var thread=document.getElementById('thread'), wordEl=document.getElementById('demoWord');
+      var words=[[0,1,2,3,4],[1,2,3,4],[2,3,4]], w=0;
+      function play(){
+        var seq=words[w]; w=(w+1)%words.length;
+        orbs.forEach(function(o){o.classList.remove('on');});
+        wordEl.textContent=' ';
+        var d=seq.map(function(i,k){return (k?'L':'M')+pts[i][0].toFixed(1)+' '+pts[i][1].toFixed(1);}).join(' ');
+        thread.setAttribute('d',d);
+        var len=thread.getTotalLength(); thread.style.transition='none'; thread.style.strokeDasharray=len; thread.style.strokeDashoffset=len;
+        thread.getBoundingClientRect();
+        thread.style.transition='stroke-dashoffset '+(seq.length*0.42)+'s ease-in-out'; thread.style.strokeDashoffset=0;
+        seq.forEach(function(i,k){ setTimeout(function(){ orbs[i].classList.add('on'); wordEl.textContent=seq.slice(0,k+1).map(function(j){return letters[j];}).join(''); }, k*420); });
+        setTimeout(function(){ thread.style.transition='opacity .4s'; thread.style.opacity=0; setTimeout(function(){thread.style.opacity=1; play();},600); }, seq.length*420+900);
+      }
+      play();
+    })();
+  </script>
+</body>
+</html>
