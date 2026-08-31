@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Globle — Guess the Mystery Country on a Satellite Globe</title>
+  <meta name="description" content="Globle is the daily geography guessing game: find the hidden country on a real satellite globe. Every guess is coloured by distance — the hotter, the closer. One mystery country a day, unlimited practice with all 197 countries, and a passport to stamp.">
+  <style>
+    :root{
+      --bg:#EFE4CC; --card:#F8F1E1; --ink:#2A1E10; --muted:#8D7A5A; --line:#E0D2B2;
+      --red:#B8422A; --redsoft:#E5714F; --gold:#B98A1C; --teal:#2C6F66; --green:#2E9E57;
+      --deepcard:#332A20; --deepink:#F2E7D2;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--red)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:800;font-size:44px;margin:14px 0 6px;letter-spacing:-.5px;
+      font-family:Georgia,'Times New Roman',serif}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    /* 動畫 demo：guess list 由遠到近逐行出現 */
+    .demo{margin:38px auto 0;width:min(400px,92vw);background:var(--deepcard);border-radius:18px;
+      padding:16px 16px 10px;box-shadow:0 18px 40px rgba(60,40,15,.25);text-align:left}
+    .demo .head{font-size:12px;letter-spacing:2px;color:#CDBB97;text-transform:uppercase;
+      display:flex;justify-content:space-between;margin:0 4px 10px}
+    .grow{display:flex;align-items:center;gap:10px;background:rgba(242,231,210,.06);
+      border-radius:10px;padding:9px 12px;margin:6px 0;color:var(--deepink);font-size:16px;
+      opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+    .grow.show{opacity:1;transform:none}
+    .dot{width:15px;height:15px;border-radius:50%;flex:none}
+    .grow .name{font-weight:700;flex:1}
+    .grow .dist{font-family:'Courier New',monospace;font-size:15px;color:#CDBB97}
+    .grow .tagchip{font-size:11px;letter-spacing:1px;color:var(--redsoft);font-weight:800}
+    .grow.win{background:rgba(46,158,87,.16)}
+    .grow.win .dist{color:#4FC77E;font-weight:700}
+    .demo .msg{text-align:center;font-size:14.5px;color:var(--redsoft);min-height:24px;margin:8px 0 2px;font-style:italic}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:27px;margin:0 0 18px;font-weight:800;font-family:Georgia,serif}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    .swatch{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-right:2px}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#5F4C31}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🌍 Globle</div>
+      <p class="tagline">One mystery country hides on a real satellite globe. Every guess is coloured by distance — the hotter, the closer. How few guesses do you need?</p>
+      <a class="badge" href="https://apps.apple.com/app/id6805041402"><small>Download on the</small>App Store</a>
+      <div class="demo" aria-hidden="true">
+        <div class="head"><span>Nearest first</span><span>km</span></div>
+        <div class="grow" id="g1"><span class="dot" style="background:#F5EFE0"></span><span class="name">Tonga</span><span class="dist">18,775 km</span></div>
+        <div class="grow" id="g2"><span class="dot" style="background:#E8944A"></span><span class="name">Seychelles</span><span class="dist">5,000 km</span></div>
+        <div class="grow" id="g3"><span class="dot" style="background:#7C1B12"></span><span class="name">Benin</span><span class="tagchip">HOTTEST</span><span class="dist">0 km</span></div>
+        <div class="grow win" id="g4"><span class="dot" style="background:#2E9E57"></span><span class="name">Niger</span><span class="dist">Found ✓</span></div>
+        <div class="msg" id="gmsg"></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:14px">Live demo: watch the guesses close in on the answer.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Type any country</b> to start. It appears on the globe, coloured by how far it is from the hidden Mystery Country.</li>
+        <li><span class="swatch" style="background:#F5EFE0;border:1px solid var(--line)"></span><b>Pale</b> means you're oceans away. <span class="swatch" style="background:#E8944A"></span><b>Orange</b> means you're getting warm. <span class="swatch" style="background:#7C1B12"></span><b>Deep red</b> means it's right next door.</li>
+        <li>Use the <b>distance and direction</b> of every guess to triangulate — then name the country to win. No guess limit, no pressure.</li>
+      </ul>
+      <p class="muted">If you love Wordle-style daily puzzles, Globle turns the whole planet into the board.</p>
+    </section>
+
+    <section>
+      <h2>Why this Globle</h2>
+      <div class="features">
+        <div class="feat"><b>🛰️ A real satellite globe</b><p>Play on NASA satellite imagery of Earth. Spin it, zoom from the whole planet down to Singapore and Vatican City, and watch your guesses paint the world.</p></div>
+        <div class="feat"><b>📅 One country a day</b><p>Every player on Earth gets the same mystery country each day. Build your streak, then replay any daily you missed from the archive.</p></div>
+        <div class="feat"><b>♾️ All 197 countries</b><p>Practice mode never runs out: warm up with well-known countries, take on the full 197, or go hunting tiny island microstates in Hard mode.</p></div>
+        <div class="feat"><b>🛂 Stamp your passport</b><p>Every country you find becomes a visa-style stamp in your passport, continent by continent. Fill the world map and unlock achievements along the way.</p></div>
+        <div class="feat"><b>💡 Hints that don't spoil</b><p>Stuck? Reveal the region, the first letter, or how many neighbours the answer has — enough to nudge you, never enough to ruin the hunt.</p></div>
+        <div class="feat"><b>📤 Share without spoilers</b><p>Brag to your friends with a result card that shows your guess trail and streak — the answer stays hidden for anyone who hasn't played yet.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: August 31, 2026</p>
+      <p>Globle ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, passport stamps, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Remove Ads" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience geography game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6805041402">Globle on the App Store</a> · <a href="/">All our apps</a><br>
+      <span style="font-size:12.5px">Earth imagery: NASA Blue Marble</span>
+    </footer>
+  </div>
+
+  <script>
+    // Animated demo: guesses appear one by one, hot colour closing in, then Found.
+    const rows = ["g1","g2","g3","g4"].map(id => document.getElementById(id));
+    const msg = document.getElementById("gmsg");
+    const msgs = ["", "Getting warmer…", "Benin is adjacent to the answer!", "The Mystery Country is Niger 🎉"];
+    function cycle() {
+      rows.forEach(r => r.classList.remove("show"));
+      msg.textContent = "";
+      rows.forEach((r, i) => setTimeout(() => {
+        r.classList.add("show");
+        msg.textContent = msgs[i];
+      }, 900 + i * 1400));
+      setTimeout(cycle, 900 + rows.length * 1400 + 3200);
+    }
+    cycle();
+  </script>
+</body>
+</html>
