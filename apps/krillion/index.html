@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Krillion — Daily Trivia Where Rare Answers Sink Deeper</title>
+  <meta name="description" content="Krillion is the daily trivia dive: seven prompts a day, the same for everyone. Every correct answer counts — but the rarer yours is, the deeper you sink. Find the hidden gem worth 100 and reach the trench floor.">
+  <style>
+    :root{
+      --bg:#081c26; --panel:#04181c; --card:#0b2830; --ink:#eafff7; --muted:#8fb8ad; --faint:#5f938e;
+      --line:#123a3c; --border:#2d6a66; --amber:#ffe08a; --orange:#ff9f43; --mint:#7fe3c8; --purple:#c792ea;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--mint)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .logo{font-weight:800;font-size:42px;margin:14px 0 6px;letter-spacing:2px;
+      font-family:"Courier New",ui-monospace,monospace;color:var(--amber);
+      text-shadow:3px 3px 0 rgba(0,0,0,.6)}
+    .tagline{color:var(--muted);font-size:19px;max-width:34em;margin:0 auto 26px}
+    .badge{display:inline-block;background:#000;color:#fff;border:2px solid var(--border);border-radius:12px;padding:11px 22px;
+      text-decoration:none;font-weight:600;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .badge:hover{opacity:.88}
+
+    /* ---- animated demo: answers sink by rarity ---- */
+    .demo{margin:40px auto 0;width:min(420px,92vw);background:var(--panel);
+      border:3px solid var(--line);box-shadow:6px 6px 0 rgba(0,0,0,.5);padding:18px;text-align:left}
+    .demo .prompt{font-weight:800;font-size:19px;text-align:center;margin:2px 0 4px}
+    .demo .hint{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:2px;color:var(--faint);text-align:center;margin-bottom:12px}
+    .demo .inputrow{display:flex;gap:8px}
+    .demo .field{flex:1;background:#02100f;border:2px solid var(--border);padding:10px 12px;
+      font:600 16px ui-monospace,monospace;color:var(--ink);min-height:22px}
+    .demo .field .caret{display:inline-block;width:9px;height:18px;background:var(--mint);
+      vertical-align:-3px;animation:blink 1s steps(1) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .demo .dive{background:var(--orange);color:#04181c;border:2px solid #ffd9a0;
+      font:800 14px ui-monospace,monospace;padding:0 18px;display:flex;align-items:center}
+    .gaugewrap{display:flex;gap:14px;margin-top:16px;align-items:stretch}
+    .gauge{position:relative;flex:0 0 26px;background:linear-gradient(180deg,#0e3438,#081c26 55%,#030a12);
+      border:2px solid var(--line)}
+    .diver{position:absolute;left:50%;transform:translateX(-50%);top:2%;width:14px;height:14px;
+      background:var(--purple);box-shadow:0 0 10px rgba(255,224,138,.9);
+      transition:top 1.4s cubic-bezier(.4,0,.6,1)}
+    .readout{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px}
+    .readout .ans{font:800 20px ui-monospace,monospace;min-height:26px}
+    .readout .tier{font:700 13px ui-monospace,monospace;letter-spacing:1px;min-height:18px}
+    .readout .quip{font-size:13.5px;color:var(--muted);min-height:40px;line-height:1.5}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:26px;margin:0 0 18px;font-weight:800;font-family:"Courier New",ui-monospace,monospace;color:var(--amber)}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:2px solid var(--line);padding:18px;box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:var(--muted)}
+    .privacy h3{font-size:16.5px;color:var(--ink)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">🦐 KRILLION</div>
+      <p class="tagline">Seven trivia prompts a day, the same for everyone. Every correct answer counts — but the rarer yours is, the deeper you dive. Find the gem worth 100 and touch the trench floor.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6807298929"><small>Download on the</small>App Store</a>
+
+      <div class="demo" aria-hidden="true">
+        <div class="prompt">Name a country in South America</div>
+        <div class="hint">▼ RARER ANSWERS SINK DEEPER ▼</div>
+        <div class="inputrow">
+          <div class="field"><span id="typed"></span><span class="caret"></span></div>
+          <div class="dive">DIVE</div>
+        </div>
+        <div class="gaugewrap">
+          <div class="gauge"><div class="diver" id="diver"></div></div>
+          <div class="readout">
+            <div class="ans" id="ans"></div>
+            <div class="tier" id="tier"></div>
+            <div class="quip" id="quip"></div>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:14px">Live demo: watch how rarity decides your depth.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Seven prompts a day</b>, identical for every player. You get <b>25 seconds</b> to type one answer, with unlimited tries until something lands.</li>
+        <li>Every valid answer is pre-graded by rarity: obvious ones barely count (🫧 10), solid ones swim mid-pack (🐟 30 / 🦑 60), truly obscure ones score big (🏮 85) — and each prompt hides <b>one gem worth 🌟 100</b>.</li>
+        <li>Every point sinks you <b>10 meters</b>. A perfect 700 lands on the trench floor at 7,000m.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why this dive</h2>
+      <div class="features">
+        <div class="feat"><b>🔍 See every answer</b><p>After each dive, THE CATCH opens the complete answer bank — every accepted answer, its rarity, its score, and the fun facts behind the gems. No black-box judging.</p></div>
+        <div class="feat"><b>🤝 Fair by design</b><p>Correct means it counts: no trick tiers, no penalty for knowing things. Typos get a friendly "did you mean…?" instead of a rejection.</p></div>
+        <div class="feat"><b>♾️ Keep diving</b><p>The daily dive is always free, plus free Endless dives every day and a replayable archive of recent days.</p></div>
+        <div class="feat"><b>🔥 Streaks with insurance</b><p>Build a daily streak and bank Streak Freezes along the way — miss one day and your streak survives.</p></div>
+        <div class="feat"><b>🏆 20 achievements &amp; a wardrobe</b><p>Badges for perfect dives, gem hunting and deep weeks — plus six dive-buddy anglerfish costumes to unlock.</p></div>
+        <div class="feat"><b>🤫 Ads that behave</b><p>Nothing ever interrupts your dive or your results. One optional purchase unlocks everything forever — it's not a subscription.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: September 1, 2026</p>
+      <p>Krillion ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your puzzle progress, statistics, streaks, achievements, and settings are stored locally on your device and are not transmitted to us.</p>
+
+      <h3>Advertising</h3>
+      <p>The free version shows ads served by Google AdMob. If you grant the iOS tracking permission, AdMob may use your device's advertising identifier to show more relevant ads; if you decline, ads are shown without tracking. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details. Purchasing "Krillion Pro" removes all advertising from the app.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you.</p>
+
+      <h3>Purchases</h3>
+      <p>In-app purchases are processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience trivia game and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, missing an answer we should accept, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6807298929">Krillion on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo loop: type an answer, "submit", show its tier and sink the diver to
+    // the matching depth. Cycles from obvious to the hidden gem.
+    const STEPS = [
+      { text:"Brazil",   tier:"🫧 PLANKTON · +10",  color:"#a8c8dc", depth:8,
+        quip:"The answer everyone blurts out. Barely a splash." },
+      { text:"Ecuador",  tier:"🦑 RARE · +60",       color:"#ff6b6b", depth:56,
+        quip:"Genuinely uncommon. You slip beneath the thermocline." },
+      { text:"Suriname", tier:"🌟 ONE IN A KRILLION · +100", color:"#ffe08a", depth:95,
+        quip:"South America's smallest country — and the only nation where Dutch is official. Trench floor." },
+    ];
+    const typed = document.getElementById("typed"), ans = document.getElementById("ans"),
+          tier = document.getElementById("tier"), quip = document.getElementById("quip"),
+          diver = document.getElementById("diver");
+    let i = 0;
+    function runStep() {
+      const s = STEPS[i];
+      typed.textContent = ""; ans.textContent = ""; tier.textContent = ""; quip.textContent = "";
+      diver.style.top = "2%";
+      let c = 0;
+      const t = setInterval(() => {
+        typed.textContent = s.text.slice(0, ++c);
+        if (c >= s.text.length) {
+          clearInterval(t);
+          setTimeout(() => {
+            typed.textContent = "";
+            ans.textContent = "“" + s.text + "”";
+            ans.style.color = s.color;
+            tier.textContent = s.tier;
+            tier.style.color = s.color;
+            quip.textContent = s.quip;
+            diver.style.top = s.depth + "%";
+            diver.style.background = s.color;
+            i = (i + 1) % STEPS.length;
+            setTimeout(runStep, 3400);
+          }, 500);
+        }
+      }, 110);
+    }
+    setTimeout(runStep, 900);
+  </script>
+</body>
+</html>
