@@ -1,6 +1,9 @@
 # AdMob
 google.com, pub-5654617376526903, DIRECT, f08c47fec0942fa0
 
+# Liftoff Monetize / Vungle (from publisher.vungle.com Add Application validation, 2026-09-04)
+vungle.com, 6a9a96eb17527b2eaf813843, DIRECT, c107d686becd2d77
+
 # Unity Ads (copied from Unity Dashboard > Monetization > Organization settings > App-ads.txt, 2026-08-28)
 anzu.io, 691e95644e633a6eee2567ee, RESELLER
 appads.in, 106246, RESELLER
