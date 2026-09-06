@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>串門運動 — 幫朋友量體能、一起做適合的運動</title>
+  <meta name="description" content="串門運動是免費、無廣告、完全離線的長者運動 app。到朋友家用 10 分鐘標準測驗量出體能等級，app 每天用語音帶著做適合的運動，QR code 一掃就把運動卡傳到朋友手機。">
+  <style>
+    :root{--bg:#F6F1E7;--card:#FFFBF3;--line:#D9D0C2;--ink:#1F1B16;--muted:#5A5248;--acc:#D9662B;--moss:#3F7D5A;--voice:rgba(217,102,43,.12)}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.75 ui-rounded,-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--acc)}
+    header{padding:60px 0 40px;text-align:center}
+    .logo{font-weight:900;font-size:46px;margin:10px 0 4px;letter-spacing:1px}
+    .logo i{font-style:normal;color:var(--acc)}
+    .tagline{color:var(--muted);font-size:20px;max-width:30em;margin:0 auto 24px;font-weight:600}
+    .badge{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:11px 22px;text-decoration:none;font-weight:700;font-size:16px}
+    .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;text-align:left}
+    .free{display:inline-block;margin-left:10px;background:var(--moss);color:#fff;border-radius:999px;padding:6px 14px;font-weight:800;font-size:14px;vertical-align:middle}
+    /* ---- demo: the app's exercise screen with the real skeleton animation ---- */
+    .demo{margin:40px auto 0;width:min(360px,92vw);background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:0 10px 30px rgba(90,70,30,.14);padding:18px;text-align:center}
+    .demo svg{width:100%;height:170px;display:block}
+    .demo .name{font-size:30px;font-weight:900;margin-top:4px}
+    .demo .num{font-size:52px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}.demo .num small{font-size:20px;color:var(--muted)}
+    .demo .set{font-weight:700;margin:4px 0 10px}
+    .demo .voice{background:var(--voice);border-radius:14px;padding:10px 12px;font-weight:600;font-size:15px;text-align:left}
+    .demo .btns{display:flex;gap:8px;margin-top:12px}.demo .btns span{flex:1;border:2.5px solid var(--ink);border-radius:16px;padding:12px;font-weight:800}
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-size:28px;margin:0 0 16px;font-weight:900}
+    h3{font-size:18px;margin:22px 0 6px;font-weight:800}
+    p{margin:8px 0}.muted{color:var(--muted)}
+    .steps{counter-reset:s;list-style:none;padding:0;margin:0}
+    .steps li{position:relative;padding-left:56px;margin:14px 0}
+    .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:2px;width:40px;height:40px;border-radius:50%;background:var(--acc);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:20px}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 6px 18px rgba(90,70,30,.08)}
+    .feat b{display:block;margin-bottom:4px;font-size:17px;font-weight:800}
+    .feat p{margin:0;color:var(--muted);font-size:15.5px;line-height:1.6}
+    .levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+    .lv{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px}.lv b{font-size:20px;display:block}
+    .callout{background:var(--voice);border-radius:14px;padding:14px 18px;font-weight:600}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p,.privacy li{font-size:15.5px;color:var(--muted)}.privacy h3{font-size:16.5px;color:var(--ink)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><i>串門</i>運動</div>
+      <p class="tagline">去朋友家坐 10 分鐘，量出他適合的運動；之後 app 每天用語音帶著他做。免費、無廣告、不用帳號、完全離線。</p>
+      <a class="badge" href="https://apps.apple.com/app/id0000000000"><small>Download on the</small>App Store</a><span class="free">免費・無廣告</span>
+
+      <div class="demo" aria-hidden="true">
+        <svg id="fig" data-id="sts_armchair" viewBox="-80 -20 160 130"></svg>
+        <div class="name">扶手椅坐站</div>
+        <div class="num"><span id="rep">1</span> <small>/ 12</small></div>
+        <div class="set">第 1 組（共 3 組）</div>
+        <div class="voice">🔊 手扶椅子扶手，站起來站直，再慢慢坐下。上……下……<span id="cnt">一</span>。</div>
+        <div class="btns"><span>暫停</span><span>下一個</span></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:14px">app 裡的動作畫面：大字、一次一個動作、語音報節奏。</p>
+    </header>
+
+    <section>
+      <h2>怎麼用</h2>
+      <ol class="steps">
+        <li><b>拜訪朋友，做 10 分鐘測量。</b>五次坐站、三站平衡、三公尺起走。app 逐字唸指令、幫你計時計數，你只要按大鍵。不用相機，一張靠牆的椅子就夠。</li>
+        <li><b>app 給出四個等級之一：坐著練／扶著練／站著練／進階練。</b>等級決定運動內容與強度，分數線來自公開的國際標準測驗。</li>
+        <li><b>當場一起做一次，再用 QR code 把「運動卡」傳到他的手機。</b>沒有 iPhone 的朋友，可以列印大字運動表。</li>
+        <li><b>之後他每天打開 app，按一個鍵，跟著聲音做。</b>一次一個動作，動畫示範，組間自動休息，太難可以隨時按「太難了」。12 週後再請朋友重測。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>四個等級</h2>
+      <div class="levels">
+        <div class="lv"><b>坐著練</b>坐著做，重點是腿力和手的力氣。每天，約 25 分鐘。</div>
+        <div class="lv"><b>扶著練</b>扶著桌子做，重點是腿力和平衡。每週 3 天動作、2 天走路。</div>
+        <div class="lv"><b>站著練</b>站著做，重點是平衡和走路。每週 3 天動作、2 天走路。</div>
+        <div class="lv"><b>進階練</b>動作較多，重點是全身力氣和平衡。每週 3 天動作、2 天走路。</div>
+      </div>
+      <p class="callout" style="margin-top:14px">這不是醫療診斷。篩檢方法與分數線來自 CDC STEADI、WHO ICOPE 與國健署長者量六力所採用的標準測驗；運動內容依國際長者多元運動指引。有任何不舒服，請停止並找醫生。</p>
+    </section>
+
+    <section>
+      <h2>為什麼做這個</h2>
+      <div class="features">
+        <div class="feat"><b>🪑 先量再練</b><p>市面上的長者運動 app 大多直接給內容。不先量體能，對衰弱者不安全、對健康者沒效。串門運動先做標準測驗，再依結果配內容。</p></div>
+        <div class="feat"><b>🔊 語音逐字帶著做</b><p>指令由 app 唸，拜訪者不用自己解釋，測量才有一致性。運動時語音報「上、下」和次數，看不清螢幕也能跟。</p></div>
+        <div class="feat"><b>🔡 大字、零術語</b><p>預設大字，可以再放大到最大。介面沒有任何醫學名詞，等級用「坐著練／扶著練」這種說法。</p></div>
+        <div class="feat"><b>📵 完全離線、不收資料</b><p>沒有帳號、沒有伺服器、沒有廣告、沒有分析。你和朋友的資料只存在手機裡。</p></div>
+        <div class="feat"><b>📱 QR 傳卡，紙本也行</b><p>測完掃一下就把運動卡傳到朋友手機。朋友用 Android？列印 A4 大字運動表，每個動作一頁。</p></div>
+        <div class="feat"><b>🤝 一個帶一個</b><p>練了兩週，app 會提醒你：有沒有哪位朋友不方便出門？去幫他量一次。一個人，帶動一個社區。</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy／隱私權政策</h2>
+      <p class="muted">Effective date: September 6, 2026</p>
+      <p>串門運動 ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+      <h3>No account, no server, local only</h3>
+      <p>The app requires no account and no sign-in, and it has no server. Everything you enter — nicknames, birth years, measurement results, exercise history, settings — is stored only on your device, protected by iOS data protection. Nothing is uploaded. Deleting a person card, or "Delete all data" in Settings, removes it permanently. Standard iOS device backups may include the app's data; that backup is controlled by you and Apple.</p>
+      <h3>Sharing between phones</h3>
+      <p>When you send a person card to a friend, the data travels directly from your phone to theirs as a QR code, or as a link whose content sits in the URL fragment. The fragment is never sent to this website's server, and this website does not log or store card contents.</p>
+      <h3>Camera</h3>
+      <p>The camera is used only to scan a friend's QR code and, optionally, to measure a 3-metre distance on the floor. No photos or video are stored or transmitted.</p>
+      <h3>Notifications</h3>
+      <p>If you allow notifications, the app schedules a daily reminder and a 12-week re-measurement reminder locally on your device. No push server is involved.</p>
+      <h3>Advertising and analytics</h3>
+      <p>The app contains no advertising, no in-app purchases, and no analytics or tracking SDKs of any kind.</p>
+      <h3>Health-related information</h3>
+      <p>The app records physical-performance test results and an exercise level. This information is not a medical diagnosis, is not shared with anyone, and is used only to choose which exercises the app shows. Please consult a doctor for any health concern.</p>
+      <h3>Children</h3>
+      <p>The app is intended for older adults and their friends and family, is rated 4+, and does not knowingly collect personal information from children.</p>
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support／意見回饋</h2>
+      <p>有問題、建議，或想幫忙審閱動作內容（物理治療師、據點指導員），請來信 <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>。</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id0000000000">串門運動 on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+  <script>
+  const DATA={"sts_armchair":{"id":"sts_armchair","view":"side","duration":5.0,"loop":true,"safety":["手扶椅子扶手，站直停一下再慢慢坐下","椅子要靠牆，不會滑"],"props":[{"type":"chair","x":-12.0,"y":20.0,"w":32,"back":32,"arms":true,"armY":33.0}],"frames":[{"t":0.0,"root":{"x":0.0,"y":22.0},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":0,"neck":0.0,"shL":-2.6,"elL":80.1,"shR":-2.6,"elR":80.1,"hipL":90,"kneeL":90,"ankL":0.0,"hipR":90,"kneeR":90,"ankR":0.0}},{"t":0.5,"root":{"x":-3.49,"y":18.28},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":35,"neck":0.0,"shL":-105.8,"elL":144.5,"shR":-105.8,"elR":144.5,"hipL":100,"kneeL":90,"ankL":0.0,"hipR":100,"kneeR":90,"ankR":0.0}},{"t":1.0,"root":{"x":5.91,"y":36.44},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":28,"neck":0.0,"shL":-43.1,"elL":3.0,"shR":-43.1,"elR":3.0,"hipL":50,"kneeL":52,"ankL":0.0,"hipR":50,"kneeR":52,"ankR":0.0}},{"t":1.45,"root":{"x":17.43,"y":43.52},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":8,"neck":0.0,"shL":0,"elL":0.0,"shR":0,"elR":0.0,"hipL":12,"kneeL":12,"ankL":0.0,"hipR":12,"kneeR":12,"ankR":0.0}},{"t":1.8,"root":{"x":22.0,"y":44.0},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":0,"neck":0.0,"shL":0,"elL":0.0,"shR":0,"elR":0.0,"hipL":0,"kneeL":0,"ankL":0.0,"hipR":0,"kneeR":0,"ankR":0.0}},{"t":2.8,"root":{"x":22.0,"y":44.0},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":0,"neck":0.0,"shL":0,"elL":0.0,"shR":0,"elR":0.0,"hipL":0,"kneeL":0,"ankL":0.0,"hipR":0,"kneeR":0,"ankR":0.0}},{"t":3.4,"root":{"x":8.63,"y":39.15},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":22,"neck":0.0,"shL":-35.2,"elL":3.0,"shR":-35.2,"elR":3.0,"hipL":40,"kneeL":42,"ankL":0.0,"hipR":40,"kneeR":42,"ankR":0.0}},{"t":4.0,"root":{"x":-1.83,"y":20.22},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":32,"neck":0.0,"shL":-99.0,"elL":132.5,"shR":-99.0,"elR":132.5,"hipL":95,"kneeL":90,"ankL":0.0,"hipR":95,"kneeR":90,"ankR":0.0}},{"t":4.5,"root":{"x":0.0,"y":22.0},"facing":1,"floor":0.0,"scale":1.0,"ease":"linear","joints":{"torso":0,"neck":0.0,"shL":-2.6,"elL":80.1,"shR":-2.6,"elR":80.1,"hipL":90,"kneeL":90,"ankL":0.0,"hipR":90,"kneeR":90,"ankR":0.0}},{"t":5.0,"root":{"x":0.0,"y":22.0},"facing":1,"floor":0.0,"scale":1.0,"ease":"smooth","joints":{"torso":0,"neck":0.0,"shL":-2.6,"elL":80.1,"shR":-2.6,"elR":80.1,"hipL":90,"kneeL":90,"ankL":0.0,"hipR":90,"kneeR":90,"ankR":0.0}}]}};
+  // Shared SVG renderer (style B) for gallery/spike pages. Mirrors Swift SkeletonPainter.
+const SEG={torso:30,neck:4,head:7,upper:15,fore:14,thigh:22,shank:22,foot:9,heel:2.5},HIP_W=5,SH_W=7;
+const d=a=>{const r=a*Math.PI/180;return [Math.sin(r),-Math.cos(r)]};
+function fkSide(j,rx,ry){const tl=j.torso*Math.PI/180;const N=[rx+SEG.torso*Math.sin(tl),ry+SEG.torso*Math.cos(tl)];
+ const hl=(j.torso+j.neck)*Math.PI/180;const H=[N[0]+(SEG.neck+SEG.head)*Math.sin(hl),N[1]+(SEG.neck+SEG.head)*Math.cos(hl)];
+ const p={pelvis:[rx,ry],neck:N,head:H,hipL:[rx,ry],hipR:[rx,ry]};
+ for(const s of["L","R"]){const sa=j["sh"+s]+j.torso;let v=d(sa);const E=[N[0]+SEG.upper*v[0],N[1]+SEG.upper*v[1]];v=d(sa+j["el"+s]);const W=[E[0]+SEG.fore*v[0],E[1]+SEG.fore*v[1]];
+  v=d(j["hip"+s]);const K=[rx+SEG.thigh*v[0],ry+SEG.thigh*v[1]];const sh=j["hip"+s]-j["knee"+s];v=d(sh);const A=[K[0]+SEG.shank*v[0],K[1]+SEG.shank*v[1]];
+  const fa=sh+90+j["ank"+s];v=d(fa);const T=[A[0]+SEG.foot*v[0],A[1]+SEG.foot*v[1]];v=d(fa+180);const HE=[A[0]+SEG.heel*v[0],A[1]+SEG.heel*v[1]];
+  p["shoulder"+s]=N;p["elbow"+s]=E;p["wrist"+s]=W;p["knee"+s]=K;p["ankle"+s]=A;p["toe"+s]=T;p["heel"+s]=HE;}
+ return p;}
+function fkFront(j,rx,ry){const N=[rx,ry+SEG.torso],H=[rx,N[1]+SEG.neck+SEG.head];const p={pelvis:[rx,ry],neck:N,head:H};
+ for(const [s,g] of [["L",-1],["R",1]]){const S=[N[0]+g*SH_W,N[1]-2];const a=j["sh"+s]*Math.PI/180;const E=[S[0]+g*SEG.upper*Math.sin(a),S[1]-SEG.upper*Math.cos(a)];
+  const b=(j["sh"+s]+j["el"+s])*Math.PI/180;const W=[E[0]+g*SEG.fore*Math.sin(b),E[1]-SEG.fore*Math.cos(b)];
+  const Hp=[rx+g*HIP_W,ry];const h=j["hip"+s]*Math.PI/180;const K=[Hp[0]+g*SEG.thigh*Math.sin(h),Hp[1]-SEG.thigh*Math.cos(h)];
+  const sh=SEG.shank*Math.cos(j["knee"+s]*Math.PI/180*0.5);const A=[K[0]+g*sh*Math.sin(h),K[1]-sh*Math.cos(h)];
+  p["shoulder"+s]=S;p["elbow"+s]=E;p["wrist"+s]=W;p["hip"+s]=Hp;p["knee"+s]=K;p["ankle"+s]=A;p["toe"+s]=[A[0]+g*3.5,A[1]];p["heel"+s]=[A[0]-g*3.5,A[1]];}
+ return p;}
+const smooth=u=>u*u*(3-2*u);
+function sample(a,t){const F=a.frames;if(a.loop)t=t%a.duration;let i=0;while(i<F.length-2&&F[i+1].t<=t)i++;const f0=F[i],f1=F[i+1];let u=(t-f0.t)/(f1.t-f0.t);u=Math.max(0,Math.min(1,u));if(f0.ease==="smooth")u=smooth(u);
+ const L=(x,y)=>x+(y-x)*u;const j={};for(const k in f0.joints)j[k]=L(f0.joints[k],f1.joints[k]);
+ const dyn={};if(f0.dyn)for(const k in f0.dyn)dyn[k]={x:L(f0.dyn[k].x,f1.dyn[k].x),y:L(f0.dyn[k].y,f1.dyn[k].y)};
+ const o0=f0.propOffset||{x:0,y:0},o1=f1.propOffset||o0;
+ return {j,root:{x:L(f0.root.x,f1.root.x),y:L(f0.root.y,f1.root.y)},facing:u<0.5?f0.facing:f1.facing,scale:L(f0.scale,f1.scale),floor:L(f0.floor||0,f1.floor||0),dyn,off:{x:L(o0.x,o1.x),y:L(o0.y,o1.y)}};}
+const SX=x=>x,SY=y=>100-y;
+function Ln(x1,y1,x2,y2,st){return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" ${st}/>`}
+const WOOD='stroke="#8a6a4a" stroke-width="3" stroke-linecap="round" fill="none"';
+function propsSVG(a,S,W){let s='';const ox=S.off.x,oy=S.off.y;for(const p of a.props){
+ if(p.type==="chair"){const x=p.x+ox,y=SY(p.y+oy);s+=`<g ${WOOD}>`+Ln(x,y,x+p.w,y,'')+Ln(x,y,x,y-p.back,'')+Ln(x+2,y,x+2,SY(oy),'')+Ln(x+p.w-2,y,x+p.w-2,SY(oy),'');if(p.arms){const ay=SY(p.armY+oy);s+=Ln(x,ay,x+p.w*0.72,ay,'')+Ln(x+p.w*0.72,ay,x+p.w*0.72,y,'');}s+='</g>';}
+ if(p.type==="table"){const y=SY(p.y+oy),x=p.x+ox;s+=`<g ${WOOD}>`+Ln(x,y,x+p.w,y,'')+Ln(x+3,y,x+3,100,'')+Ln(x+p.w-3,y,x+p.w-3,100,'')+'</g>';}
+ if(p.type==="bar"){const y=SY(p.y);s+=`<g ${WOOD}>`+Ln(-p.w/2,y,p.w/2,y,'')+Ln(-p.w/2+3,y,-p.w/2+3,100,'')+Ln(p.w/2-3,y,p.w/2-3,100,'')+'</g>';}
+ if(p.type==="path8"){const pts=[];for(let k=0;k<=80;k++){const th=2*Math.PI*k/80;pts.push(`${(p.a*Math.sin(th)).toFixed(1)},${(100+p.z*Math.sin(th)*Math.cos(th)*0.9).toFixed(1)}`);}s+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#bbb" stroke-width="1.2" stroke-dasharray="3 3"/>`;}
+ if(p.type==="roll"){s+=`<ellipse cx="${p.x+ox}" cy="${SY(p.y+oy)-3}" rx="5" ry="3" fill="#d9c9b0" stroke="#a08a68" stroke-width="1"/>`;}
+ if(p.type==="stairs"){s+='<g '+WOOD.replace('#8a6a4a','#999')+'>';let x=p.x+ox,y=SY(p.y+oy);for(let k=0;k<p.n;k++){s+=Ln(x,y,x+p.run,y,'')+Ln(x+p.run,y,x+p.run,y-p.rise,'');x+=p.run;y-=p.rise;}s+='</g>';}
+ if(p.type==="rail"){const x0=p.x+ox,y0=SY(p.y+oy);const x1=x0+p.n*p.run,y1=y0-p.n*p.rise;s+=`<g ${WOOD}>`+Ln(x0,y0-p.h,x1,y1-p.h,'')+Ln(x0+p.run*2,y0-p.rise*2,x0+p.run*2,y0-p.rise*2-p.h,'')+Ln(x0+p.run*5,y0-p.rise*5,x0+p.run*5,y0-p.rise*5-p.h,'')+'</g>';}
+ }return s;}
+function anchoredSVG(a,S,W){let s='';for(const p of a.props){
+ if(p.type==="ball"){const w=W(p.at);s+=`<circle cx="${w[0]}" cy="${w[1]}" r="4.2" fill="#e36b5c"/>`;}
+ if(p.type==="bottle_hand"){const w=W(p.at);s+=`<rect x="${w[0]-2.5}" y="${w[1]-7}" width="5" height="11" rx="1.5" fill="#6ab0d8" stroke="#2a6a90" stroke-width="1"/>`;}
+ if(p.type==="towel"){const a1=W(p.between[0]),a2=W(p.between[1]);s+=Ln(a1[0],a1[1],a2[0],a2[1],'stroke="#d9c9b0" stroke-width="5" stroke-linecap="round"');}
+ if(p.type==="balloon"){const b=S.dyn[p.dyn];if(b)s+=`<circle cx="${b.x}" cy="${SY(b.y)}" r="7" fill="#f2c94c" stroke="#c9a227" stroke-width="1"/>`;}
+ }return s;}
+function bottleSVG(p){const x=p.x,y=100-p.z*0.9;return `<rect x="${x-2.5}" y="${y-11}" width="5" height="11" rx="1.5" fill="#6ab0d8" stroke="#2a6a90" stroke-width="1"/><rect x="${x-1.2}" y="${y-13.5}" width="2.4" height="3" fill="#2a6a90"/>`}
+function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;const c=v=>Math.max(0,Math.min(255,v));return '#'+((1<<24)+(c(r)<<16)+(c(g)<<8)+c(b)).toString(16).slice(1);}
+function figureSVG(a,S,W){const front=a.view==="front";const col={torso:"#2f8f83",upper:"#2f8f83",fore:"#e8b892",thigh:"#3b4a6b",shank:"#3b4a6b",foot:"#5a3e2b"};
+ const segs=[["shoulderL","elbowL","upperL"],["elbowL","wristL","foreL"],["hipL","kneeL","thighL"],["kneeL","ankleL","shankL"],["heelL","toeL","footL"],
+  ["neck","pelvis","torso"],["hipR","kneeR","thighR"],["kneeR","ankleR","shankR"],["heelR","toeR","footR"],["shoulderR","elbowR","upperR"],["elbowR","wristR","foreR"]];
+ let s='';const sc=S.scale;
+ if(front){s+=Ln(...W("hipL"),...W("hipR"),`stroke="${col.thigh}" stroke-width="${9*sc}" stroke-linecap="round"`);}
+ for(const [a1,b1,nm] of segs){const base=nm.replace(/[LR]$/,'');const isFar=!front&&nm.endsWith("L");let c=col[base];if(isFar)c=shade(c,-18);
+  const w=(base==="torso"?12:base==="thigh"||base==="shank"?7.5:base==="foot"?5:5.5)*sc;const A=W(a1),B=W(b1);
+  if(front&&base==="torso"){s+=Ln(...W("shoulderL"),...W("shoulderR"),`stroke="${c}" stroke-width="${10*sc}" stroke-linecap="round"`);}
+  s+=Ln(A[0],A[1],B[0],B[1],`stroke="${c}" stroke-width="${w}" stroke-linecap="round"`);}
+ const h=W("head"),r=(SEG.head+1)*sc;s+=`<circle cx="${h[0]}" cy="${h[1]}" r="${r}" fill="#e8b892"/><path d="M ${h[0]-r} ${h[1]-1} A ${r} ${r} 0 0 1 ${h[0]+r} ${h[1]-1} Z" fill="#8a8a8a"/>`;
+ if(front){s+=`<circle cx="${h[0]-r*0.35}" cy="${h[1]}" r="${1.1*sc}" fill="#222"/><circle cx="${h[0]+r*0.35}" cy="${h[1]}" r="${1.1*sc}" fill="#222"/>`;}
+ else s+=`<circle cx="${h[0]+S.facing*r*0.45}" cy="${h[1]-r*0.05}" r="${1.1*sc}" fill="#222"/>`;
+ return s;}
+function render(svg,a,t){const S=sample(a,t);const front=a.view==="front";const p=front?fkFront(S.j,0,0):fkSide(S.j,0,0);
+ const W=n=>{const q=p[n];return [SX(S.root.x+(front?1:S.facing)*q[0]*S.scale),SY(S.root.y+q[1]*S.scale)]};
+ let s=`<line x1="-80" y1="100" x2="80" y2="100" stroke="#ddd" stroke-width="1"/>`;
+ const bars=a.props.filter(p=>p.type==="bar");const figZ=-(S.floor||0)/0.9;const bs=a.props.filter(p=>p.type==="bottle");
+ s+=propsSVG({props:a.props.filter(p=>p.type!=="bar")},S,W);for(const b of bs)if(b.z>figZ)s+=bottleSVG(b);
+ s+=figureSVG(a,S,W);s+=anchoredSVG(a,S,W);for(const b of bs)if(b.z<=figZ)s+=bottleSVG(b);
+ s+=propsSVG({props:bars},S,W);   // front-view table edge is in front of the body
+ svg.innerHTML=s;}
+const svgs=[...document.querySelectorAll('svg[data-id]')];const Q=new URLSearchParams(location.search);let playing=!Q.has('t'),speed=1,acc=+(Q.get('t')||0),last=performance.now();
+function loop(now){const dt=(now-last)/1000;last=now;if(playing)acc+=dt*speed;for(const sv of svgs)render(sv,DATA[sv.dataset.id],acc);requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+const pp=document.getElementById('pp');if(pp)pp.onclick=e=>{playing=!playing;e.target.textContent=playing?'⏸ 暫停':'▶ 播放'};
+const sp=document.getElementById('spd');if(sp)sp.oninput=e=>{speed=+e.target.value;document.getElementById('spdv').textContent=speed+'×'};
+
+  // rep counter synced to the clip loop (5 s per rep)
+  const CN=["一","二","三","四","五","六","七","八","九","十","十一","十二"];
+  setInterval(()=>{const r=Math.floor((acc%60)/5)%12;document.getElementById('rep').textContent=r+1;document.getElementById('cnt').textContent=CN[r];},250);
+  </script>
+</body>
+</html>

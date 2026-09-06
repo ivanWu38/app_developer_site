@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["Q98K2GW9ZQ.com.ikuhei.peerfit"],
+        "components": [
+          { "/": "/apps/peerfit/card", "comment": "串門運動 person card (payload in the fragment, never sent to the server)" },
+          { "/": "/apps/peerfit/card/*" }
+        ]
+      }
+    ]
+  }
+}
