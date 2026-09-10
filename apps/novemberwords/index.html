@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NovemberWords — Novel November: Word Tracker</title>
+  <meta name="description" content="NovemberWords is the scoreboard for your novel: log tonight's total in eight seconds, watch the cumulative chart climb past the par line, and see the day you'll finish. Any goal, any dates, no ads, no subscription, no account.">
+  <style>
+    :root{
+      --paper:#f6f1e8; --paper2:#efe8db; --card:#fffdf8; --ink:#2b2f4a; --ink2:#5d6076; --ink3:#8d8f9f;
+      --line:#e6dfd2; --navy:#2e3561; --navy2:#1c1f2e; --orange:#e5934a; --gold:#f2c14e; --good:#4c8a67;
+      --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;color:var(--ink);background:var(--paper);font:17px/1.7 var(--sans)}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--navy)}
+
+    header{padding:64px 0 46px;text-align:center}
+    .kick{display:inline-block;font:800 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);background:var(--paper2);padding:7px 11px;border-radius:6px}
+    .logo{font-family:var(--serif);font-weight:700;font-size:48px;margin:14px 0 6px;letter-spacing:-1px;line-height:1.05}
+    .logo em{font-style:italic;color:var(--orange)}
+    .tagline{color:var(--ink2);font-size:19px;max-width:34em;margin:0 auto 26px;font-family:var(--serif)}
+    .badge{display:inline-block;background:var(--navy);color:#fff;border-radius:12px;padding:11px 22px;text-decoration:none;font-weight:700;font-size:16px}
+    .badge small{display:block;font-weight:500;font-size:11px;opacity:.75;text-align:left}
+    .badge:hover{opacity:.9}
+
+    /* ── animated stats demo ── */
+    .demo{position:relative;width:320px;margin:44px auto 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 18px 16px;box-shadow:0 14px 40px -18px rgba(40,40,60,.35);text-align:left}
+    .demo .pill{position:absolute;top:-11px;left:14px;font:800 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#6b6d80;background:#e9e3d6;padding:5px 9px;border-radius:5px}
+    .chart{position:relative;height:150px;margin-top:6px;background:repeating-linear-gradient(180deg,var(--line) 0 1px,transparent 1px 30px)}
+    .bars{position:absolute;left:0;right:0;bottom:0;top:0;display:flex;align-items:flex-end;gap:3px}
+    .bars i{flex:1;display:block;background:var(--navy);border-radius:2px 2px 0 0;height:0;transition:height .35s cubic-bezier(.2,.9,.3,1.2)}
+    .par{position:absolute;inset:0;pointer-events:none}
+    .dsent{margin-top:14px;font-family:var(--serif);font-size:15.5px;line-height:1.35;color:var(--ink2)}
+    .dsent b{display:block;font-size:20px;color:var(--navy)}
+    .dstat{display:flex;gap:10px;margin-top:12px}
+    .dstat div{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 6px;text-align:center;font-family:var(--serif);font-size:12px;color:var(--ink2)}
+    .dstat div b{display:block;font-size:18px;color:var(--ink)}
+    .toast{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) scale(.6);background:var(--gold);color:var(--navy2);font:800 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:9px 14px;border-radius:999px;opacity:0;white-space:nowrap;box-shadow:0 10px 24px rgba(0,0,0,.18);pointer-events:none}
+    .toast.on{opacity:1;transform:translate(-50%,-50%) scale(1);transition:transform .28s cubic-bezier(.2,1.6,.4,1),opacity .12s}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-family:var(--serif);font-size:30px;margin:0 0 18px;font-weight:700;letter-spacing:-.3px}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--ink2)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:var(--ink2);font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--ink2);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p, .privacy li{font-size:15.5px;color:#4a4e66}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <span class="kick">Novel November: Word Tracker</span>
+      <div class="logo">November<em>Words</em></div>
+      <p class="tagline">Your novel lives in Word, Docs or Scrivener. NovemberWords is the scoreboard beside it: eight seconds a night to log your words, then the chart that tells you exactly where you stand.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6810231324"><small>Download on the</small>App Store</a>
+
+      <div class="demo" id="demo" aria-hidden="true">
+        <span class="pill">My word count</span>
+        <div class="chart">
+          <div class="bars" id="bars"></div>
+          <svg class="par" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="100" x2="100" y2="0" stroke="#e5934a" stroke-width="2" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/></svg>
+        </div>
+        <div class="dsent" id="sent">At this rate you'll be done on<b id="finish">—</b></div>
+        <div class="dstat"><div>Day<b id="day">1</b></div><div>Total<b id="total">0</b></div><div>Streak<b id="streak">0 🔥</b></div></div>
+        <div class="toast" id="toast">Above the line</div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Live demo: a month of logging, the bars climbing past the par line.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Set a goal and dates.</b> The built-in preset is 50,000 words from November 1 to 30, but any goal and any dates work. Start with words you already have, mark rest days, choose how the plan should react if you fall behind.</li>
+        <li><b>Log in eight seconds.</b> Type the total your editor shows and the app works out today's words. Or add today's count directly, or run a timer for a writing session. Zero counts. Negative days count too: editing is writing.</li>
+        <li><b>Read the chart.</b> Cumulative bars against a dashed par line, plus the ten classic statistics: words today, total, remaining, your average, target average, current day, days remaining, target, the day you'll finish at this rate, and the words per day to finish on time.</li>
+        <li><b>Keep the streak, earn the awards.</b> Rest days never break a streak. Twenty-four awards mark milestones, streaks, comebacks and big days. Reach the goal and mint a certificate with your name on it.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why NovemberWords</h2>
+      <div class="features">
+        <div class="feat"><b>📈 The stats page, on your phone</b><p>The cumulative chart and the ten statistics every November writer knows, rebuilt natively. Keep the bar above the line. That is the whole game.</p></div>
+        <div class="feat"><b>✍️ Write anywhere, score here</b><p>Your manuscript stays where it lives. NovemberWords only needs one number a night, and it does the subtraction for you.</p></div>
+        <div class="feat"><b>🧭 A plan that bends</b><p>Fall behind and what's left is quietly re-spread over the days you have. Prefer the traditional way? Freeze the plan and simply see how far ahead or behind you are.</p></div>
+        <div class="feat"><b>🔥 Streaks for real life</b><p>Take Sundays off. Log a zero. Cut 400 words. The flame stays lit, because showing up is the habit, not the number.</p></div>
+        <div class="feat"><b>🏅 Twenty-four awards and a certificate</b><p>From First Words to Winner, with badges for comebacks, marathons, early birds and night shifts. Every one is drawn by hand.</p></div>
+        <div class="feat"><b>🔒 Your words stay yours</b><p>No account, no cloud, no AI, no ads. Everything is stored on your phone, and you can export the whole log as CSV at any time. One optional purchase unlocks Pro, once.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date: September 10, 2026</p>
+      <p>NovemberWords ("the app") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your challenges, word-count entries, notes, awards, certificate name and settings are stored locally on your device and are not transmitted to us. You can export your data as a CSV file from Settings at any time; that file goes only where you choose to share it.</p>
+
+      <h3>No advertising</h3>
+      <p>The app contains no advertising and no advertising SDKs, and it does not request the iOS tracking permission.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous, aggregated usage data (for example, which screens are used and how often the app crashes). This helps us improve the app and is not used to identify you. Your word counts and notes are never sent as part of analytics.</p>
+
+      <h3>Purchases</h3>
+      <p>The optional NovemberWords Pro unlock is a one-time in-app purchase processed entirely by Apple. We never see or store your payment information. There are no subscriptions. Purchases can be restored from Settings on any device signed in with the same Apple ID.</p>
+
+      <h3>Notifications</h3>
+      <p>If you turn on reminders, the app schedules local notifications on your device. Nothing is sent to a server, and you can turn them off in Settings or in iOS Settings at any time.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience writing tracker and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes &amp; contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a> — screenshots always help.</p>
+      <p class="muted" style="font-size:14px">NovemberWords is an independent app and is not affiliated with or endorsed by any writing organization or event.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6810231324">NovemberWords on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo loop: 30 days of logging, bars climb against the par line, finish date settles.
+    const bars = document.getElementById("bars");
+    const words = [1720,1810,1660,2100,1750,1900,2940,0,1650,1780,1990,1850,1700,2300,1600,0,1750,1820,2010,1690,1900,0,1770,1850,4120,1500,2200,1900,2050,1900];
+    const GOAL = 50000;
+    for (let i = 0; i < 30; i++) { const b = document.createElement("i"); bars.appendChild(b); }
+    const els = [...bars.children];
+    const $ = id => document.getElementById(id);
+    const months = ["Nov"];
+    let timer;
+
+    function reset(){ els.forEach(b => b.style.height = "0"); $("day").textContent = "1"; $("total").textContent = "0"; $("streak").textContent = "0 🔥"; $("finish").textContent = "—"; $("toast").classList.remove("on"); }
+
+    function loop(){
+      reset();
+      let total = 0, streak = 0, shownToast = false;
+      words.forEach((w, i) => {
+        setTimeout(() => {
+          total += w; streak = w > 0 ? streak + 1 : streak; // Sundays (0) are rest days in the demo
+          els[i].style.height = Math.min(100, total / GOAL * 100) + "%";
+          $("day").textContent = i + 1;
+          $("total").textContent = total.toLocaleString("en-US");
+          $("streak").textContent = (i + 1 - Math.floor((i + 1) / 8)) + " 🔥";
+          const avg = total / (i + 1), remaining = Math.max(0, GOAL - total);
+          const daysNeeded = avg > 0 ? Math.ceil(remaining / avg) : 0;
+          const finishDay = Math.min(30, i + 1 + daysNeeded);
+          $("finish").textContent = remaining === 0 ? "Done — " + total.toLocaleString("en-US") + " words!" : "November " + finishDay;
+          if (!shownToast && i >= 6 && total > (i + 1) * 1667) { shownToast = true; $("toast").classList.add("on"); setTimeout(() => $("toast").classList.remove("on"), 1400); }
+        }, 500 + i * 180);
+      });
+      timer = setTimeout(loop, 500 + 30 * 180 + 3200);
+    }
+    loop();
+  </script>
+</body>
+</html>
