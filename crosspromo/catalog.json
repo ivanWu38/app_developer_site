@@ -1,0 +1,272 @@
+{
+ "version": 1,
+ "campaignPT": "",
+ "iconBase": "https://ikuheikure.xyz/crosspromo/icons/",
+ "apps": [
+  {
+   "id": "tango",
+   "appStoreID": "6781084459",
+   "name": "Tango Unlimited",
+   "tagline": "Sun & Moon logic puzzles",
+   "cluster": "logic",
+   "taglines": {
+    "de": "Sonne-&-Mond-Logikrätsel",
+    "fr": "Puzzles logiques Soleil & Lune",
+    "it": "Rompicapi logici Sole & Luna",
+    "es": "Puzzles lógicos de Sol y Luna",
+    "nl": "Zon & Maan-logicapuzzels"
+   }
+  },
+  {
+   "id": "pips",
+   "appStoreID": "6758598191",
+   "name": "Pips Game",
+   "tagline": "Daily domino logic puzzle",
+   "cluster": "logic",
+   "taglines": {
+    "de": "Tägliches Domino-Logikrätsel",
+    "fr": "Puzzle de dominos quotidien",
+    "it": "Rompicapo di domino quotidiano",
+    "es": "Puzzle diario de dominó",
+    "nl": "Dagelijkse domino-logicapuzzel"
+   }
+  },
+  {
+   "id": "zip",
+   "appStoreID": "6757413224",
+   "name": "Zip Game",
+   "tagline": "Connect the numbers in one path",
+   "cluster": "logic",
+   "taglines": {
+    "de": "Verbinde die Zahlen in einem Pfad",
+    "fr": "Relie les nombres en un seul tracé",
+    "it": "Collega i numeri in un solo percorso",
+    "es": "Une los números en un solo camino",
+    "nl": "Verbind de cijfers in één pad"
+   }
+  },
+  {
+   "id": "starbattle",
+   "appStoreID": "6795382877",
+   "name": "Star Battle",
+   "tagline": "Two Not Touch logic puzzle",
+   "cluster": "logic",
+   "taglines": {
+    "de": "Sterne setzen, keine Berührung",
+    "fr": "Place les étoiles sans contact",
+    "it": "Piazza le stelle senza contatti",
+    "es": "Coloca estrellas sin que se toquen",
+    "nl": "Plaats sterren die elkaar niet raken"
+   }
+  },
+  {
+   "id": "geogrid",
+   "appStoreID": "6772846225",
+   "name": "GeoGrid",
+   "tagline": "Daily world geography grid",
+   "cluster": "other",
+   "taglines": {
+    "de": "Tägliches Geografie-Raster",
+    "fr": "Grille de géographie quotidienne",
+    "it": "Griglia di geografia quotidiana",
+    "es": "Cuadrícula diaria de geografía",
+    "nl": "Dagelijks aardrijkskunderaster"
+   }
+  },
+  {
+   "id": "nerdle",
+   "appStoreID": "6794775029",
+   "name": "Nerdle",
+   "tagline": "Daily math equation puzzle",
+   "cluster": "logic",
+   "taglines": {
+    "de": "Tägliches Gleichungsrätsel",
+    "fr": "Puzzle d'équation quotidien",
+    "it": "Rompicapo di equazioni quotidiano",
+    "es": "Puzzle diario de ecuaciones",
+    "nl": "Dagelijkse vergelijkingspuzzel"
+   }
+  },
+  {
+   "id": "mist",
+   "appStoreID": "6784058617",
+   "name": "Mist",
+   "tagline": "Mini 6×6 sudoku",
+   "cluster": "logic"
+  },
+  {
+   "id": "numbrix",
+   "appStoreID": "6758319195",
+   "name": "Numbrix",
+   "tagline": "Number chain puzzle",
+   "cluster": "logic"
+  },
+  {
+   "id": "diagonalsudoku",
+   "appStoreID": "6755570496",
+   "name": "Diagonal Sudoku",
+   "tagline": "Sudoku X",
+   "cluster": "logic"
+  },
+  {
+   "id": "quad",
+   "appStoreID": "6758416573",
+   "name": "Quad Puzzle",
+   "tagline": "Four words, nine guesses",
+   "cluster": "word"
+  },
+  {
+   "id": "octordle",
+   "appStoreID": "6773183406",
+   "name": "Octors",
+   "tagline": "Eight words at once",
+   "cluster": "word"
+  },
+  {
+   "id": "hurdle",
+   "appStoreID": "6762115093",
+   "name": "Hurdle",
+   "tagline": "Five words, one daily run",
+   "cluster": "word"
+  },
+  {
+   "id": "waffle",
+   "appStoreID": "6796331552",
+   "name": "Waffle",
+   "tagline": "Swap letters, solve the grid",
+   "cluster": "word"
+  },
+  {
+   "id": "crossclimb",
+   "appStoreID": "6779141028",
+   "name": "Crossclimb",
+   "tagline": "Word ladder puzzles",
+   "cluster": "word"
+  },
+  {
+   "id": "dordle",
+   "appStoreID": "6776077012",
+   "name": "Dordle",
+   "tagline": "Two words at once",
+   "cluster": "word"
+  },
+  {
+   "id": "wend",
+   "appStoreID": "6762116025",
+   "name": "Wend",
+   "tagline": "Daily word trails",
+   "cluster": "word"
+  },
+  {
+   "id": "spellingbee",
+   "appStoreID": "6803864293",
+   "name": "Spelling Bee",
+   "tagline": "Find the pangram",
+   "cluster": "word"
+  },
+  {
+   "id": "lettertwist",
+   "appStoreID": "6797013839",
+   "name": "Letter Twist",
+   "tagline": "Unscramble the letters",
+   "cluster": "word"
+  },
+  {
+   "id": "stackdown",
+   "appStoreID": "6800591949",
+   "name": "Stackdown",
+   "tagline": "Word tile stacks",
+   "cluster": "word"
+  },
+  {
+   "id": "strands",
+   "appStoreID": "6759089293",
+   "name": "Hidden Word Search",
+   "tagline": "Find the theme words",
+   "cluster": "word"
+  },
+  {
+   "id": "winterarc",
+   "appStoreID": "6801043027",
+   "name": "Winter Arc",
+   "tagline": "90-day challenge tracker",
+   "cluster": "other"
+  },
+  {
+   "id": "envelope",
+   "appStoreID": "6779838041",
+   "name": "100 Envelope Challenge",
+   "tagline": "Savings challenge",
+   "cluster": "other"
+  }
+ ],
+ "rules": {
+  "tango": [
+   "pips",
+   "zip",
+   "starbattle",
+   "geogrid",
+   "nerdle"
+  ],
+  "pips": [
+   "tango",
+   "zip",
+   "starbattle",
+   "geogrid",
+   "nerdle"
+  ],
+  "quad": [
+   "octordle",
+   "hurdle",
+   "waffle",
+   "crossclimb",
+   "dordle"
+  ],
+  "octordle": [
+   "quad",
+   "hurdle",
+   "waffle",
+   "crossclimb",
+   "dordle"
+  ],
+  "geogrid": [
+   "tango",
+   "pips",
+   "zip",
+   "crossclimb",
+   "nerdle"
+  ]
+ },
+ "clusters": {
+  "logic": [
+   "tango",
+   "pips",
+   "zip",
+   "starbattle",
+   "geogrid",
+   "nerdle",
+   "mist",
+   "numbrix",
+   "diagonalsudoku"
+  ],
+  "word": [
+   "quad",
+   "octordle",
+   "hurdle",
+   "waffle",
+   "crossclimb",
+   "dordle",
+   "wend",
+   "spellingbee",
+   "lettertwist",
+   "stackdown",
+   "strands"
+  ],
+  "other": [
+   "tango",
+   "pips",
+   "quad",
+   "octordle"
+  ]
+ }
+}
