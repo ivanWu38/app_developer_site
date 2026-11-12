@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Year Bingo. Your 2027 goals on one bingo card.</title>
+  <meta name="description" content="Year Bingo turns your goals for the year into a bingo card. Fill it in one tap from 500+ ideas, light a star for every goal you finish, and share a card pretty enough to post. No account, no ads, no subscription.">
+  <link rel="canonical" href="https://ikuheikure.xyz/apps/yearbingo/">
+  <style>
+    :root{
+      --bg:#090A2B; --bg2:#2B1A69; --card:rgba(255,255,255,.07); --ink:#F4F1FF; --muted:#ACA4DA;
+      --line:rgba(255,255,255,.16); --gold:#FFD98A; --gold2:#EDBE68;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;color:var(--ink);
+      background:radial-gradient(120% 50% at 50% 100%, rgba(84,214,200,.22), rgba(84,214,200,0) 70%) fixed,
+                 linear-gradient(180deg,#090A2B 0%,#151049 34%,#2B1A69 70%,#3A2578 100%) fixed #090A2B;
+      font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+    a{color:var(--gold)}
+
+    header{padding:56px 0 44px;text-align:center}
+    .icon{width:96px;height:96px;border-radius:22px;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+    .logo{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:700;font-size:46px;margin:16px 0 6px;letter-spacing:.3px}
+    .logo .grad{background:linear-gradient(180deg,#FFF6CF,#FFD98A 45%,#EDBE68);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .tagline{color:#CFC8F2;font-size:19px;max-width:33em;margin:0 auto 26px}
+    .badge{display:inline-block;background:linear-gradient(180deg,#FFE9B4,#EDBE68);color:#1D1348;border-radius:26px;padding:11px 26px;
+      text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 10px 28px rgba(255,200,110,.28)}
+    .badge small{display:block;font-weight:600;font-size:11px;opacity:.75;text-align:left}
+    .badge:hover{opacity:.9}
+
+    /* animated demo: squares light up into stars, the top row becomes a line */
+    .demo{width:300px;margin:44px auto 0;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:12px;
+      box-shadow:0 18px 50px rgba(4,3,30,.5)}
+    .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;position:relative}
+    .sq{aspect-ratio:1;border-radius:10px;background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.22);position:relative;
+      transition:background .4s,border-color .4s,box-shadow .4s}
+    .sq.free{border-style:dashed;border-color:rgba(255,224,160,.75);background:rgba(255,217,138,.16)}
+    .sq::after{content:"";position:absolute;left:50%;top:50%;width:46%;height:46%;transform:translate(-50%,-50%) scale(0) rotate(-40deg);
+      background:#FFF6DA;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);
+      filter:drop-shadow(0 0 4px rgba(255,220,150,1));transition:transform .45s cubic-bezier(.2,1.6,.4,1)}
+    .sq.on,.sq.free{box-shadow:0 0 16px rgba(255,205,120,.28)}
+    .sq.on{background:linear-gradient(180deg,rgba(255,222,150,.34),rgba(255,222,150,.12));border-color:rgba(255,224,160,.8)}
+    .sq.on::after,.sq.free::after{transform:translate(-50%,-50%) scale(1) rotate(0)}
+    .lineglow{position:absolute;left:8%;right:8%;top:9.5%;height:2px;border-radius:2px;background:var(--gold);box-shadow:0 0 10px var(--gold);
+      transform:scaleX(0);transform-origin:left;transition:transform .6s ease-out}
+    .lineglow.on{transform:scaleX(1)}
+    .dstat{display:flex;justify-content:space-between;align-items:center;margin:12px 6px 2px;font-size:14px;font-weight:700;color:var(--muted)}
+    .dstat b{color:var(--gold);font-size:16px}
+    .bingo{font-family:Georgia,serif;font-weight:700;letter-spacing:2px;color:var(--gold);opacity:0;transition:opacity .4s}
+    .bingo.on{opacity:1}
+
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-size:29px;margin:0 0 18px;font-weight:700}
+    h3{font-size:18px;margin:22px 0 6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .feat b{display:block;margin-bottom:4px;font-size:16.5px}
+    .feat p{margin:0;color:#CFC8F2;font-size:15px;line-height:1.55}
+    .rules li{margin:6px 0}
+    footer{padding:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+    .privacy p,.privacy li{font-size:15.5px;color:#D6D0F2}
+    .privacy h3{font-size:16.5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <img class="icon" src="icon.png" alt="Year Bingo app icon" width="96" height="96">
+      <div class="logo"><span class="grad">Year Bingo</span></div>
+      <p class="tagline">Turn your goals for the year into a bingo card. Light a star for every goal you finish, chase your first BINGO, and make this your best year yet.</p>
+      <a class="badge" href="https://apps.apple.com/app/id6833792208"><small>Download on the</small>App Store</a>
+
+      <div class="demo" aria-hidden="true">
+        <div class="grid" id="grid"><div class="lineglow" id="line"></div></div>
+        <div class="dstat"><span><b id="count">0</b> / 24 done</span><span class="bingo" id="bingo">BINGO!</span></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Live demo. Finish a goal, light a star. Five in a row is a BINGO.</p>
+    </header>
+
+    <section>
+      <h2>How it works</h2>
+      <ul class="rules">
+        <li><b>Make your card in a minute.</b> Pick the areas you care about and tap once. Year Bingo fills a 5x5 card from more than 500 goal ideas, balanced between easy wins and real stretches. Swap any square, paste your own list, or write every square yourself.</li>
+        <li><b>Stamp a square when you finish a goal.</b> It lights up like a star. Goals that take many steps, like reading 12 books, get a counter that fills as you go.</li>
+        <li><b>Get a line, get a BINGO.</b> Finish a row, a column or a diagonal and the stars join into a constellation. You do not have to do everything. You just have to get a line.</li>
+        <li><b>Share it and keep it in sight.</b> Export your card as an image for Stories, posts or print, and put it on your Home Screen with a widget so your goals do not vanish in March.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Year Bingo</h2>
+      <div class="features">
+        <div class="feat"><b>A full card in one tap</b><p>Thinking of 24 goals is the hard part. Choose your themes and the app builds a balanced card for you, ready to tweak.</p></div>
+        <div class="feat"><b>A goal card, not a bingo game</b><p>No numbers to call and nothing to gamble. It is a friendlier way to keep New Year resolutions, built around small wins.</p></div>
+        <div class="feat"><b>Made to be posted</b><p>Eight styles, from a calm night sky to paper collage, bold poster, pastel and neon. Sized for Stories, posts and squares. Hide private squares with one switch.</p></div>
+        <div class="feat"><b>Widgets all year</b><p>Small, medium and large Home Screen widgets, plus Lock Screen widgets, show your progress every time you pick up your phone.</p></div>
+        <div class="feat"><b>Milestones and a year in review</b><p>Earn 12 milestones along the way, then look back in December and roll unfinished squares into next year's card.</p></div>
+        <div class="feat"><b>Simple and private</b><p>No account, no ads, no subscription. Your card stays on your device. Pro is a one-time purchase.</p></div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Effective date. November 12, 2026</p>
+      <p>Year Bingo ("the app", listed on the App Store as "Bingo Card Maker - 2027 Goals") is developed and published by the developer listed on our App Store page. This policy explains what information the app handles and how.</p>
+
+      <h3>No account, local first</h3>
+      <p>The app requires no account and no sign-in. Your cards, goals, notes, stamps, milestones and settings are stored locally on your device and are not transmitted to us. The same data is shared with the Year Bingo widgets on the same device so they can show your card. If you use iCloud device backup, Apple may include this data in your backup under your own Apple Account.</p>
+
+      <h3>No advertising, no tracking</h3>
+      <p>The app shows no ads. It does not track you across other companies' apps or websites, and it does not ask for the iOS tracking permission.</p>
+
+      <h3>Analytics</h3>
+      <p>We use Google Firebase Analytics to collect anonymous usage data, for example which screens and features are used and whether a purchase screen was opened. This includes a device identifier generated for analytics and basic device information such as model, system version, language and country. The text of your goals and notes is never included. This data helps us improve the app and is not used to identify you. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> for details.</p>
+
+      <h3>Photos, sharing and printing</h3>
+      <p>When you save a card image, the app asks for permission to add to your photo library. It cannot read your existing photos. Images and PDFs you share or print go only where you choose to send them. Squares you mark as private are hidden on shared images.</p>
+
+      <h3>Notifications</h3>
+      <p>Reminders are optional and are scheduled on your device. No notification data is sent to us.</p>
+
+      <h3>Purchases</h3>
+      <p>The one-time Pro purchase is processed entirely by Apple. We never see or store your payment information.</p>
+
+      <h3>Children</h3>
+      <p>The app is a general-audience goal tracker and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Changes and contact</h3>
+      <p>If this policy changes, the updated version will be posted on this page with a new effective date. Questions? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Found a bug, have a feature request, or just want to say hi? Email <a href="mailto:wuyuping38@gmail.com">wuyuping38@gmail.com</a>. Screenshots always help.</p>
+    </section>
+
+    <footer>
+      <a href="https://apps.apple.com/app/id6833792208">Year Bingo on the App Store</a> · <a href="/">All our apps</a>
+    </footer>
+  </div>
+
+  <script>
+    // Demo loop: squares light up one by one; the fifth one completes the top row and shows BINGO.
+    const grid = document.getElementById("grid"), line = document.getElementById("line");
+    const count = document.getElementById("count"), bingo = document.getElementById("bingo");
+    const sq = [];
+    for (let i = 0; i < 25; i++) { const d = document.createElement("div"); d.className = "sq" + (i === 12 ? " free" : ""); grid.appendChild(d); sq.push(d); }
+    const order = [17, 2, 8, 0, 21, 4, 1, 3];
+    function loop() {
+      sq.forEach((d, i) => { if (i !== 12) d.classList.remove("on"); });
+      line.classList.remove("on"); bingo.classList.remove("on"); count.textContent = "0";
+      order.forEach((idx, n) => setTimeout(() => {
+        sq[idx].classList.add("on"); count.textContent = String(n + 1);
+        if (n === order.length - 1) { line.classList.add("on"); setTimeout(() => bingo.classList.add("on"), 500); }
+      }, 900 + n * 700));
+      setTimeout(loop, 900 + order.length * 700 + 3600);
+    }
+    loop();
+  </script>
+</body>
+</html>
